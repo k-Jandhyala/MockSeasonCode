@@ -29,20 +29,20 @@ public class NoamAndrewDriveBM extends AbstractButtonMap {
         mp = new MotorPowers(0);
         currentMotorPower = basePower;
         /*
-         * Button A - Complete break
+         * Button Y - Complete break
          */
-        if (opMode.gamepad1.a) {
+        if (opMode.gamepad1.y) {
             robot.setAllMotorPowers(0);
             opMode.telemetry.addLine("Break!!");
             return;
         }
 
-        if(opMode.gamepad1.back){
-            robot.imu.resetYaw();
+        if(opMode.gamepad1.a){
+            // extend climb assistants
         }
 
         //Slow Strafe Button
-        if (opMode.gamepad1.b) {
+        if (opMode.gamepad1.x) {
             currentMotorPower *= slowStrafeMultiplier;
             opMode.telemetry.addLine("Slow Multiplier Active!");
         }
