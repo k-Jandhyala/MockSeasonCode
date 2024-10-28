@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.ButtonMaps.AbstractButtonMap;
-import org.firstinspires.ftc.teamcode.ComplexRobots.CenterStageRobot;
+import org.firstinspires.ftc.teamcode.ComplexRobots.IntoTheDeepRobot;
 
 @Config
 public class AndrewArmBM extends AbstractButtonMap {
@@ -17,7 +17,7 @@ public class AndrewArmBM extends AbstractButtonMap {
     private ElapsedTime et = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
 
     @Override
-    public void loop(CenterStageRobot robot, OpMode opMode) {
+    public void loop(IntoTheDeepRobot robot, OpMode opMode) {
         /*
             Button Map
             Y - Extend the Linear Slides (DONE)
