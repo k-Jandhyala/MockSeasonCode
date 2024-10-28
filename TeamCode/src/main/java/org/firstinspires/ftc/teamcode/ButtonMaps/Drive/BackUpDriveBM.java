@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.ButtonMaps.AbstractButtonMap;
 import org.firstinspires.ftc.teamcode.ButtonMaps.DPadControl;
 import org.firstinspires.ftc.teamcode.ButtonMaps.FieldOrientedDrive;
 import org.firstinspires.ftc.teamcode.ButtonMaps.MotorPowers;
-import org.firstinspires.ftc.teamcode.ComplexRobots.CenterStageRobot;
+import org.firstinspires.ftc.teamcode.ComplexRobots.IntoTheDeepRobot;
 @Config
 public class EitanNadavDriveBM extends AbstractButtonMap {
     //TODO: Change back to final when done with dash
@@ -24,7 +24,7 @@ public class EitanNadavDriveBM extends AbstractButtonMap {
 
 
     @Override
-    public void loop(CenterStageRobot robot, OpMode opMode) {
+    public void loop(IntoTheDeepRobot robot, OpMode opMode) {
         buttonPressed = false;
         mp = new MotorPowers(0);
 
