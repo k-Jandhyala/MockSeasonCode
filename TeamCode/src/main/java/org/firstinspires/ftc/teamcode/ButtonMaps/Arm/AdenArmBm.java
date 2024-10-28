@@ -15,7 +15,7 @@ public class ArianaArmBm extends AbstractButtonMap {
     private double intakeOutTime = 0;
 
     @Override
-    public void loop(CenterStageRobot robot, OpMode opMode) {
+    public void loop(IntoTheDeepRobot robot, OpMode opMode) {
         //Linear Slides (on triggers)
         //Copy+Paste from last year lol
         if (opMode.gamepad2.left_trigger > 0.1) {
