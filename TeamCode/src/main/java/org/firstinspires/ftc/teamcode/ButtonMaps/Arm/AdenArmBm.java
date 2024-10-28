@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.ButtonMaps.AbstractButtonMap;
-import org.firstinspires.ftc.teamcode.ComplexRobots.CenterStageRobot;
+import org.firstinspires.ftc.teamcode.ComplexRobots.IntoTheDeepRobot;
 
 public class ArianaArmBm extends AbstractButtonMap {
     public static double intakePower = 0.5;
