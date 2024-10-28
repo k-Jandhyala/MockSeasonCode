@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.ButtonMaps.AbstractButtonMap;
-import org.firstinspires.ftc.teamcode.ComplexRobots.CenterStageRobot;
+import org.firstinspires.ftc.teamcode.ComplexRobots.IntoTheDeepRobot;
 
 @Config
 public class THEArmBM extends AbstractButtonMap {
@@ -25,7 +25,7 @@ public class THEArmBM extends AbstractButtonMap {
 
 
     @Override
-    public void loop(CenterStageRobot robot, OpMode opMode) {
+    public void loop(IntoTheDeepRobot robot, OpMode opMode) {
         /* BUTTON MAP
          * A - Elbow/Wrist Intake
          * B - Elbow/Wrist Lift
@@ -80,16 +80,16 @@ public class THEArmBM extends AbstractButtonMap {
         if(!clawOpen) {
             if (opMode.gamepad2.y) {
                 //Y - Elbow and Wrist to Backboard
-                robot.elbowServo.setPosition(CenterStageRobot.elbowBackboardPosition);
-                robot.wristServo.setPosition(CenterStageRobot.wristBackboardPosition);
+                robot.elbowServo.setPosition(IntoTheDeepRobot.elbowBackboardPosition);
+                robot.wristServo.setPosition(IntoTheDeepRobot.wristBackboardPosition);
             } else if (opMode.gamepad2.b) {
                 //B - Elbow to slightly lifted position
-                robot.elbowServo.setPosition(CenterStageRobot.elbowRaisePosition);
-                robot.wristServo.setPosition(CenterStageRobot.wristCollapsePosition);
+                robot.elbowServo.setPosition(IntoTheDeepRobot.elbowRaisePosition);
+                robot.wristServo.setPosition(IntoTheDeepRobot.wristCollapsePosition);
             } else if (opMode.gamepad2.a) {
                 //A - Elbow and wrist to Load position
-                robot.elbowServo.setPosition(CenterStageRobot.elbowLoadPosition);
-                robot.wristServo.setPosition(CenterStageRobot.wristLoadPosition);
+                robot.elbowServo.setPosition(IntoTheDeepRobot.elbowLoadPosition);
+                robot.wristServo.setPosition(IntoTheDeepRobot.wristLoadPosition);
             }
         }
 
