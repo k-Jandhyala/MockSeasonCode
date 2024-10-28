@@ -16,7 +16,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.teamcode.BasicRobots.MecanumDrive;
 
 @Config
-public class CenterStageRobot extends MecanumDrive {
+public class IntoTheDeepRobot extends MecanumDrive {
     //Motors
     public final DcMotorEx linearSlidesMotor1;
     public final DcMotorEx linearSlidesMotor2;
@@ -48,7 +48,7 @@ public class CenterStageRobot extends MecanumDrive {
     public static int rightPlacementUpperBound = 520;
 
     //Constructor
-    public CenterStageRobot(HardwareMap hardwareMap, Pose2d pose, OpMode opMode) {
+    public IntoTheDeepRobot(HardwareMap hardwareMap, Pose2d pose, OpMode opMode) {
         super(hardwareMap, pose, opMode);
 
         //Linear Slide Motors
