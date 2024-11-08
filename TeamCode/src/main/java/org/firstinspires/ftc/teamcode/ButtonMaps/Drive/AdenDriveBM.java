@@ -2,94 +2,99 @@ package org.firstinspires.ftc.teamcode.ButtonMaps.Drive;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.ButtonMaps.AbstractButtonMap;
 import org.firstinspires.ftc.teamcode.ButtonMaps.DPadControl;
 import org.firstinspires.ftc.teamcode.ButtonMaps.FieldOrientedDrive;
 import org.firstinspires.ftc.teamcode.ButtonMaps.MotorPowers;
 import org.firstinspires.ftc.teamcode.ComplexRobots.IntoTheDeepRobot;
+
 @Config
-public class KrishDriveBM extends AbstractButtonMap {
-    //TODO: Change back to final when done with dash
-    public static double fastStrafePower = 0.8;
-    public static double mediumStrafePower = 0.5;
-    public static double slowStrafePower = 0.2;
+public class NoamAndrewDriveBM extends AbstractButtonMap {
+    //TODO: Change back to private final when done with dash
+    public static double triggerMultipler = 0.85;
+    public static double dpadBumperMultiplier = 0.65;
+    public static double fodMultiplier = 0.85;
+    public static double slowStrafeMultiplier = 0.35;
+    public static double basePower = 0.65;
 
     private boolean buttonPressed = false;
-    private boolean motorBrake = true;
-    private ElapsedTime et = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
+    private boolean combineWithPivotTurn = false;
 
-    private double currentStrafeMotorPower;
-    private MotorPowers mp;
-
+    private double currentMotorPower;
+    private MotorPowers mp;// = new MotorPowers(0);
 
     @Override
     public void loop(IntoTheDeepRobot robot, OpMode opMode) {
-        //Set mp to zero at the start, if no buttons are pressed it will never change
         mp = new MotorPowers(0);
-
-        //Reset Yaw for FOD
-        if(opMode.gamepad1.back){
-            robot.imu.resetYaw();
+        currentMotorPower = basePower;
+        /*
+         * Button Y - Complete break
+         */
+        if (opMode.gamepad1.y) {
+            robot.setAllMotorPowers(0);
+            opMode.telemetry.addLine("Break!!");
+            return;
         }
 
-        //Motor Brake (toggle) w/ cooldown to avoid rapidly flipping
-        if(opMode.gamepad1.b && et.time() > 500){
-            et.reset();
-            if(motorBrake){
-                robot.leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-                robot.leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-                robot.rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-                robot.rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-                motorBrake = false;
-            }else{
-                robot.leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-                robot.leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-                robot.rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-                robot.rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-                motorBrake = true;
-            }
-        }
-        //Displaying current motor brake status
-        if(motorBrake){
-            opMode.telemetry.addData("Drive Motor Mode", "Brake");
-        }else{
-            opMode.telemetry.addData("Drive Motor Mode", "Coast");
+        if(opMode.gamepad1.a){
+            // extend climb assistants
         }
 
-        //Speed Settings (hold)
-        if(opMode.gamepad1.left_bumper){
-            currentStrafeMotorPower = slowStrafePower;
-        }else if(opMode.gamepad1.right_bumper){
-            currentStrafeMotorPower = fastStrafePower;
-        }else{
-            currentStrafeMotorPower = mediumStrafePower;
+        //Slow Strafe Button
+        if (opMode.gamepad1.x) {
+            currentMotorPower *= slowStrafeMultiplier;
+            opMode.telemetry.addLine("Slow Multiplier Active!");
         }
 
-        //DPads OctoStrafe and Trigger Arc Turn, 2nd priority
-        MotorPowers dpadMotorPowers = DPadControl.dpadStrafe(opMode.gamepad1, currentStrafeMotorPower);
-        MotorPowers triggerMotorPowers = new MotorPowers(0);
-        if(opMode.gamepad1.right_trigger > 0.1){
-            //Right
-            triggerMotorPowers = new MotorPowers(0, opMode.gamepad1.right_trigger*currentStrafeMotorPower, 0, opMode.gamepad1.right_trigger*currentStrafeMotorPower);
-        }else if(opMode.gamepad1.left_trigger > 0.1){
-            //Left
-            triggerMotorPowers = new MotorPowers(opMode.gamepad1.left_trigger*currentStrafeMotorPower, 0, opMode.gamepad1.left_trigger*currentStrafeMotorPower, 0);
-        }
-        if(dpadMotorPowers.isNotZero() || triggerMotorPowers.isNotZero()){
+        //Dpad strafe using dpad
+        MotorPowers dpadMotorPowers = DPadControl.dpadStrafe(opMode.gamepad1, currentMotorPower);
+        if(dpadMotorPowers.isNotZero()){
             mp = dpadMotorPowers;
-            mp.combineWith(triggerMotorPowers);
+            opMode.telemetry.addLine("DPad Active!");
         }
 
-        //Field Oriented Drive (joysticks), 1st priority
-        MotorPowers fodMotorPowers = FieldOrientedDrive.fieldOrientedDrive(opMode.gamepad1, robot.imu, currentStrafeMotorPower);
-        if(fodMotorPowers.isNotZero()){
+        //Field-Oriented Driving using left joystick
+        MotorPowers fodMotorPowers = FieldOrientedDrive.fieldOrientedDrive(opMode.gamepad1, robot.imu, opMode.gamepad1.b ? fodMultiplier*slowStrafeMultiplier : fodMultiplier);
+        if (fodMotorPowers.isNotZero()) {
             mp = fodMotorPowers;
+            opMode.telemetry.addLine("FOD Active!");
         }
 
-        //Actually apply the power
+        /*
+         * Pivot turn methods
+         */
+        //Pivot Turn using joystick
+//        if(Math.abs(opMode.gamepad1.right_stick_x) > 0.1){
+//            MotorPowers joystickPivotTurnMotorPowers = robot.pivotTurn(currentMotorPower*(Math.abs(opMode.gamepad1.right_stick_x)), opMode.gamepad1.right_stick_x > 0.1, opMode.gamepad1.right_stick_x < -0.1);
+//            mp = joystickPivotTurnMotorPowers;
+//        }
+
+        //Pivot Turn Using bumpers
+        if(opMode.gamepad1.right_bumper || opMode.gamepad1.left_bumper){
+            MotorPowers bumperPivotTurnMotorPowers = robot.pivotTurn(currentMotorPower, opMode.gamepad1.right_bumper, opMode.gamepad1.left_bumper);
+            opMode.telemetry.addLine("Bumper Pivot Turn Active!");
+            mp = bumperPivotTurnMotorPowers;
+        }
+
+        /*
+         * Normal Drive
+         */
+        MotorPowers triggerMotorPowers = new MotorPowers(0);
+        //Forward
+        if (opMode.gamepad1.right_trigger > 0.1) {
+            triggerMotorPowers = new MotorPowers(opMode.gamepad1.right_trigger * triggerMultipler);
+            opMode.telemetry.addLine("Trigger Right (forward) active!");
+            mp = triggerMotorPowers;
+        }
+        //Backward
+        else if (opMode.gamepad1.left_trigger > 0.1) {
+            //Backward
+            triggerMotorPowers = new MotorPowers(-opMode.gamepad1.left_trigger * triggerMultipler);
+            opMode.telemetry.addLine("Trigger Left (backward) active!");
+            mp = triggerMotorPowers;
+        }
+
         robot.setMotorPowers(mp);
     }
 }
