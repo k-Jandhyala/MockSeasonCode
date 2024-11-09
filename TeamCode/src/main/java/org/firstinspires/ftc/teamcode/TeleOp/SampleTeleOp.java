@@ -9,13 +9,13 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.ButtonMaps.AbstractButtonMap;
 import org.firstinspires.ftc.teamcode.ButtonMaps.SampleButtonMap;
-import org.firstinspires.ftc.teamcode.ComplexRobots.CenterStageRobot;
+import org.firstinspires.ftc.teamcode.ComplexRobots.IntoTheDeepRobot;
 
 //EXAMPLE TELEOP WITH NEW SYSTEM
 //@TeleOp(name="Example")
 public class SampleTeleOp extends OpMode {
     //Global Variables
-    CenterStageRobot robot;
+    IntoTheDeepRobot robot;
 
     //Button Maps
     AbstractButtonMap buttonMapArm;
@@ -23,7 +23,7 @@ public class SampleTeleOp extends OpMode {
     //Setup all global variables here
     @Override
     public void init() {
-        robot = new CenterStageRobot(hardwareMap, new Pose2d(0,0,0), this);
+        robot = new IntoTheDeepRobot(hardwareMap, new Pose2d(0,0,0), this);
         buttonMapArm = new SampleButtonMap(5.5);
     }
 

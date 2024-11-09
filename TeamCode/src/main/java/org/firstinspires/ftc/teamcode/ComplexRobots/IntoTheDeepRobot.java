@@ -7,13 +7,12 @@ import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
 
-import org.firstinspires.ftc.teamcode.BasicRobots.MecanumDrive;
+import org.firstinspires.ftc.teamcode.MecanumDrive;
 
 @Config
 public class IntoTheDeepRobot extends MecanumDrive {
@@ -48,8 +47,8 @@ public class IntoTheDeepRobot extends MecanumDrive {
     public static int rightPlacementUpperBound = 520;
 
     //Constructor
-    public IntoTheDeepRobot(HardwareMap hardwareMap, Pose2d pose, OpMode opMode) {
-        super(hardwareMap, pose, opMode);
+    public IntoTheDeepRobot(HardwareMap hardwareMap, Pose2d pose, OpMode opmode) {
+        super(hardwareMap, pose/*,opmode*/);
 
         //Linear Slide Motors
         linearSlidesMotor1 = hardwareMap.get(DcMotorEx.class, "linearSlidesMotor1");

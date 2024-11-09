@@ -32,11 +32,13 @@ import com.acmerobotics.roadrunner.ftc.PositionVelocityPair;
 import com.acmerobotics.roadrunner.ftc.RawEncoder;
 import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IMU;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
@@ -59,9 +61,15 @@ public class IntoTheDeepRobot extends MecanumDrive {
     public final Servo brushServo2;
 
     public IntoTheDeepRobot(HardwareMap hardwareMap, Pose2d pose, OpMode opmode) {
+<<<<<<< Updated upstream
         super(hardwareMap, pose, opMode);
         //Linear Slide Motor
         linearSlideMotor = hardwareMap.get(DcMotorEx.class, "LinearSlideMotor");
+=======
+        super(hardwareMap, pose/*,opmode*/);
+        //Liner Slide Motor
+        linerSlideMotor = hardwareMap.get(DcMotorEx.class, "LinerSlideMotor");
+>>>>>>> Stashed changes
 
         //Setup
         linearSlideMotor.setDirection(DcMotor.Direction.REVERSE);
