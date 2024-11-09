@@ -7,12 +7,12 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.ButtonMaps.AbstractButtonMap;
 import org.firstinspires.ftc.teamcode.ButtonMaps.Arm.THEArmBM;
 import org.firstinspires.ftc.teamcode.ButtonMaps.Drive.NoamAndrewDriveBM;
-import org.firstinspires.ftc.teamcode.ComplexRobots.CenterStageRobot;
+import org.firstinspires.ftc.teamcode.ComplexRobots.IntoTheDeepRobot;
 
 @TeleOp(name="TeleOp: Noam/Andrew Drive & Common Arm")
 public class BMTestTeleop3 extends OpMode {
     //Global Variables
-    CenterStageRobot robot;
+    IntoTheDeepRobot robot;
 
     //Button Maps
     AbstractButtonMap buttonMap;
@@ -21,7 +21,7 @@ public class BMTestTeleop3 extends OpMode {
     public void init() {
         telemetry.addLine("Initializing, please wait...");
         telemetry.update();
-        robot = new CenterStageRobot(hardwareMap, new Pose2d(0,0,0), this);
+        robot = new IntoTheDeepRobot(hardwareMap, new Pose2d(0,0,0), this);
         buttonMap = new NoamAndrewDriveBM();
         slidesButtonMap = new THEArmBM();
         telemetry.addLine("Ready.");
