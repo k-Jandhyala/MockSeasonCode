@@ -486,4 +486,8 @@ public class MecanumDrive {
                 defaultVelConstraint, defaultAccelConstraint
         );
     }
+    public int tiles(double input) {
+        double conversion = 1000;
+        return (int)(input * conversion);
+    }
 }

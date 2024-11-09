@@ -60,16 +60,11 @@ public class IntoTheDeepRobot extends MecanumDrive {
     public final Servo brushServo1;
     public final Servo brushServo2;
 
-    public IntoTheDeepRobot(HardwareMap hardwareMap, Pose2d pose, OpMode opmode) {
-<<<<<<< Updated upstream
-        super(hardwareMap, pose, opMode);
+    public IntoTheDeepRobot(HardwareMap hardwareMap, Pose2d pose) {
+        super(hardwareMap, pose);
         //Linear Slide Motor
         linearSlideMotor = hardwareMap.get(DcMotorEx.class, "LinearSlideMotor");
-=======
-        super(hardwareMap, pose/*,opmode*/);
-        //Liner Slide Motor
-        linerSlideMotor = hardwareMap.get(DcMotorEx.class, "LinerSlideMotor");
->>>>>>> Stashed changes
+
 
         //Setup
         linearSlideMotor.setDirection(DcMotor.Direction.REVERSE);
