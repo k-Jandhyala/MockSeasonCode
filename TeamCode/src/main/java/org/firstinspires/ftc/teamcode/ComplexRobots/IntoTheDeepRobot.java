@@ -121,12 +121,19 @@ public class IntoTheDeepRobot extends MecanumDrive {
     }
 
     public MotorPowers pivotTurn(double currentMotorPower, boolean rightBumper, boolean leftBumper) {
+        double rightTopMotorPower = currentMotorPower;
+        double rightBotMotorPower = currentMotorPower;
+        double leftTopMotorPower = currentMotorPower;
+        double leftBotMotorPower = currentMotorPower;
         if (rightBumper) {
-
+            leftTopMotorPower *= -1;
+            leftBotMotorPower *= -1;
         }
-        if (leftBumper) {
-
+        else if (leftBumper) {
+            rightTopMotorPower *= -1;
+            rightBotMotorPower *= -1;
         }
+        return new MotorPowers(leftTopMotorPower,rightTopMotorPower,leftBotMotorPower,rightBotMotorPower);
     }
     //Possible method, no use
 
