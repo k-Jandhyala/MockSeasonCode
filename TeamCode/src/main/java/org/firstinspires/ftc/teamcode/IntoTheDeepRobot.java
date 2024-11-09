@@ -52,7 +52,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class IntoTheDeepRobot extends MecanumDrive {
-    public final DcMotorEx linerSlideMotor;
+    public final DcMotorEx linearSlideMotor;
     public final DcMotorEx bucketMotor1;
     public final DcMotorEx bucketMotor2;
     public final Servo brushServo1;
@@ -60,20 +60,20 @@ public class IntoTheDeepRobot extends MecanumDrive {
 
     public IntoTheDeepRobot(HardwareMap hardwareMap, Pose2d pose, OpMode opmode) {
         super(hardwareMap, pose, opMode);
-        //Liner Slide Motor
-        linerSlideMotor = hardwareMap.get(DcMotorEx.class, "LinerSlideMotor");
+        //Linear Slide Motor
+        linearSlideMotor = hardwareMap.get(DcMotorEx.class, "LinearSlideMotor");
 
         //Setup
-        linerSlideMotor.setDirection(DcMotor.Direction.REVERSE);
-        linerSlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        linerSlideMotor.setTargetPositionTolerance(15);
-        linerSlideMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        linerSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        linearSlideMotor.setDirection(DcMotor.Direction.REVERSE);
+        linearSlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        linearSlideMotor.setTargetPositionTolerance(15);
+        linearSlideMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        linearSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         //Bucket Motor
-        bucketMotor1 = hardwareMap.get(DcMotorEx.class, "LinerSlideMotor");
+        bucketMotor1 = hardwareMap.get(DcMotorEx.class, "LinearSlideMotor");
 
-        bucketMotor2 = hardwareMap.get(DcMotorEx.class, "LinerSlideMotor");
+        bucketMotor2 = hardwareMap.get(DcMotorEx.class, "LinearSlideMotor");
 
         //Setup
         bucketMotor1.setDirection(DcMotor.Direction.REVERSE);
