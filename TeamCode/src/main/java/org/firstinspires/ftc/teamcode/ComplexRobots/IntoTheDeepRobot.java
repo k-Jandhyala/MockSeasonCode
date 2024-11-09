@@ -13,6 +13,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.MecanumDrive;
+import org.firstinspires.ftc.teamcode.ButtonMaps.MotorPowers;
 
 @Config
 public class IntoTheDeepRobot extends MecanumDrive {
@@ -114,6 +115,20 @@ public class IntoTheDeepRobot extends MecanumDrive {
     public Action setSlideHeightAction(int targetPosition){
         return new SlideHeight(targetPosition);
     }
+
+    public void setAllMotorPowers(int i) {
+
+    }
+
+    public MotorPowers pivotTurn(double currentMotorPower, boolean rightBumper, boolean leftBumper) {
+        if (rightBumper) {
+
+        }
+        if (leftBumper) {
+
+        }
+    }
+    //Possible method, no use
 
     class SlideHeight implements Action {
         private boolean initialized;
