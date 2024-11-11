@@ -16,8 +16,10 @@ public class ArianaArmBm extends AbstractButtonMap {
 
 //    @Override
     public void loop(IntoTheDeepRobot robot, OpMode opMode) {
-        //Linear Slides (on triggers)
-        //Copy+Paste from last year lol
+        
+        if (opMode.gamepad2.a) {
+            robot.
+        //Bucket Motors (on triggers)      
         if (opMode.gamepad2.left_trigger > 0.1) {
             if (robot.bucketMotor1.getCurrentPosition() < -5 || robot.bucketMotor2.getCurrentPosition() < -5) {
                 opMode.telemetry.addData("LS Direction", "INHIBIT DOWN");
@@ -49,7 +51,7 @@ public class ArianaArmBm extends AbstractButtonMap {
           }
         if (opMode.gamepad2.left_bumper) {
               robot.clawServo.setPower(opMode.gamepad2.left_bumper);
-        } else {
+        } else if (opMode.gamepad2.right_bumper) {
               robot.clawServo.setPower(0);
         }
 
