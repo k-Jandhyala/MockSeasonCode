@@ -19,7 +19,7 @@ public class ArianaArmBm extends AbstractButtonMap {
         //Linear Slides (on triggers)
         //Copy+Paste from last year lol
         if (opMode.gamepad2.left_trigger > 0.1) {
-            if (robot.linearSlideMotor.getCurrentPosition() < -5 || robot.linearSlideMotor.getCurrentPosition() < -5) {
+            if (robot.bucketMotor1.getCurrentPosition() < -5 || robot.bucketMotor2.getCurrentPosition() < -5) {
                 opMode.telemetry.addData("LS Direction", "INHIBIT DOWN");
                 robot.bucketMotor1.setPower(0);
                 robot.bucketMotor2.setPower(0);
@@ -40,15 +40,16 @@ public class ArianaArmBm extends AbstractButtonMap {
 
         if (opMode.gamepad2.y) {
             robot.brushServo1.setPosition(0);
-        }
-//        if (opMode.gampad2.b) {
+        } else {
+            robot.brushServo1.setPower(0);
+//      if (opMode.gamepad2.b) {
 //            robot.linearSlideMotor.setPower(opMode.gamepad2.b);
-//        } else {
+//      } else {
 //            robot.linearSlideMotor.setPower(0);
 //        }
-//        if (opMode.gampad2.left_bumper) {
+//      if (opMode.gamepad2.left_bumper) {
 //            robot.clawServo.setPower(opMode.gamepad2.left_bumper);
-//        } else {
+//      } else {
 //            robot.clawServo.setPower(0);
         }
 
