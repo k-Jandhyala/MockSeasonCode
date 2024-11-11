@@ -39,6 +39,7 @@ public class NoamAndrewDriveBM extends AbstractButtonMap {
 
        if(opMode.gamepad1.a){
            // extend climb assistants
+          
        }
 
        //Slow Strafe Button
@@ -65,10 +66,10 @@ public class NoamAndrewDriveBM extends AbstractButtonMap {
         * Pivot turn methods
         */
        //Pivot Turn using joystick
-//        if(Math.abs(opMode.gamepad1.right_stick_x) > 0.1){
-//            MotorPowers joystickPivotTurnMotorPowers = robot.pivotTurn(currentMotorPower*(Math.abs(opMode.gamepad1.right_stick_x)), opMode.gamepad1.right_stick_x > 0.1, opMode.gamepad1.right_stick_x < -0.1);
-//            mp = joystickPivotTurnMotorPowers;
-//        }
+      if(Math.abs(opMode.gamepad1.right_stick_x) > 0.1){
+          MotorPowers joystickPivotTurnMotorPowers = robot.pivotTurn(currentMotorPower*(Math.abs(opMode.gamepad1.right_stick_x)), opMode.gamepad1.right_stick_x > 0.1, opMode.gamepad1.right_stick_x < -0.1);
+          mp = joystickPivotTurnMotorPowers;
+      }
 
        //Pivot Turn Using bumpers
        if(opMode.gamepad1.right_bumper || opMode.gamepad1.left_bumper){
