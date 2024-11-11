@@ -27,6 +27,12 @@ public class AndrewArmBM extends AbstractButtonMap {
 
          */
 
+        int e =
+        int f =
+        int a =
+        int b = 
+        
+
         /* Linear Slides */
         if (opMode.gamepad2.a) {
             if (robot.linearSlideMotor1.getCurrentPosition() < -5 || robot.linearSlideMotor2.getCurrentPosition() < -5) {
@@ -42,11 +48,15 @@ public class AndrewArmBM extends AbstractButtonMap {
             opMode.telemetry.addData("LS Direction", "UP");
             robot.brushServo1.setPower(1);
             robot.brushServo2.setPower(1);
+            robot.brushServo1.setPosition(a);
+            robot.brushServo2.setPosition(a);
         } else {
             opMode.telemetry.addData("LS Direction", "OFF+HOLD");
             //Small amount of power for hold mode
             robot.brushServo1.setPower(0);
             robot.brushServo2.setPower(0);
+            robot.brushServo1.setPosition(b);
+            robot.brushServo2.setPosition(b);
         }
         
         if (opMode.gamepad2.b) {
@@ -55,20 +65,20 @@ public class AndrewArmBM extends AbstractButtonMap {
         
         if (opMode.gamepad2.right_bumper) {
             robot.clawServo.setPower(1);
-            robot.clawServo.setPosition(x);
+            robot.clawServo.setPosition(e);
         } else (opMode.gamepad2.left_bumper) {
             robot.clawServo.setPower(0);
-            robot.clawServo.setPosition(y);
+            robot.clawServo.setPosition(f);
         }
 
         if (opMode.gamepad2.right_trigger) {
             robot.bucketMotor1.setPower(.5);
             robot.bucketMotor2.setPower(.5);
-            robot.bucketMotor1.setPosition(x);
-            robot.bucketMotor2.setPosition(x);
+            robot.bucketMotor1.setPosition(.5);
+            robot.bucketMotor2.setPosition(.5);
         } else if (opMode.gamepad2.left_trigger) {
-            robot.bucketMotor1.setPosition(y);
-            robot.bucketMotor2.setPosition(y);
+            robot.bucketMotor1.setPosition(0);
+            robot.bucketMotor2.setPosition(0);
             robot.bucketMotor1.setPower(0);
             robot.bucketMotor.setPower(0);
         }
