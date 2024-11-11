@@ -59,6 +59,7 @@ public class IntoTheDeepRobot extends MecanumDrive {
     public final DcMotorEx bucketMotor2;
     public final Servo brushServo1;
     public final Servo brushServo2;
+    public final Servo clawServo;
 
     public IntoTheDeepRobot(HardwareMap hardwareMap, Pose2d pose) {
         super(hardwareMap, pose);
@@ -94,5 +95,6 @@ public class IntoTheDeepRobot extends MecanumDrive {
         //Brush Servos
         brushServo1 = hardwareMap.get(Servo.class, "brushServo1");
         brushServo2 = hardwareMap.get(Servo.class, "brushServo2");
+        clawServo = hardwareMap.get(Servo.class, "clawServo");
     }
 }
