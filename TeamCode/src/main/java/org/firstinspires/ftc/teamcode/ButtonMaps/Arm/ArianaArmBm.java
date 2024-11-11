@@ -42,15 +42,15 @@ public class ArianaArmBm extends AbstractButtonMap {
             robot.brushServo1.setPosition(0);
         } else {
             robot.brushServo1.setPower(0);
-//      if (opMode.gamepad2.b) {
-//            robot.linearSlideMotor.setPower(opMode.gamepad2.b);
-//      } else {
-//            robot.linearSlideMotor.setPower(0);
-//        }
-//      if (opMode.gamepad2.left_bumper) {
-//            robot.clawServo.setPower(opMode.gamepad2.left_bumper);
-//      } else {
-//            robot.clawServo.setPower(0);
+        if (opMode.gamepad2.b) {
+              robot.linearSlideMotor.setPower(opMode.gamepad2.b);
+        } else {
+              robot.linearSlideMotor.setPower(0);
+          }
+        if (opMode.gamepad2.left_bumper) {
+              robot.clawServo.setPower(opMode.gamepad2.left_bumper);
+        } else {
+              robot.clawServo.setPower(0);
         }
 
     @Override
