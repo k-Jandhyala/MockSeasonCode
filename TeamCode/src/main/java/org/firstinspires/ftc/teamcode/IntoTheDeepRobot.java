@@ -54,47 +54,60 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class IntoTheDeepRobot extends MecanumDrive {
+<<<<<<< Updated upstream
     public final DcMotorEx linearSlideMotor;
     public final DcMotorEx bucketMotor1;
     public final DcMotorEx bucketMotor2;
     public final Servo brushServo1;
     public final Servo brushServo2;
     public final Servo clawServo;
+=======
+//    public final DcMotorEx linearSlideMotor;
+//    public final DcMotorEx bucketMotor1;
+//    public final DcMotorEx bucketMotor2;
+//    public final Servo brushServo1;
+//    public final Servo brushServo2;
+>>>>>>> Stashed changes
 
     public IntoTheDeepRobot(HardwareMap hardwareMap, Pose2d pose) {
         super(hardwareMap, pose);
         //Linear Slide Motor
-        linearSlideMotor = hardwareMap.get(DcMotorEx.class, "LinearSlideMotor");
+//        linearSlideMotor = hardwareMap.get(DcMotorEx.class, "LinearSlideMotor");
 
 
         //Setup
-        linearSlideMotor.setDirection(DcMotor.Direction.REVERSE);
-        linearSlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        linearSlideMotor.setTargetPositionTolerance(15);
-        linearSlideMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        linearSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        linearSlideMotor.setDirection(DcMotor.Direction.REVERSE);
+//        linearSlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//        linearSlideMotor.setTargetPositionTolerance(15);
+//        linearSlideMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        linearSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         //Bucket Motor
-        bucketMotor1 = hardwareMap.get(DcMotorEx.class, "LinearSlideMotor");
-
-        bucketMotor2 = hardwareMap.get(DcMotorEx.class, "LinearSlideMotor");
-
-        //Setup
-        bucketMotor1.setDirection(DcMotor.Direction.REVERSE);
-        bucketMotor1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        bucketMotor1.setTargetPositionTolerance(15);
-        bucketMotor1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        bucketMotor1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-        bucketMotor2.setDirection(DcMotor.Direction.REVERSE);
-        bucketMotor2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        bucketMotor2.setTargetPositionTolerance(15);
-        bucketMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        bucketMotor2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        bucketMotor1 = hardwareMap.get(DcMotorEx.class, "LinearSlideMotor");
+//
+//        bucketMotor2 = hardwareMap.get(DcMotorEx.class, "LinearSlideMotor");
+//
+//        //Setup
+//        bucketMotor1.setDirection(DcMotor.Direction.REVERSE);
+//        bucketMotor1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//        bucketMotor1.setTargetPositionTolerance(15);
+//        bucketMotor1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        bucketMotor1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//
+//        bucketMotor2.setDirection(DcMotor.Direction.REVERSE);
+//        bucketMotor2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+//        bucketMotor2.setTargetPositionTolerance(15);
+//        bucketMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        bucketMotor2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         //Brush Servos
+<<<<<<< Updated upstream
         brushServo1 = hardwareMap.get(Servo.class, "brushServo1");
         brushServo2 = hardwareMap.get(Servo.class, "brushServo2");
         clawServo = hardwareMap.get(Servo.class, "clawServo");
+=======
+//        brushServo1 = hardwareMap.get(Servo.class, "brushServo1");
+//        brushServo2 = hardwareMap.get(Servo.class, "brushServo2");
+>>>>>>> Stashed changes
     }
 }
