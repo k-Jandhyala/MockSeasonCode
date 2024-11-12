@@ -54,21 +54,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class IntoTheDeepRobot extends MecanumDrive {
-<<<<<<< Updated upstream
-    public final DcMotorEx linearSlideMotor;
-    public final DcMotorEx bucketMotor1;
-    public final DcMotorEx bucketMotor2;
-    public final Servo brushServo1;
-    public final Servo brushServo2;
-    public final Servo clawServo;
-=======
-//    public final DcMotorEx linearSlideMotor;
+    //    public final DcMotorEx linearSlideMotor;
 //    public final DcMotorEx bucketMotor1;
 //    public final DcMotorEx bucketMotor2;
 //    public final Servo brushServo1;
 //    public final Servo brushServo2;
->>>>>>> Stashed changes
-
+//    public final Servo clawServo;
     public IntoTheDeepRobot(HardwareMap hardwareMap, Pose2d pose) {
         super(hardwareMap, pose);
         //Linear Slide Motor
@@ -101,13 +92,8 @@ public class IntoTheDeepRobot extends MecanumDrive {
 //        bucketMotor2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         //Brush Servos
-<<<<<<< Updated upstream
-        brushServo1 = hardwareMap.get(Servo.class, "brushServo1");
-        brushServo2 = hardwareMap.get(Servo.class, "brushServo2");
-        clawServo = hardwareMap.get(Servo.class, "clawServo");
-=======
 //        brushServo1 = hardwareMap.get(Servo.class, "brushServo1");
 //        brushServo2 = hardwareMap.get(Servo.class, "brushServo2");
->>>>>>> Stashed changes
+//        clawServo = hardwareMap.get(Servo.class, "clawServo");
     }
 }
