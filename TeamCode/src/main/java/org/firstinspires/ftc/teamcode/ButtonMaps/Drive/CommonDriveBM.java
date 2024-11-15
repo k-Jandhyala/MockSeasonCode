@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.ButtonMaps.MotorPowers;
 import org.firstinspires.ftc.teamcode.ComplexRobots.IntoTheDeepRobot;
 
 @Config
-public class NoamAndrewDriveBM extends AbstractButtonMap {
+public class CommonDriveBM extends AbstractButtonMap {
     //TODO: Change back to private final when done with dash
     public static double triggerMultipler = 0.85;
     public static double dpadBumperMultiplier = 0.65;
@@ -39,6 +39,7 @@ public class NoamAndrewDriveBM extends AbstractButtonMap {
 
         if(opMode.gamepad1.a){
             // extend climb assistants
+            return;
         }
 
         //Slow Strafe Button
@@ -64,7 +65,7 @@ public class NoamAndrewDriveBM extends AbstractButtonMap {
         /*
          * Pivot turn methods
          */
-        //Pivot Turn using joystick
+//        //Pivot Turn using joystick
 //        if(Math.abs(opMode.gamepad1.right_stick_x) > 0.1){
 //            MotorPowers joystickPivotTurnMotorPowers = robot.pivotTurn(currentMotorPower*(Math.abs(opMode.gamepad1.right_stick_x)), opMode.gamepad1.right_stick_x > 0.1, opMode.gamepad1.right_stick_x < -0.1);
 //            mp = joystickPivotTurnMotorPowers;
