@@ -22,7 +22,7 @@ public class IntoTheDeepRobot extends MecanumDrive {
     public IntoTheDeepRobot(HardwareMap hardwareMap, Pose2d pose) {
         super(hardwareMap, pose);
         //Linear Slide Motor
-        horizontalSlideMotor = hardwareMap.get(DcMotorEx.class, "LinearSlideMotor");
+        horizontalSlideMotor = hardwareMap.get(DcMotorEx.class, "horizontalSlideMotor");
 
 
         //Setup
@@ -33,9 +33,9 @@ public class IntoTheDeepRobot extends MecanumDrive {
         horizontalSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         //Bucket Motor
-        bucketMotor1 = hardwareMap.get(DcMotorEx.class, "LinearSlideMotor");
+        bucketMotor1 = hardwareMap.get(DcMotorEx.class, "bucketMotor1");
 
-        bucketMotor2 = hardwareMap.get(DcMotorEx.class, "LinearSlideMotor");
+        bucketMotor2 = hardwareMap.get(DcMotorEx.class, "bucketMotor2");
 
         //Setup
         bucketMotor1.setDirection(DcMotor.Direction.REVERSE);
