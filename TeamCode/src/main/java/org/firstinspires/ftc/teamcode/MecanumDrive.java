@@ -41,6 +41,7 @@ import com.qualcomm.robotcore.hardware.VoltageSensor;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
+import org.firstinspires.ftc.teamcode.ButtonMaps.MotorPowers;
 import org.firstinspires.ftc.teamcode.messages.DriveCommandMessage;
 import org.firstinspires.ftc.teamcode.messages.MecanumCommandMessage;
 import org.firstinspires.ftc.teamcode.messages.MecanumLocalizerInputsMessage;
@@ -228,7 +229,8 @@ public class MecanumDrive {
         rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         // TODO: reverse motor directions if needed
-        //   leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightBack.setDirection(DcMotorSimple.Direction.REVERSE);
 
         // TODO: make sure your config has an IMU with this name (can be BNO or BHI)
         //   see https://ftc-docs.firstinspires.org/en/latest/hardware_and_software_configuration/configuring/index.html
@@ -240,6 +242,21 @@ public class MecanumDrive {
         localizer = new ThreeDeadWheelLocalizer(hardwareMap, PARAMS.inPerTick);
 
         FlightRecorder.write("MECANUM_PARAMS", PARAMS);
+    }
+
+    public void setMotorPowers(MotorPowers mp){
+        setMotorPower(mp.leftFront, mp.rightFront, mp.leftBack, mp.rightBack);
+    }
+
+    public void setAllMotorPowers(double power){
+        setMotorPower(power, power, power, power);
+    }
+
+    public void setMotorPower(double powLeftFront, double powRightFront, double powLeftBack, double powRightBack){
+        rightFront.setPower(powRightFront);
+        leftFront.setPower(powLeftFront);
+        rightBack.setPower(powRightBack);
+        leftBack.setPower(powLeftBack);
     }
 
     public void setDrivePowers(PoseVelocity2d powers) {
@@ -487,7 +504,7 @@ public class MecanumDrive {
         );
     }
     public int tiles(double input) {
-        double conversion = 1000;
+        double conversion = 35000;
         return (int)(input * conversion);
     }
 }
