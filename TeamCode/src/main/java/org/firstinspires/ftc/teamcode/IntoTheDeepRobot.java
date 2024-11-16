@@ -60,6 +60,7 @@ public class IntoTheDeepRobot extends MecanumDrive {
     public final Servo brushServo1;
     public final Servo brushServo2;
     public final Servo clawServo;
+    public final Servo wristServo;
 
     public IntoTheDeepRobot(HardwareMap hardwareMap, Pose2d pose) {
         super(hardwareMap, pose);
@@ -95,6 +96,15 @@ public class IntoTheDeepRobot extends MecanumDrive {
         //Brush Servos
         brushServo1 = hardwareMap.get(Servo.class, "brushServo1");
         brushServo2 = hardwareMap.get(Servo.class, "brushServo2");
+<<<<<<< Updated upstream
         clawServo = hardwareMap.get(Servo.class, "clawServo");
+=======
+
+        // Claw Servo or ROSE
+        clawServo = hardwareMap.get(Servo.class, "clawServo");
+
+        //Wrist Servo (elbow)
+        wristServo = hardwareMap.get(Servo.class, "wristServo");
+>>>>>>> Stashed changes
     }
 }

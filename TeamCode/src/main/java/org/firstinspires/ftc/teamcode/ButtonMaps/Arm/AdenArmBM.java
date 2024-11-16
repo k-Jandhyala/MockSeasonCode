@@ -16,6 +16,19 @@ public class AndrewArmBM extends AbstractButtonMap {
     //TODO: Magic Numbers!!!
     private ElapsedTime et = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
 
+    // Servo Positions
+    double e =
+    double f =
+    double a =
+    double b =
+    double x =
+    double y =
+
+    //Boolean Toggle Memory
+    boolean yIsPressed = false;
+    boolean bIsPressed = false;
+    boolean aIsPressed = false;
+
     @Override
     public void loop(IntoTheDeepRobot robot, OpMode opMode) {
         /*
@@ -27,67 +40,61 @@ public class AndrewArmBM extends AbstractButtonMap {
 
          */
 
-        int e =
-        int f =
-        int a =
-        int b = 
-        
-
         /* Linear Slides */
-        if (opMode.gamepad2.a) {
+        if (opMode.gamepad2.a && aIsPressed) {
+            aIsPressed = !aIsPressed;
             if (robot.linearSlideMotor1.getCurrentPosition() < -5 || robot.linearSlideMotor2.getCurrentPosition() < -5) {
                 opMode.telemetry.addData("LS Direction", "INHIBIT DOWN");
-                robot.linearSlideMotor.setPower(.5);
-                robot.linearSlideMotor.setPosition(.5);
-            } else {
+                robot.linearSlideMotor.setPower(1);
+            } else if (opMode.gamepad2.a && aIsPressed) {
                 opMode.telemetry.addData("LS Direction", "DOWN");
-                robot.linearSlideMotor.setPower(0);
-                robot.linearSlideMotor.setPosition(0);
+                robot.linearSlideMotor.setPower(-1);
             }
-        } else if (opMode.gamepad2.y) {
+        } else if {
+
+        }
+            // Brush Servos
+        if (opMode.gamepad2.y && yIsPressed) {
             opMode.telemetry.addData("LS Direction", "UP");
             robot.brushServo1.setPower(1);
             robot.brushServo2.setPower(1);
             robot.brushServo1.setPosition(a);
             robot.brushServo2.setPosition(a);
-        } else {
+            yIsPressed = !yIsPressed;
+        } else if (opMode.gamepad2.y && yIsPressed) {
             opMode.telemetry.addData("LS Direction", "OFF+HOLD");
             //Small amount of power for hold mode
-            robot.brushServo1.setPower(0);
-            robot.brushServo2.setPower(0);
+            robot.brushServo1.setPower(-1);
+            robot.brushServo2.setPower(-1);
             robot.brushServo1.setPosition(b);
             robot.brushServo2.setPosition(b);
+            yIsPressed = !yIsPressed;
         }
-        
-        if (opMode.gamepad2.b) {
-        // Toggle Elbow
+        //Wrist Servo (elbow)
+        if (opMode.gamepad2.b && bIsPressed) {
+            robot.wristServo.setPower(1);
+            robot.wristServo.setPosition(x);
+            bIsPressed = !bIsPressed;
+        } else {
+            robot.wristServo.setPower(-1);
+            robot.wristServo.setPosition(y);
+            bIsPressed = !bIsPressed;
         }
-        
+        //Claw Servos (ROSE)
         if (opMode.gamepad2.right_bumper) {
-            robot.clawServo.setPower(1);
+            robot.clawServo.setPower(opMode.gamepad2.right_bumper);
             robot.clawServo.setPosition(e);
         } else (opMode.gamepad2.left_bumper) {
-            robot.clawServo.setPower(0);
+            robot.clawServo.setPower(-1);
             robot.clawServo.setPosition(f);
         }
-
+        //Bucket Motors
         if (opMode.gamepad2.right_trigger) {
-            robot.bucketMotor1.setPower(.5);
-            robot.bucketMotor2.setPower(.5);
-            robot.bucketMotor1.setPosition(.5);
-            robot.bucketMotor2.setPosition(.5);
+            robot.bucketMotor1.setPower(opMode.gamepad2.right_trigger);
+            robot.bucketMotor2.setPower(opMode.gamepad2.right_trigger);
         } else if (opMode.gamepad2.left_trigger) {
-            robot.bucketMotor1.setPosition(0);
-            robot.bucketMotor2.setPosition(0);
-            robot.bucketMotor1.setPower(0);
-            robot.bucketMotor.setPower(0);
-        }
-            
-            
-        //Plane Servo (dpad)
-        //TODO: find position
-        if(opMode.gamepad2.dpad_up || opMode.gamepad2.dpad_down || opMode.gamepad2.dpad_left || opMode.gamepad2.dpad_right){
-            robot.airplaneServo.setPosition(0);
+            robot.bucketMotor1.setPower(-1);
+            robot.bucketMotor2.setPower(-1);
         }
     }
 }
