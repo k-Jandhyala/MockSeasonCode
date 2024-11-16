@@ -1,12 +1,7 @@
 package org.firstinspires.ftc.teamcode.ComplexRobots;
 
-import androidx.annotation.NonNull;
-
 import com.acmerobotics.dashboard.config.Config;
-import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
-import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -15,18 +10,10 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.teamcode.MecanumDrive;
 import org.firstinspires.ftc.teamcode.ButtonMaps.MotorPowers;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.IMU;
-import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.hardware.VoltageSensor;
-
 @Config
 public class IntoTheDeepRobot extends MecanumDrive {
 
-    public final DcMotorEx horizantalSlideMotor;
+    public final DcMotorEx horizontalSlideMotor;
     public final DcMotorEx bucketMotor1;
     public final DcMotorEx bucketMotor2;
     public final Servo brushServo1;
@@ -35,15 +22,15 @@ public class IntoTheDeepRobot extends MecanumDrive {
     public IntoTheDeepRobot(HardwareMap hardwareMap, Pose2d pose) {
         super(hardwareMap, pose);
         //Linear Slide Motor
-        horizantalSlideMotor = hardwareMap.get(DcMotorEx.class, "LinearSlideMotor");
+        horizontalSlideMotor = hardwareMap.get(DcMotorEx.class, "LinearSlideMotor");
 
 
         //Setup
-        horizantalSlideMotor.setDirection(DcMotor.Direction.REVERSE);
-        horizantalSlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        horizantalSlideMotor.setTargetPositionTolerance(15);
-        horizantalSlideMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        horizantalSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        horizontalSlideMotor.setDirection(DcMotor.Direction.REVERSE);
+        horizontalSlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        horizontalSlideMotor.setTargetPositionTolerance(15);
+        horizontalSlideMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        horizontalSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         //Bucket Motor
         bucketMotor1 = hardwareMap.get(DcMotorEx.class, "LinearSlideMotor");
@@ -73,6 +60,7 @@ public class IntoTheDeepRobot extends MecanumDrive {
         //Force to be in the right place
         elbowServo.setPosition(0);
     }
+
 
     //TODO: Linear slide helper methods for auto (later)
 //    public Action setSlideHeightAction(int targetPosition){

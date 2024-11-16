@@ -12,7 +12,7 @@
 //import org.firstinspires.ftc.teamcode.ComplexRobots.IntoTheDeepRobot;
 //
 ////EXAMPLE TELEOP WITH NEW SYSTEM
-////@TeleOp(name="Example")
+//@TeleOp(name="Example")
 //public class SampleTeleOp extends OpMode {
 //    //Global Variables
 //    IntoTheDeepRobot robot;
@@ -23,7 +23,7 @@
 //    //Setup all global variables here
 //    @Override
 //    public void init() {
-//        robot = new IntoTheDeepRobot(hardwareMap, new Pose2d(0,0,0), this);
+//        robot = new IntoTheDeepRobot(hardwareMap, new Pose2d(0,0,0));
 //        buttonMapArm = new SampleButtonMap(5.5);
 //    }
 //

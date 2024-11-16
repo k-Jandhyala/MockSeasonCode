@@ -17,9 +17,9 @@ public class SlidesTestBM extends AbstractButtonMap {
     @Override
     public void loop(IntoTheDeepRobot robot, OpMode opMode) {
        if(opMode.gamepad1.left_trigger > 0.1){
-           robot.horizantalSlideMotor.setPower(-linearSlidesDownMultiplier * opMode.gamepad1.left_trigger);
+           robot.horizontalSlideMotor.setPower(-linearSlidesDownMultiplier * opMode.gamepad1.left_trigger);
        } else if(opMode.gamepad1.right_trigger > 0.1){
-            robot.horizantalSlideMotor.setPower(linearSlidesUpMultiplier * opMode.gamepad1.right_trigger);
+            robot.horizontalSlideMotor.setPower(linearSlidesUpMultiplier * opMode.gamepad1.right_trigger);
         }
 
     }
