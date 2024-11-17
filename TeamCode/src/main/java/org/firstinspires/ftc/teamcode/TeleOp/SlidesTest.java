@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.ButtonMaps.AbstractButtonMap;
 import org.firstinspires.ftc.teamcode.ButtonMaps.Arm.AdenArmBM;
+import org.firstinspires.ftc.teamcode.ButtonMaps.Arm.ArianaArmBm;
 import org.firstinspires.ftc.teamcode.ButtonMaps.Drive.CommonDriveBM;
 import org.firstinspires.ftc.teamcode.ComplexRobots.IntoTheDeepRobot;
 
@@ -24,7 +25,7 @@ public class SlidesTest extends OpMode {
         telemetry.update();
         robot = new IntoTheDeepRobot(hardwareMap, new Pose2d(0,0,0));
         driveButtonMap = new CommonDriveBM();
-        slidesButtonMap = new AdenArmBM();
+        slidesButtonMap = new ArianaArmBm();
         telemetry.addLine("Ready.");
         telemetry.update();
     }

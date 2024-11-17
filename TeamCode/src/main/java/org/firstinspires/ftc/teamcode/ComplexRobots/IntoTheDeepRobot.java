@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.ComplexRobots;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -22,7 +23,7 @@ public class IntoTheDeepRobot extends MecanumDrive {
     public IntoTheDeepRobot(HardwareMap hardwareMap, Pose2d pose) {
         super(hardwareMap, pose);
         //Linear Slide Motor
-        horizontalSlideMotor = hardwareMap.get(DcMotorEx.class, "LinearSlideMotor");
+        horizontalSlideMotor = hardwareMap.get(DcMotorEx.class, "horizontalSlideMotor");
 
 
         //Setup
@@ -33,18 +34,18 @@ public class IntoTheDeepRobot extends MecanumDrive {
         horizontalSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         //Bucket Motor
-        bucketMotor1 = hardwareMap.get(DcMotorEx.class, "LinearSlideMotor");
+        bucketMotor1 = hardwareMap.get(DcMotorEx.class, "bucketMotor1");
 
-        bucketMotor2 = hardwareMap.get(DcMotorEx.class, "LinearSlideMotor");
+        bucketMotor2 = hardwareMap.get(DcMotorEx.class, "bucketMotor2");
 
         //Setup
-        bucketMotor1.setDirection(DcMotor.Direction.REVERSE);
+        bucketMotor1.setDirection(DcMotor.Direction.FORWARD);
         bucketMotor1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         bucketMotor1.setTargetPositionTolerance(15);
         bucketMotor1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         bucketMotor1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        bucketMotor2.setDirection(DcMotor.Direction.REVERSE);
+        bucketMotor2.setDirection(DcMotor.Direction.FORWARD);
         bucketMotor2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         bucketMotor2.setTargetPositionTolerance(15);
         bucketMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -67,8 +68,8 @@ public class IntoTheDeepRobot extends MecanumDrive {
 //        return new SlideHeight(targetPosition);
 //    }
 
-    public void setAllMotorPowers(int i) {
-
+    public MotorPowers setAllMotorPowers(int i) {
+        return new MotorPowers(0,0,0,0);
     }
 
     public MotorPowers pivotTurn(double currentMotorPower, boolean rightBumper, boolean leftBumper) {

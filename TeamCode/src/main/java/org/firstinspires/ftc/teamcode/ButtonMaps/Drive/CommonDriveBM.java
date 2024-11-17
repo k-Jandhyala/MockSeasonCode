@@ -32,15 +32,14 @@ public class CommonDriveBM extends AbstractButtonMap {
          * Button Y - Complete break
          */
         if (opMode.gamepad1.y) {
-            robot.setAllMotorPowers(0);
+            mp = robot.setAllMotorPowers(0);
             opMode.telemetry.addLine("Break!!");
-            return;
         }
 
-        if(opMode.gamepad1.a){
-            // extend climb assistants
-            return;
-        }
+//        if(opMode.gamepad1.a){
+//            // extend climb assistants
+//            return;
+//        }
 
         //Slow Strafe Button
         if (opMode.gamepad1.x) {
@@ -81,21 +80,22 @@ public class CommonDriveBM extends AbstractButtonMap {
         /*
          * Normal Drive
          */
-        MotorPowers triggerMotorPowers = new MotorPowers(0);
+        MotorPowers triggerMotorPowers;
         //Forward
         if (opMode.gamepad1.right_trigger > 0.1) {
-            triggerMotorPowers = new MotorPowers(opMode.gamepad1.right_trigger * triggerMultipler);
+            mp = new MotorPowers(opMode.gamepad1.right_trigger * triggerMultipler, opMode.gamepad1.right_trigger * triggerMultipler, -opMode.gamepad1.right_trigger * triggerMultipler,-opMode.gamepad1.right_trigger * triggerMultipler);
             opMode.telemetry.addLine("Trigger Right (forward) active!");
-            mp = triggerMotorPowers;
+            opMode.telemetry.addData("Trigger Right: ", opMode.gamepad1.right_trigger);
         }
         //Backward
         else if (opMode.gamepad1.left_trigger > 0.1) {
             //Backward
-            triggerMotorPowers = new MotorPowers(-opMode.gamepad1.left_trigger * triggerMultipler);
+            mp = new MotorPowers(-opMode.gamepad1.left_trigger * triggerMultipler, -opMode.gamepad1.left_trigger * triggerMultipler, opMode.gamepad1.left_trigger * triggerMultipler,opMode.gamepad1.left_trigger * triggerMultipler);
             opMode.telemetry.addLine("Trigger Left (backward) active!");
-            mp = triggerMotorPowers;
+            opMode.telemetry.addData("Trigger left: ", opMode.gamepad1.left_trigger);
         }
 
+        opMode.telemetry.update();
         robot.setMotorPowers(mp);
     }
 }
