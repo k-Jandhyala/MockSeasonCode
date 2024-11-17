@@ -63,7 +63,7 @@ public class IntoTheDeepRobot extends MecanumDrive {
         elbowServo.setPosition(0);
         sampleClaw.scaleRange(0,0.35);
         sampleClaw.setPosition(0);
-        specimenClaw.scaleRange(0,0.35);
+        specimenClaw.scaleRange(-1,1);
         specimenClaw.setPosition(0);
     }
 

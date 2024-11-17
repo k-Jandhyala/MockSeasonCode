@@ -12,6 +12,9 @@ public class ArianaArmBm extends AbstractButtonMap {
     public static double linearSlidesUpMultiplier = 0.25;
     public static double bucketMotor1Multiplier = 0.85;
     private ElapsedTime et = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
+    private long specimenTime;
+    private long horizontalSlideTime;
+    private int timeDelay = 500;
     private double intakeOutTime = 0;
 
     //Servo Positions
@@ -72,15 +75,25 @@ public class ArianaArmBm extends AbstractButtonMap {
             yIsPressed = !yIsPressed;
 
             //Horizontal Slides Motor
-            if (opMode.gamepad2.b && !bIsPressed) {
+//            if (opMode.gamepad2.b && !bIsPressed) {
+//                robot.horizontalSlideMotor.setPower(1 * linearSlidesUpMultiplier);
+//                bIsPressed = !bIsPressed;
+//                horizontalSlideTime = System.currentTimeMillis();
+//            } else if (opMode.gamepad2.b && bIsPressed && ((System.currentTimeMillis()- horizontalSlideTime) > timeDelay)) {
+//                robot.horizontalSlideMotor.setPower(-1 * linearSlidesDownMultiplier);
+//                bIsPressed = !bIsPressed;
+//            } else {
+//                robot.horizontalSlideMotor.setPower(0);
+//            }
+
+            if (opMode.gamepad2.b) {
                 robot.horizontalSlideMotor.setPower(1 * linearSlidesUpMultiplier);
-                bIsPressed = !bIsPressed;
-            } else if (opMode.gamepad2.b && bIsPressed) {
+                opMode.telemetry.addData("Horizontal Motor Encoder: ", robot.horizontalSlideMotor.getCurrentPosition());
+            } else if (opMode.gamepad2.left_stick_button && opMode.gamepad2.b){
                 robot.horizontalSlideMotor.setPower(-1 * linearSlidesDownMultiplier);
-                bIsPressed = !bIsPressed;
-            } else {
-                robot.horizontalSlideMotor.setPower(0);
+                opMode.telemetry.addData("Horizontal Motor Encoder: ", robot.horizontalSlideMotor.getCurrentPosition());
             }
+
             //Claw Servo (ROSE)
 //        if (opMode.gamepad2.left_bumper) {
 //              robot.clawServo.setPower(opMode.gamepad2.left_bumper);
@@ -92,10 +105,11 @@ public class ArianaArmBm extends AbstractButtonMap {
         }
 
         if(opMode.gamepad2.x && !xIsPressed){
-            robot.specimenClaw.setPosition(0.35);
+            robot.specimenClaw.setPosition(1);
             xIsPressed = !xIsPressed;
-        } else if(opMode.gamepad2.x && xIsPressed){
-            robot.specimenClaw.setPosition(0);
+            specimenTime = System.currentTimeMillis();
+        } else if(opMode.gamepad2.x && xIsPressed && ((System.currentTimeMillis()- specimenTime) > timeDelay)){
+            robot.specimenClaw.setPosition(-1);
             xIsPressed = !xIsPressed;
         }
 
