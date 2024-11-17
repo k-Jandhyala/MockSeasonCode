@@ -3,13 +3,13 @@ package org.firstinspires.ftc.teamcode.ComplexRobots;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.MecanumDrive;
 import org.firstinspires.ftc.teamcode.ButtonMaps.MotorPowers;
+
 
 @Config
 public class IntoTheDeepRobot extends MecanumDrive {
@@ -20,11 +20,12 @@ public class IntoTheDeepRobot extends MecanumDrive {
     public final Servo brushServo1;
     public final Servo brushServo2;
     public final Servo elbowServo;
+    public final Servo sampleClaw;
+    public final Servo specimenClaw;
     public IntoTheDeepRobot(HardwareMap hardwareMap, Pose2d pose) {
         super(hardwareMap, pose);
         //Linear Slide Motor
         horizontalSlideMotor = hardwareMap.get(DcMotorEx.class, "horizontalSlideMotor");
-
 
         //Setup
         horizontalSlideMotor.setDirection(DcMotor.Direction.REVERSE);
@@ -35,7 +36,6 @@ public class IntoTheDeepRobot extends MecanumDrive {
 
         //Bucket Motor
         bucketMotor1 = hardwareMap.get(DcMotorEx.class, "bucketMotor1");
-
         bucketMotor2 = hardwareMap.get(DcMotorEx.class, "bucketMotor2");
 
         //Setup
@@ -51,15 +51,20 @@ public class IntoTheDeepRobot extends MecanumDrive {
         bucketMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         bucketMotor2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        //Brush Servos
+        //Servos
         brushServo1 = hardwareMap.get(Servo.class, "brushServo1");
         brushServo2 = hardwareMap.get(Servo.class, "brushServo2");
+        sampleClaw = hardwareMap.get(Servo.class, "sampleClaw");
+        specimenClaw = hardwareMap.get(Servo.class, "specimenClaw");
         elbowServo = hardwareMap.get(Servo.class, "elbowServo");
 
         //Initialize Output Servo
         elbowServo.scaleRange(0,0.35);
-        //Force to be in the right place
         elbowServo.setPosition(0);
+        sampleClaw.scaleRange(0,0.35);
+        sampleClaw.setPosition(0);
+        specimenClaw.scaleRange(0,0.35);
+        specimenClaw.setPosition(0);
     }
 
 

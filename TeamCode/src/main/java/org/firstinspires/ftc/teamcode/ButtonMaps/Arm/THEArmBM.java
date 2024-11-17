@@ -81,15 +81,15 @@
 //            if (opMode.gamepad2.y) {
 //                //Y - Elbow and Wrist to Backboard
 //                robot.elbowServo.setPosition(IntoTheDeepRobot.elbowBackboardPosition);
-//                robot.wristServo.setPosition(IntoTheDeepRobot.wristBackboardPosition);
+//                robot.sampleClaw.setPosition(IntoTheDeepRobot.wristBackboardPosition);
 //            } else if (opMode.gamepad2.b) {
 //                //B - Elbow to slightly lifted position
 //                robot.elbowServo.setPosition(IntoTheDeepRobot.elbowRaisePosition);
-//                robot.wristServo.setPosition(IntoTheDeepRobot.wristCollapsePosition);
+//                robot.sampleClaw.setPosition(IntoTheDeepRobot.wristCollapsePosition);
 //            } else if (opMode.gamepad2.a) {
 //                //A - Elbow and wrist to Load position
 //                robot.elbowServo.setPosition(IntoTheDeepRobot.elbowLoadPosition);
-//                robot.wristServo.setPosition(IntoTheDeepRobot.wristLoadPosition);
+//                robot.sampleClaw.setPosition(IntoTheDeepRobot.wristLoadPosition);
 //            }
 //        }
 //

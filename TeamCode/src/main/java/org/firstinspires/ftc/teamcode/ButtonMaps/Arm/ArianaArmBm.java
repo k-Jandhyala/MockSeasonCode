@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.ComplexRobots.IntoTheDeepRobot;
 public class ArianaArmBm extends AbstractButtonMap {
     public static double intakePower = 0.5;
     public static double linearSlidesDownMultiplier = 0.15;
-    public static double linearSlidesUpMultiplier = 0.3;
+    public static double linearSlidesUpMultiplier = 0.25;
     public static double bucketMotor1Multiplier = 0.85;
     private ElapsedTime et = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
     private double intakeOutTime = 0;
@@ -26,6 +26,7 @@ public class ArianaArmBm extends AbstractButtonMap {
     boolean aIsPressed = false;
     boolean yIsPressed = false;
     boolean bIsPressed = false;
+    boolean xIsPressed = false;
 
     //    @Override
     public void loop(IntoTheDeepRobot robot, OpMode opMode) {
@@ -49,12 +50,12 @@ public class ArianaArmBm extends AbstractButtonMap {
 //                robot.bucketMotor2.setPower(opMode.gamepad2.left_trigger);
 
             opMode.telemetry.addLine("Down: Code updated");
-            robot.bucketMotor1.setPower(-opMode.gamepad2.left_trigger * linearSlidesDownMultiplier * 0.45);
-            robot.bucketMotor2.setPower(-opMode.gamepad2.left_trigger * linearSlidesDownMultiplier);
+            robot.bucketMotor1.setPower(-opMode.gamepad2.left_trigger * linearSlidesUpMultiplier);
+            robot.bucketMotor2.setPower(-opMode.gamepad2.left_trigger * linearSlidesUpMultiplier * 0.22);
         } else if (opMode.gamepad2.right_trigger > 0.1) {
             opMode.telemetry.addData("LS Direction", "UP");
-            robot.bucketMotor1.setPower(opMode.gamepad2.right_trigger * linearSlidesUpMultiplier * 0.45);
-            robot.bucketMotor2.setPower(opMode.gamepad2.right_trigger * linearSlidesUpMultiplier);
+            robot.bucketMotor1.setPower(opMode.gamepad2.right_trigger * linearSlidesDownMultiplier);
+            robot.bucketMotor2.setPower(opMode.gamepad2.right_trigger * linearSlidesDownMultiplier * 0.22);
         } else {
             opMode.telemetry.addData("LS Direction", "OFF");
             robot.bucketMotor1.setPower(0);
@@ -70,7 +71,7 @@ public class ArianaArmBm extends AbstractButtonMap {
 //            robot.brushServo2.setPosition(y);
             yIsPressed = !yIsPressed;
 
-            //Linear Slides Motor
+            //Horizontal Slides Motor
             if (opMode.gamepad2.b && !bIsPressed) {
                 robot.horizontalSlideMotor.setPower(1 * linearSlidesUpMultiplier);
                 bIsPressed = !bIsPressed;
@@ -88,8 +89,14 @@ public class ArianaArmBm extends AbstractButtonMap {
 //              robot.clawServo.setPower(-1);
 //              robot.clawServo.setPosition(b);
 //        }
+        }
 
-//        if(opMode.gamepad2.)
+        if(opMode.gamepad2.x && !xIsPressed){
+            robot.specimenClaw.setPosition(0.35);
+            xIsPressed = !xIsPressed;
+        } else if(opMode.gamepad2.x && xIsPressed){
+            robot.specimenClaw.setPosition(0);
+            xIsPressed = !xIsPressed;
         }
 
         opMode.telemetry.update();
