@@ -86,13 +86,14 @@ public class ArianaArmBm extends AbstractButtonMap {
 //                robot.horizontalSlideMotor.setPower(0);
 //            }
 
-            if (opMode.gamepad2.b) {
+            if (opMode.gamepad2.b && !bIsPressed) {
                 robot.horizontalSlideMotor.setPower(1 * linearSlidesUpMultiplier);
-                opMode.telemetry.addData("Horizontal Motor Encoder: ", robot.horizontalSlideMotor.getCurrentPosition());
-            } else if (opMode.gamepad2.left_stick_button && opMode.gamepad2.b){
+                bIsPressed = !bIsPressed;
+            } else if (opMode.gamepad2.left_stick_button && opMode.gamepad2.b && bIsPressed){
                 robot.horizontalSlideMotor.setPower(-1 * linearSlidesDownMultiplier);
-                opMode.telemetry.addData("Horizontal Motor Encoder: ", robot.horizontalSlideMotor.getCurrentPosition());
+                bIsPressed = !bIsPressed;
             }
+            opMode.telemetry.addData("Horizontal Motor Encoder: ", robot.horizontalSlideMotor.getCurrentPosition());
 
             //Claw Servo (ROSE)
 //        if (opMode.gamepad2.left_bumper) {
