@@ -83,14 +83,20 @@ public class CommonDriveBM extends AbstractButtonMap {
         MotorPowers triggerMotorPowers;
         //Forward
         if (opMode.gamepad1.right_trigger > 0.1) {
-            mp = new MotorPowers(opMode.gamepad1.right_trigger * triggerMultipler, opMode.gamepad1.right_trigger * triggerMultipler, -opMode.gamepad1.right_trigger * triggerMultipler,-opMode.gamepad1.right_trigger * triggerMultipler);
+            mp = new MotorPowers(-opMode.gamepad1.right_trigger * triggerMultipler,
+                    -opMode.gamepad1.right_trigger * triggerMultipler,
+                    opMode.gamepad1.right_trigger * triggerMultipler,
+                    opMode.gamepad1.right_trigger * triggerMultipler);
             opMode.telemetry.addLine("Trigger Right (forward) active!");
             opMode.telemetry.addData("Trigger Right: ", opMode.gamepad1.right_trigger);
         }
         //Backward
         else if (opMode.gamepad1.left_trigger > 0.1) {
             //Backward
-            mp = new MotorPowers(-opMode.gamepad1.left_trigger * triggerMultipler, -opMode.gamepad1.left_trigger * triggerMultipler, opMode.gamepad1.left_trigger * triggerMultipler,opMode.gamepad1.left_trigger * triggerMultipler);
+            mp = new MotorPowers(opMode.gamepad1.left_trigger * triggerMultipler,
+                    opMode.gamepad1.left_trigger * triggerMultipler,
+                    -opMode.gamepad1.left_trigger * triggerMultipler,
+                    -opMode.gamepad1.left_trigger * triggerMultipler);
             opMode.telemetry.addLine("Trigger Left (backward) active!");
             opMode.telemetry.addData("Trigger left: ", opMode.gamepad1.left_trigger);
         }
