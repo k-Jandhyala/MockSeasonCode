@@ -84,12 +84,12 @@ public class IntoTheDeepRobot extends MecanumDrive {
         double leftBotMotorPower = currentMotorPower;
         if (rightBumper) {
 
-            leftTopMotorPower *= -1;
+            rightBotMotorPower *= -1;
             rightTopMotorPower *= -1;
         }
         else if (leftBumper) {
-            rightBotMotorPower *= -1;
             leftBotMotorPower *= -1;
+            leftTopMotorPower *= -1;
         }
         return new MotorPowers(leftTopMotorPower,rightTopMotorPower,leftBotMotorPower,rightBotMotorPower);
     }
