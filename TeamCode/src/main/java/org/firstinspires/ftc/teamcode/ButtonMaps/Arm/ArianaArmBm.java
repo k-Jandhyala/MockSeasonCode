@@ -8,8 +8,8 @@ import org.firstinspires.ftc.teamcode.ComplexRobots.IntoTheDeepRobot;
 
 public class ArianaArmBm extends AbstractButtonMap {
     public static double intakePower = 0.5;
-    public static double linearSlidesDownMultiplier = 0.15;
-    public static double linearSlidesUpMultiplier = 0.25;
+    public static double linearSlidesDownMultiplier = .4;
+    public static double linearSlidesUpMultiplier = .4;
     public static double bucketMotor1Multiplier = 0.85;
     private ElapsedTime et = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
     private long specimenTime;
@@ -54,12 +54,12 @@ public class ArianaArmBm extends AbstractButtonMap {
 //                robot.bucketMotor2.setPower(opMode.gamepad2.left_trigger);
 
             opMode.telemetry.addLine("Down: Code updated");
-            robot.bucketMotor1.setPower(-opMode.gamepad2.left_trigger * linearSlidesUpMultiplier * .75);
-            robot.bucketMotor2.setPower(opMode.gamepad2.left_trigger * linearSlidesUpMultiplier * 0.4);
+            robot.bucketMotor1.setPower(-opMode.gamepad2.left_trigger * linearSlidesUpMultiplier * 1);
+            robot.bucketMotor2.setPower(opMode.gamepad2.left_trigger * linearSlidesUpMultiplier * 1);
         } else if (opMode.gamepad2.right_trigger > 0.1) {
             opMode.telemetry.addData("LS Direction", "UP");
-            robot.bucketMotor1.setPower(opMode.gamepad2.right_trigger * linearSlidesDownMultiplier * .75);
-            robot.bucketMotor2.setPower(-opMode.gamepad2.right_trigger * linearSlidesDownMultiplier * 0.4);
+            robot.bucketMotor1.setPower(opMode.gamepad2.right_trigger * linearSlidesDownMultiplier * 1);
+            robot.bucketMotor2.setPower(-opMode.gamepad2.right_trigger * linearSlidesDownMultiplier * 1);
         } else {
             opMode.telemetry.addData("LS Direction", "OFF");
             robot.bucketMotor1.setPower(0);

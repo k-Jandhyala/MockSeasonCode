@@ -54,7 +54,7 @@ public class IntoTheDeepRobot extends MecanumDrive {
         //Servos
         brushServo1 = hardwareMap.get(Servo.class, "brushServo1");
         brushServo2 = hardwareMap.get(Servo.class, "brushServo2");
-        sampleClaw = hardwareMap.get(Servo.class, "sampleClaw");
+        sampleClaw = hardwareMap.get(Servo.class, "clawServo");
         specimenClaw = hardwareMap.get(Servo.class, "specimenClaw");
         elbowServo = hardwareMap.get(Servo.class, "elbowServo");
 
@@ -84,11 +84,11 @@ public class IntoTheDeepRobot extends MecanumDrive {
         double leftBotMotorPower = currentMotorPower;
         if (rightBumper) {
 
+            leftTopMotorPower *= -1;
             rightTopMotorPower *= -1;
-            rightBotMotorPower *= -1;
         }
         else if (leftBumper) {
-            leftTopMotorPower *= -1;
+            rightBotMotorPower *= -1;
             leftBotMotorPower *= -1;
         }
         return new MotorPowers(leftTopMotorPower,rightTopMotorPower,leftBotMotorPower,rightBotMotorPower);

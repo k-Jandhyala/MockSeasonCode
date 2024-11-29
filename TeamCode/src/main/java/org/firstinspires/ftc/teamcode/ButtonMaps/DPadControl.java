@@ -16,10 +16,10 @@ public class DPadControl {
 
             if (gamepad.dpad_left) {
                 //Diagonal Forward Left
-                return new MotorPowers(0, motorPower, motorPower, 0);
+                return new MotorPowers(-motorPower, motorPower, motorPower, -motorPower);
             } else if (gamepad.dpad_right) {
                 //Diagonal Forward Right
-                return new MotorPowers(motorPower, 0, 0, motorPower);
+                return new MotorPowers(motorPower, -motorPower, -motorPower, motorPower);
             } else {
                 //Straight Forward
                 return new MotorPowers(motorPower, motorPower, motorPower, motorPower);
@@ -27,10 +27,10 @@ public class DPadControl {
         } else if (gamepad.dpad_down) {
             if (gamepad.dpad_left) {
                 //Diagonal Backward Left
-                return new MotorPowers(-motorPower, 0, 0, -motorPower);
+                return new MotorPowers(-motorPower, -motorPower, -motorPower, -motorPower);
             } else if (gamepad.dpad_right) {
                 //Diagonal Backward Right
-                return new MotorPowers(0, -motorPower, -motorPower, 0);
+                return new MotorPowers(-motorPower, -motorPower, -motorPower, -motorPower);
             } else {
                 //Straight Backward
                 return new MotorPowers(-motorPower, -motorPower, -motorPower, -motorPower);

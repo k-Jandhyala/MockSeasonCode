@@ -28,24 +28,12 @@ public class CommonDriveBM extends AbstractButtonMap {
     public void loop(IntoTheDeepRobot robot, OpMode opMode) {
         mp = new MotorPowers(0);
         currentMotorPower = basePower;
-        /*
-         * Button Y - Complete break
-         */
-        if (opMode.gamepad1.y) {
-            mp = robot.setAllMotorPowers(0);
-            opMode.telemetry.addLine("Break!!");
-        }
 
 //        if(opMode.gamepad1.a){
 //            // extend climb assistants
 //            return;
 //        }
 
-        //Slow Strafe Button
-        if (opMode.gamepad1.x) {
-            currentMotorPower *= slowStrafeMultiplier;
-            opMode.telemetry.addLine("Slow Multiplier Active!");
-        }
 
         //Dpad strafe using dpad
         MotorPowers dpadMotorPowers = DPadControl.dpadStrafe(opMode.gamepad1, currentMotorPower);
@@ -100,6 +88,21 @@ public class CommonDriveBM extends AbstractButtonMap {
             opMode.telemetry.addLine("Trigger Left (backward) active!");
             opMode.telemetry.addData("Trigger left: ", opMode.gamepad1.left_trigger);
         }
+
+        /*
+         * Button Y - Complete break
+         */
+        if (opMode.gamepad1.y) {
+            mp = robot.setAllMotorPowers(0);
+            opMode.telemetry.addLine("Break!!");
+        }
+
+        //Slow Strafe Button
+        if (opMode.gamepad1.x) {
+            currentMotorPower *= slowStrafeMultiplier;
+            opMode.telemetry.addLine("Slow Multiplier Active!");
+        }
+
 
         opMode.telemetry.update();
         robot.setMotorPowers(mp);
