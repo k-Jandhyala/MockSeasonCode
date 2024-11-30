@@ -40,6 +40,18 @@ public class OutreachArmBMTestTeleOp extends AbstractButtonMap {
             robot.bucketMotor1.setPower(0);
             robot.bucketMotor2.setPower(0);
         }
+
+        if (opMode.gamepad1.x && !xIsPressed && ((System.currentTimeMillis() - startTime) > timeDelay)) {
+            robot.specimenClaw.setPosition(1);
+            xIsPressed = !xIsPressed;
+            specimenTime = System.currentTimeMillis();
+            opMode.telemetry.addLine("Servo Open");
+        } else if (opMode.gamepad1.x && xIsPressed && ((System.currentTimeMillis() - specimenTime) > timeDelay)) {
+            robot.specimenClaw.setPosition(-1);
+            xIsPressed = !xIsPressed;
+            opMode.telemetry.addLine("Servo Closed");
+            startTime = System.currentTimeMillis();
+        }
         //Brush Servos
 
         opMode.telemetry.update();

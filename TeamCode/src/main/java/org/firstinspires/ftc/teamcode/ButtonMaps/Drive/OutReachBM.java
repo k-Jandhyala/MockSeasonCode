@@ -13,9 +13,9 @@ import org.firstinspires.ftc.teamcode.ComplexRobots.IntoTheDeepRobot;
 @Config
 public class OutReachBM extends AbstractButtonMap {
     //TODO: Change back to private final when done with dash
-    public static double triggerMultipler = 0.85;
-    public static double dpadBumperMultiplier = 0.65;
-    public static double hdMultiplier = 0.85;
+    public static double triggerMultipler = 0.7;
+    public static double dpadBumperMultiplier = 0.5;
+    public static double hdMultiplier = 0.55;
     public static double slowStrafeMultiplier = 0.8;
     public static double basePower = .6;
 
