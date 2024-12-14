@@ -67,12 +67,12 @@ public class ArianaArmBm extends AbstractButtonMap {
         }
         //Brush Servos
         if (opMode.gamepad2.y && !yIsPressed) {
-//            robot.brushServo1.setPosition(x);
-//            robot.brushServo2.setPosition(x);
+            robot.brushServo1.setPosition(1);
+            robot.brushServo2.setPosition(1);
             yIsPressed = !yIsPressed;
         } else if (opMode.gamepad2.y && yIsPressed) {
-//            robot.brushServo1.setPosition(y);
-//            robot.brushServo2.setPosition(y);
+            robot.brushServo1.setPosition(-1);
+            robot.brushServo2.setPosition(-1);
             yIsPressed = !yIsPressed;
 
             //Horizontal Slides Motor
@@ -86,7 +86,7 @@ public class ArianaArmBm extends AbstractButtonMap {
 //            } else {
 //                robot.horizontalSlideMotor.setPower(0);
 //            }
-
+        // if (contace switch is not pressed)
             if (opMode.gamepad2.b && !bIsPressed) {
                 robot.horizontalSlideMotor.setPower(1 * linearSlidesUpMultiplier);
                 bIsPressed = !bIsPressed;
@@ -106,7 +106,7 @@ public class ArianaArmBm extends AbstractButtonMap {
 //              robot.clawServo.setPosition(b);
 //        }
         }
-
+//SpecimenClaw
         if (opMode.gamepad2.x && !xIsPressed && ((System.currentTimeMillis() - startTime) > timeDelay)) {
             robot.specimenClaw.setPosition(1);
             xIsPressed = !xIsPressed;
