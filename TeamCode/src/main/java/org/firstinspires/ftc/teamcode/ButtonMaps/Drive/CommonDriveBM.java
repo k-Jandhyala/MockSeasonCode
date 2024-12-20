@@ -103,6 +103,8 @@ public class CommonDriveBM extends AbstractButtonMap {
             opMode.telemetry.addLine("Break!!");
         }
         //Slow Strafe Button
+
+        //test by putting at beginning
         if (opMode.gamepad1.x) {
             currentMotorPower *= slowStrafeMultiplier;
             opMode.telemetry.addLine("Slow Multiplier Active!");
