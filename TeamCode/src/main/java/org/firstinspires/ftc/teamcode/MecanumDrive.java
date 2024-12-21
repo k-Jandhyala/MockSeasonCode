@@ -507,4 +507,13 @@ public class MecanumDrive {
         double conversion = 35000;
         return (int)(input * conversion);
     }
+
+    public void setMotorsTo(DcMotorEx motor) {
+        float currentencoder = motor.getCurrentPosition();
+        float target = 0;
+        while (currentencoder >= target) {
+            motor.setPower(1);
+            currentencoder = motor.getCurrentPosition();
+        }
+    }
 }
