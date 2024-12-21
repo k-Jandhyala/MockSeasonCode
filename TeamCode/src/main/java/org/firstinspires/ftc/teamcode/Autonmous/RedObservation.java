@@ -53,13 +53,7 @@ public class RedObservation extends LinearOpMode {
             robot.rightFront.setPower(0);
             robot.rightBack.setPower(0);
             //move to red sample and deliver to observation zone x3
-            //back-and-forth movement
-            robot.leftFront.setPower(0.3);
-            robot.leftBack.setPower(0.3);
-            robot.rightFront.setPower(0.3);
-            robot.rightBack.setPower(0.3);
-            robot.brushServo1.setPower();
-            robot.brushServo2.setPosition();
+            //back-and-forth movement - only pushing on the ground
 
             //park in Observation Zone if there's time
             robot.leftFront.setPower(0.3);
