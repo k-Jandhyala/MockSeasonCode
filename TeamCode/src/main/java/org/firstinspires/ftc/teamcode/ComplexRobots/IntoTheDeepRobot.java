@@ -93,6 +93,19 @@ public class IntoTheDeepRobot extends MecanumDrive {
         }
         return new MotorPowers(leftTopMotorPower,rightTopMotorPower,leftBotMotorPower,rightBotMotorPower);
     }
+
+    public void setMotorTo(DcMotorEx motor, int targetPos, double power) {
+        if (motor.getCurrentPosition() < targetPos) {
+            while (motor.getCurrentPosition() <= targetPos) {
+                motor.setPower(power);
+            }
+        }
+        else if (motor.getCurrentPosition() > targetPos) {
+            while (motor.getCurrentPosition() >= targetPos) {
+                motor.setPower(-power);
+            }
+        }
+    }
     //Possible method, no use
 
 //    class SlideHeight implements Action {

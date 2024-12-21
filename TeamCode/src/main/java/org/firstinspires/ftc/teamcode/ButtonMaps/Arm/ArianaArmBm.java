@@ -88,15 +88,22 @@ public class ArianaArmBm extends AbstractButtonMap {
 //                robot.horizontalSlideMotor.setPower(0);
 //            }
         // if (contact switch is not pressed)
-        if (opMode.gamepad2.b && !bIsPressed) {
-            robot.horizontalSlideMotor.setPower(1 * linearSlidesUpMultiplier);
-            bIsPressed = !bIsPressed;
-        } else if (/*opMode.gamepad2.left_stick_button*/opMode.gamepad2.b && bIsPressed) {
-            robot.horizontalSlideMotor.setPower(-1 * linearSlidesDownMultiplier);
-            bIsPressed = !bIsPressed;
+//        if (opMode.gamepad2.b && !bIsPressed) {
+//            robot.setMotorTo(robot.horizontalSlideMotor, 0, 1 * linearSlidesUpMultiplier);
+//            bIsPressed = !bIsPressed;
+//        } else if (/*opMode.gamepad2.left_stick_button*/opMode.gamepad2.b && bIsPressed) {
+//            robot.horizontalSlideMotor.setPower(-1 * linearSlidesDownMultiplier);
+//            bIsPressed = !bIsPressed;
+//        }
+
+        if(opMode.gamepad2.left_stick_button) {
+            robot.horizontalSlideMotor.setPower(.5);
         }
-        opMode.telemetry.addLine("Horizontal Motor Encoder: ");
-        opMode.telemetry.addData("Encoder: ", robot.horizontalSlideMotor.getCurrentPosition());
+        if(opMode.gamepad2.right_stick_button) {
+            robot.horizontalSlideMotor.setPower(-.5);
+        }
+//        opMode.telemetry.addLine("Horizontal Motor Encoder: ");
+        opMode.telemetry.addData("Horz. Motor Encoder: ", robot.horizontalSlideMotor.getCurrentPosition());
 
             //Claw Servo (ROSE)
 //        if (opMode.gamepad2.left_bumper) {
