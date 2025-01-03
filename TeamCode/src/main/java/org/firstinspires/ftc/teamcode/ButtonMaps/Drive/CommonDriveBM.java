@@ -35,7 +35,9 @@ public class CommonDriveBM extends AbstractButtonMap {
         currentMotorPower = basePower;
 
 //        if(opMode.gamepad1.a){
-//            // extend climb assistants
+//            // extend linear slides up and down
+//            robot.bucketMotor1.setPower(0.3);
+//            robot.bucketMotor2.setPower(0.3);
 //            return;
 //        }
 
@@ -79,8 +81,8 @@ public class CommonDriveBM extends AbstractButtonMap {
         //Forward
         if (opMode.gamepad1.right_trigger > 0.1) {
             mp = new MotorPowers(-opMode.gamepad1.right_trigger * triggerMultipler,
-                    -opMode.gamepad1.right_trigger * triggerMultipler,
                     opMode.gamepad1.right_trigger * triggerMultipler,
+                    -opMode.gamepad1.right_trigger * triggerMultipler,
                     opMode.gamepad1.right_trigger * triggerMultipler);
             opMode.telemetry.addLine("Trigger Right (forward) active!");
             opMode.telemetry.addData("Trigger Right: ", opMode.gamepad1.right_trigger);
@@ -89,8 +91,8 @@ public class CommonDriveBM extends AbstractButtonMap {
         else if (opMode.gamepad1.left_trigger > 0.1) {
             //Backward
             mp = new MotorPowers(opMode.gamepad1.left_trigger * triggerMultipler,
-                    opMode.gamepad1.left_trigger * triggerMultipler,
                     -opMode.gamepad1.left_trigger * triggerMultipler,
+                    opMode.gamepad1.left_trigger * triggerMultipler,
                     -opMode.gamepad1.left_trigger * triggerMultipler);
             opMode.telemetry.addLine("Trigger Left (backward) active!");
             opMode.telemetry.addData("Trigger left: ", opMode.gamepad1.left_trigger);
