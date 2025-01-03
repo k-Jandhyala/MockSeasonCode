@@ -19,7 +19,7 @@ public class CommonDriveBM extends AbstractButtonMap {
     //TODO: Change back to private final when done with dash
     public static double triggerMultipler = 1;
     public static double dpadBumperMultiplier = 0.65;
-    public static double fodMultiplier = 0.85;
+   // public static double fodMultiplier = 0.85;
     public static double slowStrafeMultiplier = .8;
     public static double basePower = .9;
 
@@ -49,12 +49,12 @@ public class CommonDriveBM extends AbstractButtonMap {
         }
 
         //Field-Oriented Driving using left joystick
-        MotorPowers fodMotorPowers = FieldOrientedDrive.fieldOrientedDrive(opMode.gamepad1, robot.lazyImu.get(), opMode.gamepad1.b ? fodMultiplier*slowStrafeMultiplier : fodMultiplier);
-        if (fodMotorPowers.isNotZero()) {
-            mp = fodMotorPowers;
-            opMode.telemetry.addLine("FOD Active!");
-            opMode.telemetry.update();
-        }
+ //       MotorPowers fodMotorPowers = FieldOrientedDrive.fieldOrientedDrive(opMode.gamepad1, robot.lazyImu.get(), opMode.gamepad1.b ? fodMultiplier*slowStrafeMultiplier : fodMultiplier);
+ //       if (fodMotorPowers.isNotZero()) {
+ //           mp = fodMotorPowers;
+ //           opMode.telemetry.addLine("FOD Active!");
+ //           opMode.telemetry.update();
+ //       }
 
         /*
          * Pivot turn methods

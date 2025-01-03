@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.CRServo;
 
 import org.firstinspires.ftc.teamcode.MecanumDrive;
 import org.firstinspires.ftc.teamcode.ButtonMaps.MotorPowers;
@@ -17,10 +18,9 @@ public class IntoTheDeepRobot extends MecanumDrive {
     public final DcMotorEx horizontalSlideMotor;
     public final DcMotorEx bucketMotor1;
     public final DcMotorEx bucketMotor2;
-    public final Servo brushServo1;
-    public final Servo brushServo2;
+    public final CRServo brushServo;
     public final Servo elbowServo;
-    public final Servo sampleClaw;
+    public final Servo bucketServo;
     public final Servo specimenClaw;
     public IntoTheDeepRobot(HardwareMap hardwareMap, Pose2d pose) {
         super(hardwareMap, pose);
@@ -52,19 +52,16 @@ public class IntoTheDeepRobot extends MecanumDrive {
         bucketMotor2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         //Servos
-        brushServo1 = hardwareMap.get(Servo.class, "brushServo1");
-        brushServo2 = hardwareMap.get(Servo.class, "brushServo2");
-        sampleClaw = hardwareMap.get(Servo.class, "clawServo");
-        specimenClaw = hardwareMap.get(Servo.class, "specimenClaw");
+        brushServo = hardwareMap.get(CRServo.class, "brushServo");
         elbowServo = hardwareMap.get(Servo.class, "elbowServo");
+        specimenClaw = hardwareMap.get(Servo.class, "specimenClaw");
+        bucketServo = hardwareMap.get(Servo.class, "bucketServo");
 
         //Initialize Output Servo
-        elbowServo.scaleRange(0,0.35);
-        elbowServo.setPosition(0);
-        sampleClaw.scaleRange(0,0.35);
-        sampleClaw.setPosition(0);
+        bucketServo.scaleRange(0,0.35);
+        bucketServo.setPosition(0);
         specimenClaw.scaleRange(-1,1);
-        specimenClaw.setPosition(0);
+        specimenClaw.setPosition(1);
     }
 
 
@@ -91,7 +88,7 @@ public class IntoTheDeepRobot extends MecanumDrive {
             leftBotMotorPower *= -1;
             leftTopMotorPower *= -1;
         }
-        return new MotorPowers(leftTopMotorPower,rightTopMotorPower,leftBotMotorPower,rightBotMotorPower);
+        return new MotorPowers(-leftTopMotorPower,-rightTopMotorPower,leftBotMotorPower,rightBotMotorPower);
     }
 
     public void setMotorTo(DcMotorEx motor, int targetPos, double power) {

@@ -37,35 +37,17 @@ public class RedObservation extends LinearOpMode {
         telemetry.addData("init:", initialTick);
         telemetry.update();
 
-        while() {
+        while(opModeIsActive()) {
             //start with a specimen
-            robot.specimenClaw.setPosition();
+//            robot.specimenClaw.setPosition();
             robot.leftFront.setPower(0.3);
             robot.leftBack.setPower(0.3);
             robot.rightFront.setPower(0.3);
             robot.rightBack.setPower(0.3);
             //hang the specimen on the high chamber
-            robot.specimenClaw.setPosition();
+            robot.specimenClaw.setPosition(0.3);
             robot.bucketMotor1.setPower(0.3);
             robot.bucketMotor2.setPower(0.3);
-            robot.leftFront.setPower(0);
-            robot.leftBack.setPower(0);
-            robot.rightFront.setPower(0);
-            robot.rightBack.setPower(0);
-            //move to red sample and deliver to observation zone x3
-            //back-and-forth movement - only pushing on the ground
-
-            //park in Observation Zone if there's time
-            robot.leftFront.setPower(0.3);
-            robot.leftBack.setPower(0.3);
-            robot.rightFront.setPower(0.3);
-            robot.rightBack.setPower(0.3);
-            robot.leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            robot.leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            robot.rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            robot.rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            //will be made into specimens once the teleop starts
-
 
 
             currentTick = par0.getPositionAndVelocity().rawPosition - initialTick;

@@ -17,6 +17,7 @@ public class ArianaArmBm extends AbstractButtonMap {
     private long horizontalSlideTime;
     private int timeDelay = 500;
     private double intakeOutTime = 0;
+    private long sampleServoTime;
 
     //Servo Positions
 //    double x =
@@ -36,10 +37,10 @@ public class ArianaArmBm extends AbstractButtonMap {
     public void loop(IntoTheDeepRobot robot, OpMode opMode) {
         //Wrist Servo (elbow)
         if (opMode.gamepad2.a && !aIsPressed) {
-//            robot.elbowServo.setPosition(e);
+            robot.elbowServo.setPosition(0.5);
             aIsPressed = !aIsPressed;
         } else if (opMode.gamepad2.a && aIsPressed) {
-//            robot.elbowServo.setPosition(f);
+            robot.elbowServo.setPosition(0.3);
             aIsPressed = !aIsPressed;
         }
         //Bucket Motors (on triggers)      
@@ -66,27 +67,29 @@ public class ArianaArmBm extends AbstractButtonMap {
             robot.bucketMotor2.setPower(0);
         }
         //Brush Servos
-        if (opMode.gamepad2.y && !yIsPressed) {
-            robot.brushServo1.setPosition(1);
-            robot.brushServo2.setPosition(1);
+        if (opMode.gamepad2.y && yIsPressed && ((System.currentTimeMillis() - startTime) > timeDelay)) {
+            //one servo to spin brush one servo to angle brush - the other other a elbow servo
+            robot.brushServo.setPower(-1);
             yIsPressed = !yIsPressed;
-        } else if (opMode.gamepad2.y && yIsPressed) {
-            robot.brushServo1.setPosition(-1);
-            robot.brushServo2.setPosition(-1);
+            sampleServoTime = System.currentTimeMillis();
+        } else if (opMode.gamepad2.y && !yIsPressed && ((System.currentTimeMillis() - sampleServoTime) > timeDelay)) {
+            robot.brushServo.setPower(1);
             yIsPressed = !yIsPressed;
+            startTime = System.currentTimeMillis();
         }
 
-            //Horizontal Slides Motor
-//            if (opMode.gamepad2.b && !bIsPressed) {
-//                robot.horizontalSlideMotor.setPower(1 * linearSlidesUpMultiplier);
-//                bIsPressed = !bIsPressed;
-//                horizontalSlideTime = System.currentTimeMillis();
-//            } else if (opMode.gamepad2.b && bIsPressed && ((System.currentTimeMillis()- horizontalSlideTime) > timeDelay)) {
-//                robot.horizontalSlideMotor.setPower(-1 * linearSlidesDownMultiplier);
-//                bIsPressed = !bIsPressed;
-//            } else {
-//                robot.horizontalSlideMotor.setPower(0);
-//            }
+//            Horizontal Slides Motor
+        if (opMode.gamepad2.b && !bIsPressed && ((System.currentTimeMillis()- startTime) > timeDelay)) {
+            robot.setMotorTo(robot.horizontalSlideMotor, -2340, linearSlidesUpMultiplier);
+            bIsPressed = !bIsPressed;
+            horizontalSlideTime = System.currentTimeMillis();
+        } else if (opMode.gamepad2.b && bIsPressed && ((System.currentTimeMillis()- horizontalSlideTime) > timeDelay)) {
+            robot.setMotorTo(robot.horizontalSlideMotor, -10, linearSlidesUpMultiplier);
+            bIsPressed = !bIsPressed;
+            startTime = System.currentTimeMillis();
+        } else {
+            robot.horizontalSlideMotor.setPower(0);
+        }
         // if (contact switch is not pressed)
 //        if (opMode.gamepad2.b && !bIsPressed) {
 //            robot.setMotorTo(robot.horizontalSlideMotor, 0, 1 * linearSlidesUpMultiplier);
@@ -96,34 +99,34 @@ public class ArianaArmBm extends AbstractButtonMap {
 //            bIsPressed = !bIsPressed;
 //        }
 
-        if(opMode.gamepad2.left_stick_button) {
-            robot.horizontalSlideMotor.setPower(.5);
-        }
-        if(opMode.gamepad2.right_stick_button) {
+        if(opMode.gamepad2.dpad_up) {
             robot.horizontalSlideMotor.setPower(-.5);
+        }
+         else if(opMode.gamepad2.dpad_down) {
+            robot.horizontalSlideMotor.setPower(.5);
+        } else {
+             robot.horizontalSlideMotor.setPower(0);
         }
 //        opMode.telemetry.addLine("Horizontal Motor Encoder: ");
         opMode.telemetry.addData("Horz. Motor Encoder: ", robot.horizontalSlideMotor.getCurrentPosition());
 
-            //Claw Servo (ROSE)
-//        if (opMode.gamepad2.left_bumper) {
-//              robot.clawServo.setPower(opMode.gamepad2.left_bumper);
-//              robot.clawServo.setPosition(a);
-//        } else if (opMode.gamepad2.right_bumper) {
-//              robot.clawServo.setPower(-1);
-//              robot.clawServo.setPosition(b);
-//        }
+            //Bucket Servo
+        if (opMode.gamepad2.left_bumper) {
+              robot.bucketServo.setPosition(1);
+        } else if (opMode.gamepad2.right_bumper) {
+              robot.bucketServo.setPosition(0);
+        }
 
 //SpecimenClaw
         if (opMode.gamepad2.x && !xIsPressed && ((System.currentTimeMillis() - startTime) > timeDelay)) {
-            robot.specimenClaw.setPosition(1);
+            robot.specimenClaw.setPosition(0.55);
             xIsPressed = !xIsPressed;
             specimenTime = System.currentTimeMillis();
-            opMode.telemetry.addLine("Servo Open");
-        } else if (opMode.gamepad2.x && xIsPressed && ((System.currentTimeMillis() - specimenTime) > timeDelay)) {
-            robot.specimenClaw.setPosition(-1);
-            xIsPressed = !xIsPressed;
             opMode.telemetry.addLine("Servo Closed");
+        } else if (opMode.gamepad2.x && xIsPressed && ((System.currentTimeMillis() - specimenTime) > timeDelay)) {
+            robot.specimenClaw.setPosition(1);
+            xIsPressed = !xIsPressed;
+            opMode.telemetry.addLine("Servo Open");
             startTime = System.currentTimeMillis();
         }
 

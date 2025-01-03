@@ -14,6 +14,11 @@ public class AdenArmBM extends AbstractButtonMap {
     private ElapsedTime et = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
     private double intakeOutTime = 0;
 
+    boolean aIsPressed = false;
+    boolean yIsPressed = false;
+    boolean bIsPressed = false;
+    boolean xIsPressed = false;
+
     public void loop(IntoTheDeepRobot robot, OpMode opMode) {
         //Linear Slides (on triggers)
         //Copy+Paste from last year lol
@@ -37,9 +42,14 @@ public class AdenArmBM extends AbstractButtonMap {
             robot.bucketMotor2.setPower(0);
         }
 
-        if (opMode.gamepad2.y) {
-            robot.brushServo1.setPosition(0);
-        }
+         if (opMode.gamepad2.y && !yIsPressed) {
+                //one servo to spin brush one servo to angle brush - the other other a elbow servo
+                robot.brushServo.setPower(1);
+                yIsPressed = !yIsPressed;
+            } else if (opMode.gamepad2.y && yIsPressed) {
+             robot.brushServo.setPower(-1);
+             yIsPressed = !yIsPressed;
+         }
         if (opMode.gamepad2.b) {
             robot.horizontalSlideMotor.setPower(0.5);
         } else {
