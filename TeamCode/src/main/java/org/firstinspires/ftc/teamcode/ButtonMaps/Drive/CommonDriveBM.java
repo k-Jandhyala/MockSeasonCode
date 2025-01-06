@@ -81,8 +81,8 @@ public class CommonDriveBM extends AbstractButtonMap {
         //Forward
         if (opMode.gamepad1.right_trigger > 0.1) {
             mp = new MotorPowers(-opMode.gamepad1.right_trigger * triggerMultipler,
-                    opMode.gamepad1.right_trigger * triggerMultipler,
                     -opMode.gamepad1.right_trigger * triggerMultipler,
+                    opMode.gamepad1.right_trigger * triggerMultipler,
                     opMode.gamepad1.right_trigger * triggerMultipler);
             opMode.telemetry.addLine("Trigger Right (forward) active!");
             opMode.telemetry.addData("Trigger Right: ", opMode.gamepad1.right_trigger);
@@ -91,8 +91,8 @@ public class CommonDriveBM extends AbstractButtonMap {
         else if (opMode.gamepad1.left_trigger > 0.1) {
             //Backward
             mp = new MotorPowers(opMode.gamepad1.left_trigger * triggerMultipler,
-                    -opMode.gamepad1.left_trigger * triggerMultipler,
                     opMode.gamepad1.left_trigger * triggerMultipler,
+                    -opMode.gamepad1.left_trigger * triggerMultipler,
                     -opMode.gamepad1.left_trigger * triggerMultipler);
             opMode.telemetry.addLine("Trigger Left (backward) active!");
             opMode.telemetry.addData("Trigger left: ", opMode.gamepad1.left_trigger);
@@ -102,17 +102,18 @@ public class CommonDriveBM extends AbstractButtonMap {
          * Button Y - Complete break
          */
         if (opMode.gamepad1.y) {
+            robot.setAllMotorPowers(0);
             robot.leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             robot.leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             robot.rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             robot.rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            opMode.telemetry.addLine("Break!!");
+            opMode.telemetry.addLine("Brake!!");
         }
         //Slow Strafe Button
 
         //test by putting at beginning
         if (opMode.gamepad1.x) {
-            currentMotorPower *= slowStrafeMultiplier;
+            mp = new MotorPowers (currentMotorPower *= slowStrafeMultiplier);
             opMode.telemetry.addLine("Slow Multiplier Active!");
         }
 
