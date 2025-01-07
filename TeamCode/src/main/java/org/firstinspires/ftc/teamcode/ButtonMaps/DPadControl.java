@@ -33,7 +33,7 @@ public class DPadControl {
                 return new MotorPowers(motorPower, -motorPower, -motorPower, -motorPower);
             } else {
                 //Straight Backward
-                return new MotorPowers(motorPower, -motorPower, motorPower, -motorPower);
+                return new MotorPowers(motorPower, motorPower, -motorPower, -motorPower);
             }
         } else {
             return new MotorPowers(0, 0, 0, 0);

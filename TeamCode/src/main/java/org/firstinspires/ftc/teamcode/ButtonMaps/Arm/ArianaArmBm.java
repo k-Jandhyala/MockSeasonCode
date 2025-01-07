@@ -17,7 +17,7 @@ public class ArianaArmBm extends AbstractButtonMap {
     private long horizontalSlideTime;
     private int timeDelay = 500;
     private double intakeOutTime = 0;
-    private long sampleServoTime;
+    private long sampleServoTime = System.currentTimeMillis();
 
     //Servo Positions
 //    double x =
@@ -43,6 +43,7 @@ public class ArianaArmBm extends AbstractButtonMap {
             robot.elbowServo.setPosition(0.3);
             aIsPressed = !aIsPressed;
         }
+        opMode.telemetry.addData("ES Position: ", robot.elbowServo.getPosition());
         //Bucket Motors (on triggers)      
         if (opMode.gamepad2.left_trigger > 0.1) {
 //            if (robot.bucketMotor1.getCurrentPosition() < -5 || robot.bucketMotor2.getCurrentPosition() < -5) {
@@ -80,11 +81,11 @@ public class ArianaArmBm extends AbstractButtonMap {
 
 //            Horizontal Slides Motor
         if (opMode.gamepad2.b && !bIsPressed && ((System.currentTimeMillis()- startTime) > timeDelay)) {
-            robot.setMotorTo(robot.horizontalSlideMotor, -2340, linearSlidesUpMultiplier);
+            robot.setMotorTo(robot.horizontalSlideMotor, -10, linearSlidesUpMultiplier);
             bIsPressed = !bIsPressed;
             horizontalSlideTime = System.currentTimeMillis();
         } else if (opMode.gamepad2.b && bIsPressed && ((System.currentTimeMillis()- horizontalSlideTime) > timeDelay)) {
-            robot.setMotorTo(robot.horizontalSlideMotor, -10, linearSlidesUpMultiplier);
+            robot.setMotorTo(robot.horizontalSlideMotor, -2340, linearSlidesUpMultiplier);
             bIsPressed = !bIsPressed;
             startTime = System.currentTimeMillis();
         } else {
