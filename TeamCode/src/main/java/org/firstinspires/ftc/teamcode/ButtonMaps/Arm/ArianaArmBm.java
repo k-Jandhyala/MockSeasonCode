@@ -37,10 +37,10 @@ public class ArianaArmBm extends AbstractButtonMap {
     public void loop(IntoTheDeepRobot robot, OpMode opMode) {
         //Wrist Servo (elbow)
         if (opMode.gamepad2.a && !aIsPressed) {
-            robot.elbowServo.setPosition(0.5);
+            robot.elbowServo.setPosition(.8);
             aIsPressed = !aIsPressed;
         } else if (opMode.gamepad2.a && aIsPressed) {
-            robot.elbowServo.setPosition(0.3);
+            robot.elbowServo.setPosition(.5);
             aIsPressed = !aIsPressed;
         }
         opMode.telemetry.addData("ES Position: ", robot.elbowServo.getPosition());
@@ -120,12 +120,12 @@ public class ArianaArmBm extends AbstractButtonMap {
 
 //SpecimenClaw
         if (opMode.gamepad2.x && !xIsPressed && ((System.currentTimeMillis() - startTime) > timeDelay)) {
-            robot.specimenClaw.setPosition(0.55);
+            robot.specimenClaw.setPosition(0.5);
             xIsPressed = !xIsPressed;
             specimenTime = System.currentTimeMillis();
             opMode.telemetry.addLine("Servo Closed");
         } else if (opMode.gamepad2.x && xIsPressed && ((System.currentTimeMillis() - specimenTime) > timeDelay)) {
-            robot.specimenClaw.setPosition(1);
+            robot.specimenClaw.setPosition(1.1);
             xIsPressed = !xIsPressed;
             opMode.telemetry.addLine("Servo Open");
             startTime = System.currentTimeMillis();
