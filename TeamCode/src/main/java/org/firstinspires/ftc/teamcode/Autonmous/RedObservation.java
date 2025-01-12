@@ -40,6 +40,25 @@ public class RedObservation extends LinearOpMode {
         while(opModeIsActive()) {
             //start with a specimen
 //            robot.specimenClaw.setPosition();
+            //Auto FrameWork:
+            //Turn Left 30 degrees around
+            // Move forward about 2 tiles
+            //Turn around 120 degrees right
+            //put specimen claw in position
+            //Move up to bar, around .5 tiles
+            //Move claw down, scoring specimen
+            //Back one tile
+            //Strafe or turn left 90 and move around 2.5 tiles
+            //If you didn't strafe, turn left 90
+            // Repeat 3 times {
+            //Pick up sample
+            //Turn 180
+            //Forward 1 tile
+            //Put in observation zone
+            //turn 180
+            //Forward 1 tile
+            //}
+
             robot.leftFront.setPower(0.3);
             robot.leftBack.setPower(0.3);
             robot.rightFront.setPower(0.3);
