@@ -1,7 +1,10 @@
 package org.firstinspires.ftc.teamcode.Autonmous;
 
+import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
+import com.acmerobotics.roadrunner.ParallelAction;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.Vector2d;
+import com.acmerobotics.roadrunner.ftc.Actions;
 import com.acmerobotics.roadrunner.ftc.Encoder;
 import com.acmerobotics.roadrunner.ftc.OverflowEncoder;
 import com.acmerobotics.roadrunner.ftc.RawEncoder;
@@ -49,6 +52,11 @@ public class ObservationPark extends LinearOpMode {
             telemetry.update();
         }
 
+//        Actions.runBlocking(
+//                drive.driveBuilder()
+//        );
+
+
         telemetry.update();
 
         robot.leftFront.setPower(0);
@@ -58,4 +66,15 @@ public class ObservationPark extends LinearOpMode {
 
 
     }
+
+//    public class ExtendSlides implements Action {
+//        private boolean initalized = false;
+//
+//        public boolean run(TelemetryPacket packet) {
+//            double vel = motor.getVelocity();
+//            packet.put("shooterVelocity", vel);
+//            return vel < 10_000.0;
+//        }
+//
+//    }
 }
