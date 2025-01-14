@@ -52,12 +52,12 @@ public class CommonDriveBM extends AbstractButtonMap {
         }
 
         //Field-Oriented Driving using left joystick
-        MotorPowers fodMotorPowers = HolonomicDrive.fieldOrientedDrive(opMode.gamepad1, robot.lazyImu.get(), opMode.gamepad1.b ? fodMultiplier*slowStrafeMultiplier : fodMultiplier);
-        if (fodMotorPowers.isNotZero()) {
-            mp = fodMotorPowers;
-            opMode.telemetry.addLine("FOD Active!");
-            opMode.telemetry.update();
-        }
+//        MotorPowers fodMotorPowers = HolonomicDrive.fieldOrientedDrive(opMode.gamepad1, robot.lazyImu.get(), opMode.gamepad1.b ? slowStrafeMultiplier : .6);
+//        if (fodMotorPowers.isNotZero()) {
+//            mp = fodMotorPowers;
+//            opMode.telemetry.addLine("FOD Active!");
+//            opMode.telemetry.update();
+//        }
 
         /*
          * Pivot turn methods
@@ -118,7 +118,6 @@ public class CommonDriveBM extends AbstractButtonMap {
             opMode.telemetry.addLine("Slow Multiplier Active!");
         }
 
-        mp = new MotorPowers(-mp.leftFront,-mp.rightFront,mp.leftBack,mp.rightBack);
 
         opMode.telemetry.update();
         robot.setMotorPowers(mp);
