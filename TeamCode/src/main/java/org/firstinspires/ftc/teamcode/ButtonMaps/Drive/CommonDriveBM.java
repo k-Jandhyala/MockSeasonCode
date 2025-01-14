@@ -11,6 +11,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.ButtonMaps.AbstractButtonMap;
 import org.firstinspires.ftc.teamcode.ButtonMaps.DPadControl;
 import org.firstinspires.ftc.teamcode.ButtonMaps.FieldOrientedDrive;
+import org.firstinspires.ftc.teamcode.ButtonMaps.HolonomicDrive;
 import org.firstinspires.ftc.teamcode.ButtonMaps.MotorPowers;
 import org.firstinspires.ftc.teamcode.ComplexRobots.IntoTheDeepRobot;
 
@@ -51,21 +52,21 @@ public class CommonDriveBM extends AbstractButtonMap {
         }
 
         //Field-Oriented Driving using left joystick
- //       MotorPowers fodMotorPowers = FieldOrientedDrive.fieldOrientedDrive(opMode.gamepad1, robot.lazyImu.get(), opMode.gamepad1.b ? fodMultiplier*slowStrafeMultiplier : fodMultiplier);
- //       if (fodMotorPowers.isNotZero()) {
- //           mp = fodMotorPowers;
- //           opMode.telemetry.addLine("FOD Active!");
- //           opMode.telemetry.update();
- //       }
+        MotorPowers fodMotorPowers = HolonomicDrive.fieldOrientedDrive(opMode.gamepad1, robot.lazyImu.get(), opMode.gamepad1.b ? fodMultiplier*slowStrafeMultiplier : fodMultiplier);
+        if (fodMotorPowers.isNotZero()) {
+            mp = fodMotorPowers;
+            opMode.telemetry.addLine("FOD Active!");
+            opMode.telemetry.update();
+        }
 
         /*
          * Pivot turn methods
          */
-//        //Pivot Turn using joystick
-//        if(Math.abs(opMode.gamepad1.right_stick_x) > 0.1){
-//            MotorPowers joystickPivotTurnMotorPowers = robot.pivotTurn(currentMotorPower*(Math.abs(opMode.gamepad1.right_stick_x)), opMode.gamepad1.right_stick_x > 0.1, opMode.gamepad1.right_stick_x < -0.1);
-//            mp = joystickPivotTurnMotorPowers;
-//        }
+        //Pivot Turn using joystick
+        if(Math.abs(opMode.gamepad1.right_stick_x) > 0.1){
+            MotorPowers joystickPivotTurnMotorPowers = robot.pivotTurn(currentMotorPower*(Math.abs(opMode.gamepad1.right_stick_x)), opMode.gamepad1.right_stick_x > 0.1, opMode.gamepad1.right_stick_x < -0.1);
+            mp = joystickPivotTurnMotorPowers;
+        }
 
         //Pivot Turn Using bumpers
         if(opMode.gamepad1.right_bumper || opMode.gamepad1.left_bumper){
@@ -80,8 +81,8 @@ public class CommonDriveBM extends AbstractButtonMap {
         MotorPowers triggerMotorPowers;
         //Forward
         if (opMode.gamepad1.right_trigger > 0.1) {
-            mp = new MotorPowers(-opMode.gamepad1.right_trigger * triggerMultipler,
-                    -opMode.gamepad1.right_trigger * triggerMultipler,
+            mp = new MotorPowers(opMode.gamepad1.right_trigger * triggerMultipler,
+                    opMode.gamepad1.right_trigger * triggerMultipler,
                     opMode.gamepad1.right_trigger * triggerMultipler,
                     opMode.gamepad1.right_trigger * triggerMultipler);
             opMode.telemetry.addLine("Trigger Right (forward) active!");
@@ -90,8 +91,8 @@ public class CommonDriveBM extends AbstractButtonMap {
         //Backward
         else if (opMode.gamepad1.left_trigger > 0.1) {
             //Backward
-            mp = new MotorPowers(opMode.gamepad1.left_trigger * triggerMultipler,
-                    opMode.gamepad1.left_trigger * triggerMultipler,
+            mp = new MotorPowers(-opMode.gamepad1.left_trigger * triggerMultipler,
+                    -opMode.gamepad1.left_trigger * triggerMultipler,
                     -opMode.gamepad1.left_trigger * triggerMultipler,
                     -opMode.gamepad1.left_trigger * triggerMultipler);
             opMode.telemetry.addLine("Trigger Left (backward) active!");
@@ -116,6 +117,7 @@ public class CommonDriveBM extends AbstractButtonMap {
             mp = new MotorPowers (currentMotorPower *= slowStrafeMultiplier);
             opMode.telemetry.addLine("Slow Multiplier Active!");
         }
+
         mp = new MotorPowers(-mp.leftFront,-mp.rightFront,mp.leftBack,mp.rightBack);
 
         opMode.telemetry.update();
