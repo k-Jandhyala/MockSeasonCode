@@ -88,7 +88,7 @@ public class IntoTheDeepRobot extends MecanumDrive {
             leftBotMotorPower *= -1;
             leftTopMotorPower *= -1;
         }
-        return new MotorPowers(-leftTopMotorPower,-rightTopMotorPower,leftBotMotorPower,rightBotMotorPower);
+        return new MotorPowers(leftTopMotorPower,rightTopMotorPower,leftBotMotorPower,rightBotMotorPower);
     }
 
     public void setMotorTo(DcMotorEx motor, int targetPos, double power) {
