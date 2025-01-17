@@ -42,7 +42,8 @@ public class IntoTheDeepRobot extends MecanumDrive {
         bucketMotor1.setDirection(DcMotor.Direction.FORWARD);
         bucketMotor1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         bucketMotor1.setTargetPositionTolerance(15);
-        bucketMotor1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        bucketMotor1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);z
+        bucketMotor1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         bucketMotor1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         bucketMotor2.setDirection(DcMotor.Direction.FORWARD);
@@ -62,6 +63,7 @@ public class IntoTheDeepRobot extends MecanumDrive {
         bucketServo.setPosition(0);
         specimenClaw.scaleRange(-1,1);
         specimenClaw.setPosition(1);
+
     }
 
 
@@ -75,10 +77,10 @@ public class IntoTheDeepRobot extends MecanumDrive {
     }
 
     public MotorPowers pivotTurn(double currentMotorPower, boolean rightBumper, boolean leftBumper) {
-        double rightTopMotorPower = currentMotorPower;
-        double rightBotMotorPower = currentMotorPower;
-        double leftTopMotorPower = currentMotorPower;
-        double leftBotMotorPower = currentMotorPower;
+        double rightTopMotorPower = -currentMotorPower;
+        double rightBotMotorPower = -currentMotorPower;
+        double leftTopMotorPower = -currentMotorPower;
+        double leftBotMotorPower = -currentMotorPower;
         if (rightBumper) {
 
             rightBotMotorPower *= -1;

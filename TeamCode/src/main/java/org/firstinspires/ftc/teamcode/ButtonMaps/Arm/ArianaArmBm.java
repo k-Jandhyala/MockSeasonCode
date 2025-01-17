@@ -80,17 +80,17 @@ public class ArianaArmBm extends AbstractButtonMap {
         }
 
 //            Horizontal Slides Motor
-        if (opMode.gamepad2.b && !bIsPressed && ((System.currentTimeMillis()- startTime) > timeDelay)) {
-            robot.setMotorTo(robot.horizontalSlideMotor, -10, linearSlidesUpMultiplier);
-            bIsPressed = !bIsPressed;
-            horizontalSlideTime = System.currentTimeMillis();
-        } else if (opMode.gamepad2.b && bIsPressed && ((System.currentTimeMillis()- horizontalSlideTime) > timeDelay)) {
-            robot.setMotorTo(robot.horizontalSlideMotor, -2340, linearSlidesUpMultiplier);
-            bIsPressed = !bIsPressed;
-            startTime = System.currentTimeMillis();
-        } else {
-            robot.horizontalSlideMotor.setPower(0);
-        }
+//        if (opMode.gamepad2.b && !bIsPressed && ((System.currentTimeMillis()- startTime) > timeDelay)) {
+//            robot.setMotorTo(robot.horizontalSlideMotor, -10, linearSlidesUpMultiplier);
+//            bIsPressed = !bIsPressed;
+//            horizontalSlideTime = System.currentTimeMillis();
+//        } else if (opMode.gamepad2.b && bIsPressed && ((System.currentTimeMillis()- horizontalSlideTime) > timeDelay)) {
+//            robot.setMotorTo(robot.horizontalSlideMotor, -2340, linearSlidesUpMultiplier);
+//            bIsPressed = !bIsPressed;
+//            startTime = System.currentTimeMillis();
+//        } else {
+//            robot.horizontalSlideMotor.setPower(0);
+//        }
         // if (contact switch is not pressed)
 //        if (opMode.gamepad2.b && !bIsPressed) {
 //            robot.setMotorTo(robot.horizontalSlideMotor, 0, 1 * linearSlidesUpMultiplier);

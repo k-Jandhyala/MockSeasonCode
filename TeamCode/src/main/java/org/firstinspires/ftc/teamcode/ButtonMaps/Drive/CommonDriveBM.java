@@ -81,8 +81,8 @@ public class CommonDriveBM extends AbstractButtonMap {
         MotorPowers triggerMotorPowers;
         //Forward
         if (opMode.gamepad1.right_trigger > 0.1) {
-            mp = new MotorPowers(-opMode.gamepad1.right_trigger * triggerMultipler,
-                    -opMode.gamepad1.right_trigger * triggerMultipler,
+            mp = new MotorPowers(opMode.gamepad1.right_trigger * triggerMultipler,
+                    opMode.gamepad1.right_trigger * triggerMultipler,
                     opMode.gamepad1.right_trigger * triggerMultipler,
                     opMode.gamepad1.right_trigger * triggerMultipler);
             opMode.telemetry.addLine("Trigger Right (forward) active!");
