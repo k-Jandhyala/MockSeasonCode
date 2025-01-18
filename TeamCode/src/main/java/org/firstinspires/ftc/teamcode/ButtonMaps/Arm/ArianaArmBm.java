@@ -120,10 +120,10 @@ public class ArianaArmBm extends AbstractButtonMap {
             //Bucket Servo
         if (opMode.gamepad2.left_bumper) {
               robot.bucketServo.setPosition(1);
-              robot.specimenClaw.setPosition(0.5);
+              robot.specimenClaw.setPosition(0.8);
         } else if (opMode.gamepad2.right_bumper) {
               robot.bucketServo.setPosition(0);
-              robot.specimenClaw.setPosition(0.5);
+              robot.specimenClaw.setPosition(0.8);
         }
 
 //SpecimenClaw
