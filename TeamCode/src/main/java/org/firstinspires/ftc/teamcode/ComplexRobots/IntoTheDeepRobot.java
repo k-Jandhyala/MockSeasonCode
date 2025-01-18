@@ -63,6 +63,7 @@ public class IntoTheDeepRobot extends MecanumDrive {
         bucketServo.setPosition(0);
         specimenClaw.scaleRange(-1,1);
         specimenClaw.setPosition(1);
+        elbowServo.setPosition(0.8);
 
     }
 
@@ -81,12 +82,12 @@ public class IntoTheDeepRobot extends MecanumDrive {
         double rightBotMotorPower = -currentMotorPower;
         double leftTopMotorPower = -currentMotorPower;
         double leftBotMotorPower = -currentMotorPower;
-        if (rightBumper) {
+        if (leftBumper) {
 
             rightBotMotorPower *= -1;
             rightTopMotorPower *= -1;
         }
-        else if (leftBumper) {
+        else if (rightBumper) {
             leftBotMotorPower *= -1;
             leftTopMotorPower *= -1;
         }
