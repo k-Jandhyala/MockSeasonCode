@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.ButtonMaps.Arm;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.ButtonMaps.AbstractButtonMap;
@@ -33,8 +34,12 @@ public class ArianaArmBm extends AbstractButtonMap {
     boolean bIsPressed = false;
     boolean xIsPressed = false;
 
+    int bucketMotorsAvgPostiion;
+
     //    @Override
     public void loop(IntoTheDeepRobot robot, OpMode opMode) {
+        bucketMotorsAvgPostiion = (robot.bucketMotor1.getCurrentPosition() + robot.bucketMotor2.getCurrentPosition())/2;
+
         //Wrist Servo (elbow)
         if (opMode.gamepad2.a && !aIsPressed) {
             robot.elbowServo.setPosition(.8);
@@ -44,26 +49,22 @@ public class ArianaArmBm extends AbstractButtonMap {
             aIsPressed = !aIsPressed;
         }
         opMode.telemetry.addData("ES Position: ", robot.elbowServo.getPosition());
-        //Bucket Motors (on triggers)      
+        //Bucket Motors (on triggers)
+        opMode.telemetry.addData("Bucket Encoder Avg: ", (robot.bucketMotor1.getCurrentPosition() + robot.bucketMotor2.getCurrentPosition())/2);
         if (opMode.gamepad2.left_trigger > 0.1) {
-//            if (robot.bucketMotor1.getCurrentPosition() < -5 || robot.bucketMotor2.getCurrentPosition() < -5) {
-//                opMode.telemetry.addData("LS Direction", "INHIBIT DOWN");
-//                robot.bucketMotor1.setPower(0);
-//                robot.bucketMotor2.setPower(0);
-//            } else {
-//                opMode.telemetry.addData("LS Direction", "DOWN");
-//                robot.bucketMotor1.setPower(opMode.gamepad2.left_trigger);
-//                robot.bucketMotor2.setPower(opMode.gamepad2.left_trigger);
-
-            opMode.telemetry.addLine("Down: Code updated");
-            robot.bucketMotor1.setPower(-opMode.gamepad2.left_trigger * linearSlidesUpMultiplier * 1);
-            robot.bucketMotor2.setPower(opMode.gamepad2.left_trigger * linearSlidesUpMultiplier * 1);
+            if(bucketMotorsAvgPostiion < 275) {
+                robot.bucketMotor1.setPower(-opMode.gamepad2.left_trigger * linearSlidesUpMultiplier * 1);
+                robot.bucketMotor2.setPower(opMode.gamepad2.left_trigger * linearSlidesUpMultiplier * 1);
+            } else {
+                robot.bucketMotor1.setPower(0.05);
+                robot.bucketMotor2.setPower(0.05);
+            }
         } else if (opMode.gamepad2.right_trigger > 0.1) {
-            opMode.telemetry.addLine("LS Direction: UP");
-            robot.bucketMotor1.setPower(opMode.gamepad2.right_trigger * linearSlidesDownMultiplier * 1);
-            robot.bucketMotor2.setPower(-opMode.gamepad2.right_trigger * linearSlidesDownMultiplier * 1);
+            if(bucketMotorsAvgPostiion > -10) {
+                robot.bucketMotor1.setPower(opMode.gamepad2.right_trigger * linearSlidesDownMultiplier * 1);
+                robot.bucketMotor2.setPower(-opMode.gamepad2.right_trigger * linearSlidesDownMultiplier * 1);
+            }
         } else {
-            opMode.telemetry.addLine("LS Direction: OFF");
             robot.bucketMotor1.setPower(0);
             robot.bucketMotor2.setPower(0);
         }

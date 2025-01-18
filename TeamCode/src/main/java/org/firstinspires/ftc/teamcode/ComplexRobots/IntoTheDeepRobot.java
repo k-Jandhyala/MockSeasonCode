@@ -42,7 +42,7 @@ public class IntoTheDeepRobot extends MecanumDrive {
         bucketMotor1.setDirection(DcMotor.Direction.FORWARD);
         bucketMotor1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         bucketMotor1.setTargetPositionTolerance(15);
-        bucketMotor1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);z
+        bucketMotor1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         bucketMotor1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         bucketMotor1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
