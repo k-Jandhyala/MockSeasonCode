@@ -92,6 +92,10 @@ public class ArianaArmBm extends AbstractButtonMap {
             lbIsPressed = !lbIsPressed;
             sampleServoTime = System.currentTimeMillis();
         }
+        else {
+            robot.brushServo.setPower(0);
+        }
+
 
         if (opMode.gamepad2.right_bumper && !rbIsPressed && ((System.currentTimeMillis() - sampleServoTime) > timeDelay)) {
             //one servo to spin brush one servo to angle brush - the other other a elbow servo
@@ -129,6 +133,7 @@ public class ArianaArmBm extends AbstractButtonMap {
         if(opMode.gamepad2.dpad_up) {
             if(robot.horizontalSlideMotor.getCurrentPosition() > -2200) {
                 robot.horizontalSlideMotor.setPower(-.5);
+
             } else{
                 robot.horizontalSlideMotor.setPower(0);
             }
@@ -148,8 +153,10 @@ public class ArianaArmBm extends AbstractButtonMap {
             //Bucket Servo
         if (opMode.gamepad2.left_bumper) {
               robot.bucketServo.setPosition(1);
+              robot.specimenClaw.setPosition(0.8);
         } else if (opMode.gamepad2.right_bumper) {
               robot.bucketServo.setPosition(0);
+              robot.specimenClaw.setPosition(0.8);
         }
 
 //SpecimenClaw
