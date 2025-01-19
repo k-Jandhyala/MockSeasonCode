@@ -20,6 +20,7 @@ public class ArianaArmBm extends AbstractButtonMap {
     private double intakeOutTime = 0;
     private long sampleServoTime = System.currentTimeMillis();
     private long brushRollIntakeTime = System.currentTimeMillis();
+    private long elbowServoTime = System.currentTimeMillis();
 
     //Servo Positions
 //    double x =
@@ -37,9 +38,12 @@ public class ArianaArmBm extends AbstractButtonMap {
     int yState = STOPPED;
     boolean yIsPressed = false;
     boolean bIsPressed = false;
+    boolean rbIsPressed = false;
+    boolean lbIsPressed = false;
     boolean xIsPressed = false;
 
     int bucketMotorsAvgPostiion;
+
 
     //    @Override
     public void loop(IntoTheDeepRobot robot, OpMode opMode) {
@@ -58,6 +62,13 @@ public class ArianaArmBm extends AbstractButtonMap {
         opMode.telemetry.addData("ES Position: ", robot.elbowServo.getPosition());
         //Bucket Motors (on triggers)
         opMode.telemetry.addData("Bucket Encoder Avg: ", (robot.bucketMotor1.getCurrentPosition() + robot.bucketMotor2.getCurrentPosition())/2);
+
+        if (opMode.gamepad2.b && ((System.currentTimeMillis() - elbowServoTime) > timeDelay)) {
+            //one servo to spin brush one servo to angle brush - the other other a elbow servo
+            robot.elbowServo.setPosition(0.8);
+            elbowServoTime = System.currentTimeMillis();
+        }
+
         if (opMode.gamepad2.left_trigger > 0.1) {
             robot.bucketMotor1.setPower(-opMode.gamepad2.left_trigger * linearSlidesUpMultiplier * 1);
             robot.bucketMotor2.setPower(opMode.gamepad2.left_trigger * linearSlidesUpMultiplier * 1);
@@ -71,25 +82,25 @@ public class ArianaArmBm extends AbstractButtonMap {
             robot.bucketMotor2.setPower(0);
         }
         //Brush Servos
-        if (opMode.gamepad2.y && !yIsPressed && ((System.currentTimeMillis() - sampleServoTime) > timeDelay)) {
+        if (opMode.gamepad2.left_bumper && !lbIsPressed && ((System.currentTimeMillis() - sampleServoTime) > timeDelay)) {
             //one servo to spin brush one servo to angle brush - the other other a elbow servo
             robot.brushServo.setPower(-1);
-            yIsPressed = !yIsPressed;
+            lbIsPressed = !lbIsPressed;
             sampleServoTime = System.currentTimeMillis();
-        } else if (opMode.gamepad2.y && yIsPressed && ((System.currentTimeMillis() - sampleServoTime) > timeDelay)) {
+        } else if (opMode.gamepad2.left_bumper && lbIsPressed && ((System.currentTimeMillis() - sampleServoTime) > timeDelay)) {
             robot.brushServo.setPower(0);
-            yIsPressed = !yIsPressed;
+            lbIsPressed = !lbIsPressed;
             sampleServoTime = System.currentTimeMillis();
         }
 
-        if (opMode.gamepad2.b && !bIsPressed && ((System.currentTimeMillis() - sampleServoTime) > timeDelay)) {
+        if (opMode.gamepad2.right_bumper && !rbIsPressed && ((System.currentTimeMillis() - sampleServoTime) > timeDelay)) {
             //one servo to spin brush one servo to angle brush - the other other a elbow servo
             robot.brushServo.setPower(1);
-            bIsPressed = !bIsPressed;
+            rbIsPressed = !rbIsPressed;
             sampleServoTime = System.currentTimeMillis();
-        } else if (opMode.gamepad2.b && bIsPressed && ((System.currentTimeMillis() - sampleServoTime) > timeDelay)) {
+        } else if (opMode.gamepad2.right_bumper && rbIsPressed && ((System.currentTimeMillis() - sampleServoTime) > timeDelay)) {
             robot.brushServo.setPower(0);
-            bIsPressed = !bIsPressed;
+            rbIsPressed = !rbIsPressed;
             sampleServoTime = System.currentTimeMillis();
         }
 

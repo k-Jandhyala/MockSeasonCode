@@ -22,6 +22,7 @@ public class IntoTheDeepRobot extends MecanumDrive {
     public final Servo elbowServo;
     public final Servo bucketServo;
     public final Servo specimenClaw;
+
     public IntoTheDeepRobot(HardwareMap hardwareMap, Pose2d pose) {
         super(hardwareMap, pose);
         //Linear Slide Motor
@@ -63,7 +64,7 @@ public class IntoTheDeepRobot extends MecanumDrive {
         bucketServo.setPosition(0);
         specimenClaw.scaleRange(-1,1);
         specimenClaw.setPosition(1);
-        elbowServo.setPosition(0.8);
+//        elbowServo.setPosition(0.8);
 
     }
 
