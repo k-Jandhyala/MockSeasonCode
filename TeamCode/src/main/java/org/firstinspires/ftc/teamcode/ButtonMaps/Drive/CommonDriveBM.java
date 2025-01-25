@@ -52,7 +52,7 @@ public class CommonDriveBM extends AbstractButtonMap {
         }
 
         //Field-Oriented Driving using left joystick
-        MotorPowers fodMotorPowers = HolonomicDrive.fieldOrientedDrive(opMode.gamepad1, hdMultiplier);
+        MotorPowers fodMotorPowers = FieldOrientedDrive.fieldOrientedDrive(opMode.gamepad1, LazyImu.get(), hdMultiplier);
         if (fodMotorPowers.isNotZero()) {
             mp = fodMotorPowers;
             opMode.telemetry.addLine("FOD Active!");
