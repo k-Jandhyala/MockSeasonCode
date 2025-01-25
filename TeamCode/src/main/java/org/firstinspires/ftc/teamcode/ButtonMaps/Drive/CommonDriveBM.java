@@ -24,11 +24,13 @@ public class CommonDriveBM extends AbstractButtonMap {
     public static double slowStrafeMultiplier = .8;
     public static double basePower = .9;
     public static double hdMultiplier = 0.85;
+    public static double fodMultiplier = 0.85;
     private boolean buttonPressed = false;
     private boolean combineWithPivotTurn = false;
 
     private double currentMotorPower;
     private MotorPowers mp;// = new MotorPowers(0);
+
 
     @Override
     public void loop(IntoTheDeepRobot robot, OpMode opMode) {
@@ -43,6 +45,7 @@ public class CommonDriveBM extends AbstractButtonMap {
 //        }
 
 
+
         //Dpad strafe using dpad
         MotorPowers dpadMotorPowers = DPadControl.dpadStrafe(opMode.gamepad1, currentMotorPower);
         if(dpadMotorPowers.isNotZero()){
@@ -52,7 +55,7 @@ public class CommonDriveBM extends AbstractButtonMap {
         }
 
         //Field-Oriented Driving using left joystick
-        MotorPowers fodMotorPowers = HolonomicDrive.fieldOrientedDrive(opMode.gamepad1, hdMultiplier);
+        MotorPowers fodMotorPowers = FieldOrientedDrive.fieldOrientedDrive(opMode.gamepad1, robot.lazyImu.get(), opMode.gamepad1.b ? fodMultiplier*slowStrafeMultiplier : fodMultiplier);
         if (fodMotorPowers.isNotZero()) {
             mp = fodMotorPowers;
             opMode.telemetry.addLine("FOD Active!");
