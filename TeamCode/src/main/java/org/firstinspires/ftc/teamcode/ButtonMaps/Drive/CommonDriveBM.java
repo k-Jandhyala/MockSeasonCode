@@ -21,7 +21,7 @@ public class CommonDriveBM extends AbstractButtonMap {
     public static double triggerMultipler = 1;
     public static double dpadBumperMultiplier = 0.65;
    // public static double fodMultiplier = 0.85;
-    public static double slowStrafeMultiplier = .8;
+    public static double slowStrafeMultiplier = .35;
     public static double basePower = .9;
     public static double hdMultiplier = 0.85;
     public static double fodMultiplier = 0.85;
