@@ -119,7 +119,10 @@ public class CommonDriveBM extends AbstractButtonMap {
 
         //test by putting at beginning
         if (opMode.gamepad1.x) {
-            mp = new MotorPowers (currentMotorPower *= slowStrafeMultiplier);
+            mp = new MotorPowers(mp.leftFront * slowStrafeMultiplier,
+                    mp.rightFront * slowStrafeMultiplier,
+                    mp.leftBack * slowStrafeMultiplier,
+                    mp.rightBack * slowStrafeMultiplier);
             opMode.telemetry.addLine("Slow Multiplier Active!");
         }
 
