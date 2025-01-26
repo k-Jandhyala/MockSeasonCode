@@ -60,6 +60,8 @@ public class CommonDriveBM extends AbstractButtonMap {
             mp = fodMotorPowers;
             opMode.telemetry.addLine("FOD Active!");
             opMode.telemetry.update();
+            opMode.telemetry.addLine("Extra Active!");
+            opMode.telemetry.update();
         }
 
         /*
