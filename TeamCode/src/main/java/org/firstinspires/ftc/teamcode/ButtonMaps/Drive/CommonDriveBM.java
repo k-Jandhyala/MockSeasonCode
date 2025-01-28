@@ -21,7 +21,7 @@ public class CommonDriveBM extends AbstractButtonMap {
     public static double triggerMultipler = 1;
     public static double dpadBumperMultiplier = 0.65;
    // public static double fodMultiplier = 0.85;
-    public static double slowStrafeMultiplier = .35;
+    public static double slowStrafeMultiplier = .5;
     public static double basePower = .9;
     public static double hdMultiplier = 0.85;
     public static double fodMultiplier = 0.85;
@@ -126,7 +126,10 @@ public class CommonDriveBM extends AbstractButtonMap {
             opMode.telemetry.addLine("Slow Multiplier Active!");
         }
 
-
+        mp = new MotorPowers(mp.leftFront,
+                -mp.rightFront,
+                -mp.leftBack,
+                mp.rightBack);
         opMode.telemetry.update();
         robot.setMotorPowers(mp);
     }

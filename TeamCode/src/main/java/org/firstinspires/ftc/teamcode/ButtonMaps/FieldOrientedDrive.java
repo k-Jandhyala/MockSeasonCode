@@ -60,7 +60,7 @@ public class FieldOrientedDrive {
         double frontRightPower = maxMotorPower*((rotY - rotX - rotate) / denominator);
         double backRightPower = -maxMotorPower*((rotY + rotX - rotate) / denominator);
 
-        return new MotorPowers(frontLeftPower, frontRightPower, backLeftPower, backRightPower);
+        return new MotorPowers(frontLeftPower, -frontRightPower, -backLeftPower, backRightPower);
     }
 
 }
