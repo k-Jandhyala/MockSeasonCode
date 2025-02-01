@@ -24,4 +24,19 @@ public class HolonomicDrive {
 //        frontLeftPower *= .5; backLeftPower *= .5; frontRightPower *= .5; backRightPower *= .5;
         return new MotorPowers(frontLeftPower, frontRightPower, backLeftPower, backRightPower);
     }
+
+    public static MotorPowers JoystickHoloDrive(Gamepad gamepad1) {
+        // Read joystick values
+        double y = -gamepad1.left_stick_y;
+        double x = gamepad1.left_stick_x * 1.1;
+
+        double denominator = Math.max(Math.abs(y) + Math.abs(x), 1);
+
+        double frontLeftPower = (y + x) / denominator;
+        double backLeftPower = (y - x) / denominator;
+        double frontRightPower = (y - x) / denominator;
+        double backRightPower = (y + x) / denominator;
+
+        return new MotorPowers(frontLeftPower, -frontRightPower, -backLeftPower, backRightPower);
+    }
 }
