@@ -13,6 +13,7 @@ import org.firstinspires.ftc.teamcode.ButtonMaps.DPadControl;
 import org.firstinspires.ftc.teamcode.ButtonMaps.FieldOrientedDrive;
 import org.firstinspires.ftc.teamcode.ButtonMaps.HolonomicDrive;
 import org.firstinspires.ftc.teamcode.ButtonMaps.MotorPowers;
+import org.firstinspires.ftc.teamcode.ButtonMaps.NoamHolonomicDrive;
 import org.firstinspires.ftc.teamcode.ComplexRobots.IntoTheDeepRobot;
 
 @Config
@@ -55,15 +56,19 @@ public class CommonDriveBM extends AbstractButtonMap {
         }
 
         //Field-Oriented Driving using left joystick
-        MotorPowers fodMotorPowers = FieldOrientedDrive.fieldOrientedDrive(opMode.gamepad1, robot.lazyImu.get(), opMode.gamepad1.b ? fodMultiplier*slowStrafeMultiplier : fodMultiplier);
-        if (fodMotorPowers.isNotZero()) {
-            mp = fodMotorPowers;
-            opMode.telemetry.addLine("FOD Active!");
-            opMode.telemetry.update();
-            opMode.telemetry.addLine("Extra Active!");
-            opMode.telemetry.update();
-        }
-
+//        MotorPowers fodMotorPowers = FieldOrientedDrive.fieldOrientedDrive(opMode.gamepad1, robot.lazyImu.get(), opMode.gamepad1.b ? fodMultiplier*slowStrafeMultiplier : fodMultiplier);
+//        if (fodMotorPowers.isNotZero()) {
+//            mp = fodMotorPowers;
+//            opMode.telemetry.addLine("FOD Active!");
+//            opMode.telemetry.update();
+//            opMode.telemetry.addLine("Extra Active!");
+//            opMode.telemetry.update();
+//        }
+        MotorPowers HolonomicDrivePowers = NoamHolonomicDrive.JoystickHoloDrive(opMode.gamepad1);
+               if (HolonomicDrivePowers.isNotZero()) {
+                   mp = HolonomicDrivePowers;
+                   opMode.telemetry.addLine("NoamHOD Active!");
+               }
         /*
          * Pivot turn methods
          */
