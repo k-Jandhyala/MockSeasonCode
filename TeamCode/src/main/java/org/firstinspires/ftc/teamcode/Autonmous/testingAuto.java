@@ -27,32 +27,60 @@ import java.util.Vector;
 public class testingAuto extends LinearOpMode {
 
     IntoTheDeepRobot robot;
+    int bucketMotorsAvgPosition;
 
     @Override
     public void runOpMode() throws InterruptedException {
         telemetry.update();
         // INITIALIZATION
         robot = new IntoTheDeepRobot(hardwareMap, new Pose2d(new Vector2d(0,0), 0));
+        bucketMotorsAvgPosition = (robot.bucketMotor1.getCurrentPosition() + robot.bucketMotor2.getCurrentPosition())/2;
         waitForStart();
+        robot.specimenClaw.setPosition(.5);
         sleep(750);
+        // go forward to sub
         Actions.runBlocking(
-                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-28,0), Math.PI/180).build()
+                robot.actionBuilder(robot.pose).strafeTo(new Vector2d(-24)).build()
         );
-        sleep(750);
+        if (bucketMotorsAvgPosition<1000) {
+            robot.bucketMotor1.setPower(.5);
+            robot.bucketMotor2.setPower(-.5);
+        } else {
+            robot.bucketMotor1.setPower(0);
+            robot.bucketMotor2.setPower(0);
+        }
+        sleep(1000);
+        if (bucketMotorsAvgPosition>200) {
+            robot.bucketMotor1.setPower(-.5);
+            robot.bucketMotor2.setPower(.5);
+        } else {
+            robot.bucketMotor1.setPower(0);
+            robot.bucketMotor2.setPower(0);
+        }
+        // back up from sub
         Actions.runBlocking(
                 robot.actionBuilder(robot.pose).strafeTo(new Vector2d(-5,0)).build()
         );
-        sleep(750);
+        // big donut around the sub to the preset samples
         Actions.runBlocking(
-                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-55,42.5), -1*Math.PI).build()
+                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-55,70), -1*Math.PI).build()
         );
         sleep(750);
         Actions.runBlocking(
-                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-60,60), -0.8*Math.PI).build()
+                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-60,85), -0.8*Math.PI).build()
         );
         sleep(750);
         Actions.runBlocking(
-                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-8,70), -1*Math.PI).build()
+                //add more x and maybe y
+                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-12,95), -1*Math.PI).build()
+        );
+        sleep(750);
+        Actions.runBlocking(
+                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-60,80), -0.8*Math.PI).build()
+        );
+        sleep(750);
+        Actions.runBlocking(
+                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-8,85), -1*Math.PI).build()
         );
 //        sleep(750);
 //        Actions.runBlocking(

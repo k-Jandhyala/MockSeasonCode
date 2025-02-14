@@ -70,13 +70,12 @@ public class ArianaArmBm extends AbstractButtonMap {
         }
 
         if (opMode.gamepad2.left_trigger > 0.1) {
-            if(bucketMotorsAvgPostiion > -10) {
                 robot.bucketMotor1.setPower(-opMode.gamepad2.left_trigger * linearSlidesUpMultiplier * 1);
                 robot.bucketMotor2.setPower(opMode.gamepad2.left_trigger * linearSlidesUpMultiplier * 1);
-            }
         } else if (opMode.gamepad2.right_trigger > 0.1) {
                 robot.bucketMotor1.setPower(opMode.gamepad2.right_trigger * linearSlidesDownMultiplier * 1);
                 robot.bucketMotor2.setPower(-opMode.gamepad2.right_trigger * linearSlidesDownMultiplier * 1);
+                opMode.telemetry.addData("Bucket Encoder:", bucketMotorsAvgPostiion);
         } else {
             robot.bucketMotor1.setPower(0);
             robot.bucketMotor2.setPower(0);
