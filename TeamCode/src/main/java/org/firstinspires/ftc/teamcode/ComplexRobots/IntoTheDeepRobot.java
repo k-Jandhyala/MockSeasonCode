@@ -22,9 +22,11 @@ public class IntoTheDeepRobot extends MecanumDrive {
     public final Servo elbowServo;
     public final Servo bucketServo;
     public final Servo specimenClaw;
+    public HardwareMap hardwareMap;
 
     public IntoTheDeepRobot(HardwareMap hardwareMap, Pose2d pose) {
         super(hardwareMap, pose);
+        hardwareMap = this.hardwareMap;
         //Linear Slide Motor
         horizontalSlideMotor = hardwareMap.get(DcMotorEx.class, "horizontalSlideMotor");
 
