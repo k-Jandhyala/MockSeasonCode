@@ -23,11 +23,8 @@ import org.firstinspires.ftc.teamcode.MecanumDrive;
 
 import java.util.Vector;
 
-@Autonomous(name = "testingAuto")
-public class testingAuto extends LinearOpMode {
-    enum Direction{
-        UP, DOWN
-    }
+@Autonomous(name = "testingSpecimenFirstAuto")
+public class testingSpecimenFirst extends LinearOpMode {
 
     IntoTheDeepRobot robot;
     int bucketMotorsAvgPosition;
@@ -42,44 +39,52 @@ public class testingAuto extends LinearOpMode {
         robot.specimenClaw.setPosition(.5);
         // go forward to sub
         robot.driveSlidesTo(122,0.5,1);
+        //raise slides
         Actions.runBlocking(
-                robot.actionBuilder(robot.pose).strafeTo(new Vector2d(-35,0)).build()
+                robot.actionBuilder(robot.pose).strafeTo(new Vector2d(-34,0)).build()
         );
         sleep(1250);
+        //lower slides
         robot.driveSlidesTo(50, 0.7,-1);
         // back up from sub
         sleep(500);
         Actions.runBlocking(
                 robot.actionBuilder(robot.pose).strafeTo(new Vector2d(-2,0)).build()
         );
+        //lower slides completely
+        robot.driveSlidesTo(-10,0.7,-1);
+        //open the claw
+        robot.specimenClaw.setPosition(0.8);
         // big donut around the sub to the preset samples
         Actions.runBlocking(
                 robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-65,64.5), -1*Math.PI).build()
         );
-        sleep(500);
+        // curve to get closer to sample
         Actions.runBlocking(
                 robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-70,72.5), -0.8*Math.PI).build()
         );
-        sleep(500);
+        // move sample to observation zone
         Actions.runBlocking(
-                //add more x and maybe y
-                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-16,84), -1*Math.PI).build()
+                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-18,84), -1*Math.PI).build()
         );
+        // pick up specimen
         sleep(500);
+        robot.specimenClaw.setPosition(0.4);
+        sleep(750);
+        // small donut to the sub
         Actions.runBlocking(
-                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-76,87), -0.78*Math.PI).build()
+                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-36,-30), -2*Math.PI).build()
         );
-        sleep(500);
+        //back up to sub completely
         Actions.runBlocking(
-                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-17,117), -1*Math.PI).build()
+                robot.actionBuilder(robot.pose).strafeTo(new Vector2d(-45,-30)).build()
         );
+        //raise slides
+        robot.driveSlidesTo(150,0.7,1);
         sleep(500);
+        robot.specimenClaw.setPosition(0.8);
         Actions.runBlocking(
-                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-75,121), -0.8*Math.PI).build()
-        );
-        sleep(500);
-        Actions.runBlocking(
-                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-14,124), -1*Math.PI).build()
+                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-18,84), -1*Math.PI).build()
         );
 //        sleep(750);
 //        Actions.runBlocking(

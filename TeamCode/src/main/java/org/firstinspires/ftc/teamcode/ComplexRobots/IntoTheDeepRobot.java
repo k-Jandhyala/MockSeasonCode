@@ -14,6 +14,9 @@ import org.firstinspires.ftc.teamcode.ButtonMaps.MotorPowers;
 
 @Config
 public class IntoTheDeepRobot extends MecanumDrive {
+    enum Direction {
+        UP,DOWN
+    }
 
     public final DcMotorEx horizontalSlideMotor;
     public final DcMotorEx bucketMotor1;
@@ -76,6 +79,22 @@ public class IntoTheDeepRobot extends MecanumDrive {
 
     public MotorPowers setAllMotorPowers(int i) {
         return new MotorPowers(0,0,0,0);
+    }
+    public void driveSlidesTo(int targetPosition, double motorPower, int direction){
+        int avgSlidesPos = (bucketMotor1.getCurrentPosition() + bucketMotor2.getCurrentPosition())/2;
+        if(direction == -1) {
+            while (((bucketMotor1.getCurrentPosition() + bucketMotor2.getCurrentPosition()) / 2) >= targetPosition){
+                bucketMotor1.setPower(-motorPower);
+                bucketMotor2.setPower(motorPower);
+            }
+        } else if(direction == 1) {
+            while (((bucketMotor1.getCurrentPosition() + bucketMotor2.getCurrentPosition()) / 2) <= targetPosition){
+                bucketMotor1.setPower(motorPower);
+                bucketMotor2.setPower(-motorPower);
+            }
+        }
+        bucketMotor1.setPower(0);
+        bucketMotor2.setPower(0);
     }
 
     public MotorPowers pivotTurn(double currentMotorPower, boolean rightBumper, boolean leftBumper) {

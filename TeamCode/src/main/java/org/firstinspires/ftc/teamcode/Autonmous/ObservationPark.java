@@ -22,7 +22,7 @@ import org.firstinspires.ftc.teamcode.MecanumDrive;
 @Autonomous()
 public class ObservationPark extends LinearOpMode {
     public IntoTheDeepRobot robot;
-    public Encoder par0;
+    public Encoder par;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -35,8 +35,8 @@ public class ObservationPark extends LinearOpMode {
 
         waitForStart();
 
-        par0 = new OverflowEncoder(new RawEncoder(hardwareMap.get(DcMotorEx.class, "leftBack")));
-        int initialTick = par0.getPositionAndVelocity().rawPosition;
+        par = new OverflowEncoder(new RawEncoder(hardwareMap.get(DcMotorEx.class, "leftBack")));
+        int initialTick = par.getPositionAndVelocity().rawPosition;
         int currentTick = 0;
         telemetry.addData("init:", initialTick);
         telemetry.update();
@@ -46,7 +46,7 @@ public class ObservationPark extends LinearOpMode {
             robot.leftBack.setPower(0.3);
             robot.rightFront.setPower(0.3);
             robot.rightBack.setPower(0.3);
-            currentTick = par0.getPositionAndVelocity().rawPosition - initialTick;
+            currentTick = par.getPositionAndVelocity().rawPosition - initialTick;
 
             telemetry.addData("Encoder Value: ", currentTick);
             telemetry.update();
@@ -56,13 +56,12 @@ public class ObservationPark extends LinearOpMode {
 //                drive.driveBuilder()
 //        );
 
+         robot.leftFront.setPower(0);
+         robot.leftBack.setPower(0);
+         robot.rightFront.setPower(0);
+         robot.rightBack.setPower(0);
 
-        telemetry.update();
-
-        robot.leftFront.setPower(0);
-        robot.leftBack.setPower(0);
-        robot.rightFront.setPower(0);
-        robot.rightBack.setPower(0);
+         telemetry.update();
 
 
     }
