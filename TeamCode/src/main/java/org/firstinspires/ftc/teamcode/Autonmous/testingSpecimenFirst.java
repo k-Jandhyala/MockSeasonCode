@@ -85,6 +85,7 @@ public class testingSpecimenFirst extends LinearOpMode {
         //lower slides
         robot.driveSlidesTo(145,0.6,-1);
         robot.specimenClaw.setPosition(0.8);
+        robot.driveSlidesTo(10,0.6,-1);
         Actions.runBlocking(
                 robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-18,84), -1*Math.PI).build()
         );
