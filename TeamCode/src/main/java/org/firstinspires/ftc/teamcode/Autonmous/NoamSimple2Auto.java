@@ -26,12 +26,12 @@ public class NoamSimple2Auto extends LinearOpMode {
         waitForStart();
         robot.specimenClaw.setPosition(.5);
         // go forward to sub
-        robot.driveSlidesTo(122,0.5,1);
+        robot.driveSlidesTo(128,0.5,1);
         Actions.runBlocking(
-                robot.actionBuilder(robot.pose).strafeTo(new Vector2d(-31.5,0)).build()
+                robot.actionBuilder(robot.pose).strafeTo(new Vector2d(-32.75,0)).build()
         );
         sleep(250);
-        robot.driveSlidesTo(50, 0.7,-1);
+        robot.driveSlidesTo(80, 0.7,-1);
         // back up from sub
         Actions.runBlocking(
                 robot.actionBuilder(robot.pose).strafeTo(new Vector2d(-15,0)).build()
@@ -44,7 +44,7 @@ public class NoamSimple2Auto extends LinearOpMode {
         robot.driveSlidesTo(1, 0.7,-1);
         robot.specimenClaw.setPosition(0.8);
         Actions.runBlocking(
-                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-11,100), -1*Math.PI).build()
+                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-10,100), -1*Math.PI).build()
         );
         // Wait for human player error, then close the claw.
         sleep(500);
@@ -57,18 +57,18 @@ public class NoamSimple2Auto extends LinearOpMode {
         );
         // run across the field to the sub!
         Actions.runBlocking(
-                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-35,-35), -0.5*Math.PI).build()
+                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-35,-25), -0.5*Math.PI).build()
         );
         Actions.runBlocking(
-                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-40,-30), 0*Math.PI).build()
+                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-40,-20), 0*Math.PI).build()
         );
         // go forward to sub, while raising slides for scoring
-        robot.driveSlidesTo(160, 0.5,1);
+        robot.driveSlidesTo(190, 0.5,1);
         Actions.runBlocking(
-                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-32,-30), 0*Math.PI).build()
+                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-33.75,-20), 0*Math.PI).build()
         );
         // score, and back off!
-        robot.driveSlidesTo(130, 0.7,-1);
+        robot.driveSlidesTo(140, 0.7,-1);
         robot.specimenClaw.setPosition(0.8);
         // skedaddle back to the parking zone!
         Actions.runBlocking(

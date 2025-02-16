@@ -50,7 +50,7 @@ public class ArianaArmBm extends AbstractButtonMap {
     public void loop(IntoTheDeepRobot robot, OpMode opMode) {
         bucketMotorsAvgPostiion = (robot.bucketMotor1.getCurrentPosition() + robot.bucketMotor2.getCurrentPosition())/2;
 
-        //Wrist Servo (elbow)
+        // Wrist Servo (elbow)
         if (opMode.gamepad2.a && !aIsPressed && ((System.currentTimeMillis() - brushRollIntakeTime) > timeDelay)) {
             robot.elbowServo.setPosition(1);
             aIsPressed = !aIsPressed;
@@ -60,48 +60,56 @@ public class ArianaArmBm extends AbstractButtonMap {
             aIsPressed = !aIsPressed;
             brushRollIntakeTime = System.currentTimeMillis();
         }
+
         opMode.telemetry.addData("ES Position: ", robot.elbowServo.getPosition());
-        //Bucket Motors (on triggers)
+        // Bucket Motors (on triggers)
         opMode.telemetry.addData("Bucket Encoder Avg: ", (robot.bucketMotor1.getCurrentPosition() + robot.bucketMotor2.getCurrentPosition())/2);
 
         if (opMode.gamepad2.b && ((System.currentTimeMillis() - elbowServoTime) > timeDelay)) {
-            //one servo to spin brush one servo to angle brush - the other other a elbow servo
+            // one servo to spin brush one servo to angle brush - the other other a elbow servo
             robot.elbowServo.setPosition(0.8);
             elbowServoTime = System.currentTimeMillis();
         }
-        //Spin the brush servo
-        if (Math.abs(opMode.gamepad2.left_stick_y) > .3 || Math.abs(opMode.gamepad2.left_stick_x) > .3) {
+
+        // Spin the brush servo
+        if (Math.abs(opMode.gamepad2.right_stick_y) > .3 || Math.abs(opMode.gamepad2.left_stick_x) > .3) {
             if (opMode.gamepad2.left_stick_y > .3) {
                 if (stageOfBrushServo < .9)
                     stageOfBrushServo += .3;
             }
-            if (opMode.gamepad2.left_stick_y < -.3) {
+
+            if (opMode.gamepad2.right_stick_y < -.3) {
                 if (stageOfBrushServo > -.9)
                     stageOfBrushServo -= .3;
             }
-            if (opMode.gamepad2.left_stick_x > .3) {
+
+            if (opMode.gamepad2.right_stick_x > .3) {
                 if (stageOfBrushServo > -.9)
                     stageOfBrushServo -= .3;
             }
-            if (opMode.gamepad2.left_stick_x < -.3) {
+
+            if (opMode.gamepad2.right_stick_x < -.3) {
                 if (stageOfBrushServo < .9)
                     stageOfBrushServo += .3;
             }
+
             robot.brushServo.setPosition(stageOfBrushServo);
         }
 
-
+        // Bucket Motors
         if (opMode.gamepad2.left_trigger > 0.1) {
                 robot.bucketMotor1.setPower(-opMode.gamepad2.left_trigger * linearSlidesUpMultiplier * 1);
                 robot.bucketMotor2.setPower(opMode.gamepad2.left_trigger * linearSlidesUpMultiplier * 1);
         } else if (opMode.gamepad2.right_trigger > 0.1) {
                 robot.bucketMotor1.setPower(opMode.gamepad2.right_trigger * linearSlidesDownMultiplier * 1);
                 robot.bucketMotor2.setPower(-opMode.gamepad2.right_trigger * linearSlidesDownMultiplier * 1);
+
                 opMode.telemetry.addData("Bucket Encoder:", bucketMotorsAvgPostiion);
         } else {
             robot.bucketMotor1.setPower(0);
             robot.bucketMotor2.setPower(0);
         }
+
         //Brush Servos
 //        if (opMode.gamepad2.left_bumper && !lbIsPressed) {
 //            //one servo to spin brush one servo to angle brush - the other other a elbow servo
@@ -149,15 +157,30 @@ public class ArianaArmBm extends AbstractButtonMap {
 //            bIsPressed = !bIsPressed;
 //        }
 
-        if(opMode.gamepad2.dpad_up) {
-            if(robot.horizontalSlideMotor.getCurrentPosition() > -2200) {
+        // Toggle Y (finger button)
+        if(opMode.gamepad2.y && !yIsPressed) {
+            yIsPressed = !yIsPressed;
+
+            robot.fingerServo1.setPosition(1);
+            robot.fingerServo2.setPosition(-1);
+        } else if (opMode.gamepad2.y && yIsPressed) {
+            yIsPressed = !yIsPressed;
+
+            robot.fingerServo1.setPosition(0);
+            robot.fingerServo2.setPosition(0);
+        }
+
+        // Horizontal slides in/out
+        int horizontalSlideMaxPos = -2200;
+
+        if(opMode.gamepad2.dpad_up) { // Move horizontal slide out
+            if(robot.horizontalSlideMotor.getCurrentPosition() > horizontalSlideMaxPos) {
                 robot.horizontalSlideMotor.setPower(-.5);
 
             } else{
                 robot.horizontalSlideMotor.setPower(0);
             }
-        }
-         else if(opMode.gamepad2.dpad_down) {
+        } else if(opMode.gamepad2.dpad_down) { // Move horizontal slide in
              if(robot.horizontalSlideMotor.getCurrentPosition() < 0) {
                  robot.horizontalSlideMotor.setPower(.5);
              } else{
@@ -166,10 +189,11 @@ public class ArianaArmBm extends AbstractButtonMap {
         } else {
              robot.horizontalSlideMotor.setPower(0);
         }
-//        opMode.telemetry.addLine("Horizontal Motor Encoder: ");
+
+        // opMode.telemetry.addLine("Horizontal Motor Encoder: ");
         opMode.telemetry.addData("Horz. Motor Encoder: ", robot.horizontalSlideMotor.getCurrentPosition());
 
-            //Bucket Servo
+        // Bucket Servo
         if (opMode.gamepad2.left_bumper) {
               robot.bucketServo.setPosition(1);
               robot.specimenClaw.setPosition(0.8);
@@ -178,17 +202,26 @@ public class ArianaArmBm extends AbstractButtonMap {
               robot.specimenClaw.setPosition(0.8);
         }
 
-//SpecimenClaw
+        // Bucket Servo (as horizontal slide extends)
+//        if (robot.horizontalSlideMotor.getCurrentPosition() > (horizontalSlideMaxPos / 2)) {
+//            robot.bucketServo.setPosition();
+//        }
+
+        // Specimen Claw
         if (opMode.gamepad2.x && !xIsPressed && ((System.currentTimeMillis() - startTime) > timeDelay)) {
-            robot.specimenClaw.setPosition(0.5);
             xIsPressed = !xIsPressed;
+
+            robot.specimenClaw.setPosition(0.5);
             specimenTime = System.currentTimeMillis();
+
             opMode.telemetry.addLine("Servo Closed");
         } else if (opMode.gamepad2.x && xIsPressed && ((System.currentTimeMillis() - specimenTime) > timeDelay)) {
-            robot.specimenClaw.setPosition(1.1);
             xIsPressed = !xIsPressed;
-            opMode.telemetry.addLine("Servo Open");
+
+            robot.specimenClaw.setPosition(1.1);
             startTime = System.currentTimeMillis();
+
+            opMode.telemetry.addLine("Servo Open");
         }
 
         opMode.telemetry.update();

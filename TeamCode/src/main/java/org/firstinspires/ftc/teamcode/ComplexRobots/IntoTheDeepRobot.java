@@ -25,6 +25,8 @@ public class IntoTheDeepRobot extends MecanumDrive {
     public final Servo elbowServo;
     public final Servo bucketServo;
     public final Servo specimenClaw;
+    public final Servo fingerServo1;
+    public final Servo fingerServo2;
 
     public IntoTheDeepRobot(HardwareMap hardwareMap, Pose2d pose) {
         super(hardwareMap, pose);
@@ -61,6 +63,8 @@ public class IntoTheDeepRobot extends MecanumDrive {
         elbowServo = hardwareMap.get(Servo.class, "elbowServo");
         specimenClaw = hardwareMap.get(Servo.class, "specimenClaw");
         bucketServo = hardwareMap.get(Servo.class, "bucketServo");
+        fingerServo1 =  hardwareMap.get(Servo.class, "fingerServo1");
+        fingerServo2 =  hardwareMap.get(Servo.class, "fingerServo2");
 
         //Initialize Output Servo
         bucketServo.scaleRange(0,0.35);

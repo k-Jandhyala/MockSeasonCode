@@ -26,12 +26,12 @@ public class NoamSimple1Auto extends LinearOpMode {
         waitForStart();
         robot.specimenClaw.setPosition(.5);
         // go forward to sub
-        robot.driveSlidesTo(122,0.5,1);
+        robot.driveSlidesTo(128,0.5,1);
         Actions.runBlocking(
-                robot.actionBuilder(robot.pose).strafeTo(new Vector2d(-31.5,0)).build()
+                robot.actionBuilder(robot.pose).strafeTo(new Vector2d(-32.75,0)).build()
         );
         sleep(500);
-        robot.driveSlidesTo(50, 0.7,-1);
+        robot.driveSlidesTo(80, 0.7,-1);
         // back up from sub
         sleep(500);
         Actions.runBlocking(
