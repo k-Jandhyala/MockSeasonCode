@@ -38,34 +38,34 @@ public class testingSpecimenFirst extends LinearOpMode {
         waitForStart();
         robot.specimenClaw.setPosition(.5);
         // go forward to sub
-        robot.driveSlidesTo(122,0.5,1);
+        robot.driveSlidesTo(137,0.7,1);
         //raise slides
         Actions.runBlocking(
-                robot.actionBuilder(robot.pose).strafeTo(new Vector2d(-34,0)).build()
+                robot.actionBuilder(robot.pose).strafeTo(new Vector2d(-34.75,0)).build()
         );
-        sleep(1250);
+        sleep(750);
         //lower slides
-        robot.driveSlidesTo(50, 0.7,-1);
+        robot.driveSlidesTo(100, 0.7,-1);
         // back up from sub
         sleep(500);
         Actions.runBlocking(
-                robot.actionBuilder(robot.pose).strafeTo(new Vector2d(-2,0)).build()
+                robot.actionBuilder(robot.pose).strafeTo(new Vector2d(2,0)).build()
         );
         //lower slides completely
-        robot.driveSlidesTo(-10,0.7,-1);
+        robot.driveSlidesTo(0,0.7,-1);
         //open the claw
         robot.specimenClaw.setPosition(0.8);
         // big donut around the sub to the preset samples
         Actions.runBlocking(
-                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-65,64.5), -1*Math.PI).build()
+                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-65,66), -1*Math.PI).build()
         );
         // curve to get closer to sample
         Actions.runBlocking(
-                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-70,72.5), -0.8*Math.PI).build()
+                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-70,75), -0.8*Math.PI).build()
         );
         // move sample to observation zone
         Actions.runBlocking(
-                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-18,84), -1*Math.PI).build()
+                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-16,84), -1*Math.PI).build()
         );
         // pick up specimen
         sleep(500);
@@ -73,18 +73,22 @@ public class testingSpecimenFirst extends LinearOpMode {
         sleep(750);
         // small donut to the sub
         Actions.runBlocking(
-                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-36,-30), -2*Math.PI).build()
-        );
-        //back up to sub completely
-        Actions.runBlocking(
-                robot.actionBuilder(robot.pose).strafeTo(new Vector2d(-45,-30)).build()
+                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-37,-70), -2*Math.PI).build()
         );
         //raise slides
-        robot.driveSlidesTo(150,0.7,1);
+        robot.driveSlidesTo(247,0.7,1);
         sleep(500);
+        //lower slides
+        robot.driveSlidesTo(175,0.7,-1);
         robot.specimenClaw.setPosition(0.8);
         Actions.runBlocking(
                 robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-18,84), -1*Math.PI).build()
+        );
+        Actions.runBlocking(
+                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-80,97), -0.8*Math.PI).build()
+        );
+        Actions.runBlocking(
+                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-15,103), -1*Math.PI).build()
         );
 //        sleep(750);
 //        Actions.runBlocking(
