@@ -48,7 +48,7 @@ public class AdenArmBM extends AbstractButtonMap {
 //                yIsPressed = !yIsPressed;
 //            } else if (opMode.gamepad2.y && yIsPressed) {
 //             robot.brushServo.setPower(-1);
-//             yIsPressed = !yIsPressed;d   
+//             yIsPressed = !yIsPressed;d
 //         }
         if (opMode.gamepad2.b) {
             robot.horizontalSlideMotor.setPower(0.5);

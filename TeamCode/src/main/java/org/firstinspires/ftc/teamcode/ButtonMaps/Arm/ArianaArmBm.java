@@ -72,19 +72,19 @@ public class ArianaArmBm extends AbstractButtonMap {
         //Spin the brush servo
         if (Math.abs(opMode.gamepad2.left_stick_y) > .3 || Math.abs(opMode.gamepad2.left_stick_x) > .3) {
             if (opMode.gamepad2.left_stick_y > .3) {
-                if (stageOfBrushServo < 1)
-                    stageOfBrushServo += .3;
+                if (stageOfBrushServo < .9)
+                    stageOfBrushServo += .3;  
             }
             if (opMode.gamepad2.left_stick_y < -.3) {
-                if (stageOfBrushServo > -1)
+                if (stageOfBrushServo > -.9)
                     stageOfBrushServo -= .3;
             }
             if (opMode.gamepad2.left_stick_x > .3) {
-                if (stageOfBrushServo > -1)
+                if (stageOfBrushServo > -.9)
                     stageOfBrushServo -= .3;
             }
             if (opMode.gamepad2.left_stick_x < -.3) {
-                if (stageOfBrushServo < 1)
+                if (stageOfBrushServo < .9)
                     stageOfBrushServo += .3;
             }
             robot.brushServo.setPosition(stageOfBrushServo);
