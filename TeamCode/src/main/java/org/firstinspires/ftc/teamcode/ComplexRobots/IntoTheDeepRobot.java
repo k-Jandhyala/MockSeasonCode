@@ -21,7 +21,7 @@ public class IntoTheDeepRobot extends MecanumDrive {
     public final DcMotorEx horizontalSlideMotor;
     public final DcMotorEx bucketMotor1;
     public final DcMotorEx bucketMotor2;
-    public final CRServo brushServo;
+    public final Servo brushServo;
     public final Servo elbowServo;
     public final Servo bucketServo;
     public final Servo specimenClaw;
@@ -57,7 +57,7 @@ public class IntoTheDeepRobot extends MecanumDrive {
         bucketMotor2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         //Servos
-        brushServo = hardwareMap.get(CRServo.class, "brushServo");
+        brushServo = hardwareMap.get(Servo.class, "brushServo");
         elbowServo = hardwareMap.get(Servo.class, "elbowServo");
         specimenClaw = hardwareMap.get(Servo.class, "specimenClaw");
         bucketServo = hardwareMap.get(Servo.class, "bucketServo");

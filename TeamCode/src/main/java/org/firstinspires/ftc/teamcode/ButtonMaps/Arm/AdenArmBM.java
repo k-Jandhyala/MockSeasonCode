@@ -42,14 +42,14 @@ public class AdenArmBM extends AbstractButtonMap {
             robot.bucketMotor2.setPower(0);
         }
 
-         if (opMode.gamepad2.y && !yIsPressed) {
-                //one servo to spin brush one servo to angle brush - the other other a elbow servo
-                robot.brushServo.setPower(1);
-                yIsPressed = !yIsPressed;
-            } else if (opMode.gamepad2.y && yIsPressed) {
-             robot.brushServo.setPower(-1);
-             yIsPressed = !yIsPressed;
-         }
+//         if (opMode.gamepad2.y && !yIsPressed) {
+//                //one servo to spin brush one servo to angle brush - the other other a elbow servo
+//                robot.brushServo.setPower(1);
+//                yIsPressed = !yIsPressed;
+//            } else if (opMode.gamepad2.y && yIsPressed) {
+//             robot.brushServo.setPower(-1);
+//             yIsPressed = !yIsPressed;d   
+//         }
         if (opMode.gamepad2.b) {
             robot.horizontalSlideMotor.setPower(0.5);
         } else {

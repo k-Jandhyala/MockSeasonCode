@@ -41,6 +41,7 @@ public class ArianaArmBm extends AbstractButtonMap {
     boolean rbIsPressed = false;
     boolean lbIsPressed = false;
     boolean xIsPressed = false;
+    double stageOfBrushServo = 0;
 
     int bucketMotorsAvgPostiion;
 
@@ -68,6 +69,27 @@ public class ArianaArmBm extends AbstractButtonMap {
             robot.elbowServo.setPosition(0.8);
             elbowServoTime = System.currentTimeMillis();
         }
+        //Spin the brush servo
+        if (Math.abs(opMode.gamepad2.left_stick_y) > .3 || Math.abs(opMode.gamepad2.left_stick_x) > .3) {
+            if (opMode.gamepad2.left_stick_y > .3) {
+                if (stageOfBrushServo < 1)
+                    stageOfBrushServo += .3;
+            }
+            if (opMode.gamepad2.left_stick_y < -.3) {
+                if (stageOfBrushServo > -1)
+                    stageOfBrushServo -= .3;
+            }
+            if (opMode.gamepad2.left_stick_x > .3) {
+                if (stageOfBrushServo > -1)
+                    stageOfBrushServo -= .3;
+            }
+            if (opMode.gamepad2.left_stick_x < -.3) {
+                if (stageOfBrushServo < 1)
+                    stageOfBrushServo += .3;
+            }
+            robot.brushServo.setPosition(stageOfBrushServo);
+        }
+
 
         if (opMode.gamepad2.left_trigger > 0.1) {
                 robot.bucketMotor1.setPower(-opMode.gamepad2.left_trigger * linearSlidesUpMultiplier * 1);
@@ -81,29 +103,29 @@ public class ArianaArmBm extends AbstractButtonMap {
             robot.bucketMotor2.setPower(0);
         }
         //Brush Servos
-        if (opMode.gamepad2.left_bumper && !lbIsPressed) {
-            //one servo to spin brush one servo to angle brush - the other other a elbow servo
-            robot.brushServo.setPower(-1);
-            lbIsPressed = !lbIsPressed;
-        } else if (opMode.gamepad2.left_bumper && lbIsPressed) {
-            robot.brushServo.setPower(0);
-            lbIsPressed = !lbIsPressed;
-        }
-        else {
-            robot.brushServo.setPower(0);
-        }
+//        if (opMode.gamepad2.left_bumper && !lbIsPressed) {
+//            //one servo to spin brush one servo to angle brush - the other other a elbow servo
+//            robot.brushServo.setPower(-1);
+//            lbIsPressed = !lbIsPressed;
+//        } else if (opMode.gamepad2.left_bumper && lbIsPressed) {
+//            robot.brushServo.setPower(0);
+//            lbIsPressed = !lbIsPressed;
+//        }
+//        else {
+//            robot.brushServo.setPower(0);
+//        }
 
-
-        if (opMode.gamepad2.right_bumper && !rbIsPressed) {
-            //one servo to spin brush one servo to angle brush - the other other a elbow servo
-            robot.brushServo.setPower(1);
-            rbIsPressed = !rbIsPressed;
-        } else if (opMode.gamepad2.right_bumper && rbIsPressed) {
-            robot.brushServo.setPower(0);
-            rbIsPressed = !rbIsPressed;
-        } else {
-            robot.brushServo.setPower(0);
-        }
+//
+//        if (opMode.gamepad2.right_bumper && !rbIsPressed) {
+//            //one servo to spin brush one servo to angle brush - the other other a elbow servo
+//            robot.brushServo.setPower(1);
+//            rbIsPressed = !rbIsPressed;
+//        } else if (opMode.gamepad2.right_bumper && rbIsPressed) {
+//            robot.brushServo.setPower(0);
+//            rbIsPressed = !rbIsPressed;
+//        } else {
+//            robot.brushServo.setPower(0);
+//        }
 
 
 //            Horizontal Slides Motor
