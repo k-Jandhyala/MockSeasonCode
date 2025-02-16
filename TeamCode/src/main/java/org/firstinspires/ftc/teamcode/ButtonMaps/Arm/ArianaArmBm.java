@@ -75,22 +75,22 @@ public class ArianaArmBm extends AbstractButtonMap {
         if (Math.abs(opMode.gamepad2.right_stick_y) > .3 || Math.abs(opMode.gamepad2.left_stick_x) > .3) {
             if (opMode.gamepad2.left_stick_y > .3) {
                 if (stageOfBrushServo < .9)
-                    stageOfBrushServo += .3;
+                    stageOfBrushServo += .15;
             }
 
             if (opMode.gamepad2.right_stick_y < -.3) {
                 if (stageOfBrushServo > -.9)
-                    stageOfBrushServo -= .3;
+                    stageOfBrushServo -= .15;
             }
 
             if (opMode.gamepad2.right_stick_x > .3) {
                 if (stageOfBrushServo > -.9)
-                    stageOfBrushServo -= .3;
+                    stageOfBrushServo -= .15;
             }
 
             if (opMode.gamepad2.right_stick_x < -.3) {
                 if (stageOfBrushServo < .9)
-                    stageOfBrushServo += .3;
+                    stageOfBrushServo += .15;
             }
 
             robot.brushServo.setPosition(stageOfBrushServo);
@@ -157,19 +157,6 @@ public class ArianaArmBm extends AbstractButtonMap {
 //            bIsPressed = !bIsPressed;
 //        }
 
-        // Toggle Y (finger button)
-        if(opMode.gamepad2.y && !yIsPressed) {
-            yIsPressed = !yIsPressed;
-
-            robot.fingerServo1.setPosition(1);
-            robot.fingerServo2.setPosition(-1);
-        } else if (opMode.gamepad2.y && yIsPressed) {
-            yIsPressed = !yIsPressed;
-
-            robot.fingerServo1.setPosition(0);
-            robot.fingerServo2.setPosition(0);
-        }
-
         // Horizontal slides in/out
         int horizontalSlideMaxPos = -2200;
 
@@ -194,18 +181,33 @@ public class ArianaArmBm extends AbstractButtonMap {
         opMode.telemetry.addData("Horz. Motor Encoder: ", robot.horizontalSlideMotor.getCurrentPosition());
 
         // Bucket Servo
-        if (opMode.gamepad2.left_bumper) {
-              robot.bucketServo.setPosition(1);
-              robot.specimenClaw.setPosition(0.8);
-        } else if (opMode.gamepad2.right_bumper) {
-              robot.bucketServo.setPosition(0);
-              robot.specimenClaw.setPosition(0.8);
-        }
+//        if (opMode.gamepad2.left_bumper) {
+//              robot.bucketServo.setPosition(1);
+//              robot.specimenClaw.setPosition(0.8);
+//        } else if (opMode.gamepad2.right_bumper) {
+//              robot.bucketServo.setPosition(0);
+//              robot.specimenClaw.setPosition(0.8);
+//        }
 
         // Bucket Servo (as horizontal slide extends)
-//        if (robot.horizontalSlideMotor.getCurrentPosition() > (horizontalSlideMaxPos / 2)) {
-//            robot.bucketServo.setPosition();
-//        }
+        if (robot.horizontalSlideMotor.getCurrentPosition() < (horizontalSlideMaxPos / 4)) {
+            robot.elbowServo.setPosition(1);
+        } else {
+            robot.elbowServo.setPosition(0.8);
+        }
+
+        // Toggle Y (finger button)
+        if(opMode.gamepad2.y && !yIsPressed) { // Closed
+            yIsPressed = true;
+
+            robot.fingerServo1.setPosition(-.5);
+            robot.fingerServo2.setPosition(.5);
+        } else if (opMode.gamepad2.y && yIsPressed) { // Open
+            yIsPressed = false;
+
+            robot.fingerServo1.setPosition(-1);
+            robot.fingerServo2.setPosition(0);
+        }
 
         // Specimen Claw
         if (opMode.gamepad2.x && !xIsPressed && ((System.currentTimeMillis() - startTime) > timeDelay)) {
