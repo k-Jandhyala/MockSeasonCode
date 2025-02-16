@@ -73,7 +73,7 @@ public class ArianaArmBm extends AbstractButtonMap {
         if (Math.abs(opMode.gamepad2.left_stick_y) > .3 || Math.abs(opMode.gamepad2.left_stick_x) > .3) {
             if (opMode.gamepad2.left_stick_y > .3) {
                 if (stageOfBrushServo < .9)
-                    stageOfBrushServo += .3;  
+                    stageOfBrushServo += .3;
             }
             if (opMode.gamepad2.left_stick_y < -.3) {
                 if (stageOfBrushServo > -.9)
