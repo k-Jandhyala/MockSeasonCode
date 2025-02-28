@@ -125,10 +125,10 @@ public class CommonDriveBM extends AbstractButtonMap {
             opMode.telemetry.addLine("Slow Multiplier Active!");
         }
 
-        mp = new MotorPowers(mp.leftFront,
-                -mp.rightFront,
-                -mp.leftBack,
-                mp.rightBack);
+        mp = new MotorPowers(-mp.leftFront,
+                mp.rightFront,
+                mp.leftBack,
+                -mp.rightBack);
         opMode.telemetry.update();
         robot.setMotorPowers(mp);
     }

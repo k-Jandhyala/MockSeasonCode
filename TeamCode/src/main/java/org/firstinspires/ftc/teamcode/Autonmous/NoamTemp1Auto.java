@@ -8,8 +8,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.ComplexRobots.IntoTheDeepRobot;
 
-@Autonomous(name = "NoamSimpleONEAuto")
-public class NoamSimple1Auto extends LinearOpMode {
+@Autonomous(name = "NoamTempONEAuto")
+public class NoamTemp1Auto extends LinearOpMode {
     enum Direction{
         UP, DOWN
     }
@@ -35,18 +35,11 @@ public class NoamSimple1Auto extends LinearOpMode {
         // back up from sub
         sleep(500);
         Actions.runBlocking(
-                robot.actionBuilder(robot.pose).strafeTo(new Vector2d(-15,0)).build()
-        );
-        // get close to parking
-        Actions.runBlocking(
-                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-17.5,100), -1*Math.PI).build()
+                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(30,-80), 0*Math.PI).build()
         );
         // open the claw and lower the slides to prepare for grabbing, then park
         robot.driveSlidesTo(1, 0.7,-1);
         sleep(200);
         robot.specimenClaw.setPosition(0.8);
-        Actions.runBlocking(
-                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-12,100), -1*Math.PI).build()
-        );
     }
 }

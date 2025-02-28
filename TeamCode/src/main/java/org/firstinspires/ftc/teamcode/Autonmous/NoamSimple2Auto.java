@@ -17,6 +17,7 @@ public class NoamSimple2Auto extends LinearOpMode {
     IntoTheDeepRobot robot;
     int bucketMotorsAvgPosition;
 
+
     @Override
     public void runOpMode() throws InterruptedException {
         telemetry.update();
@@ -26,19 +27,19 @@ public class NoamSimple2Auto extends LinearOpMode {
         waitForStart();
         robot.specimenClaw.setPosition(.5);
         // go forward to sub
-        robot.driveSlidesTo(128,0.5,1);
+        robot.driveSlidesTo(140,0.5,1);
         Actions.runBlocking(
                 robot.actionBuilder(robot.pose).strafeTo(new Vector2d(-32.75,0)).build()
         );
         sleep(250);
-        robot.driveSlidesTo(80, 0.7,-1);
+        robot.driveSlidesTo(100, 0.7,-1);
         // back up from sub
         Actions.runBlocking(
-                robot.actionBuilder(robot.pose).strafeTo(new Vector2d(-15,0)).build()
+                robot.actionBuilder(robot.pose).strafeTo(new Vector2d(15,0)).build()
         );
         // get close to parking
         Actions.runBlocking(
-                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-17.5,100), -1*Math.PI).build()
+                robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-17.5,-100), -1*Math.PI).build()
         );
         // open the claw and lower the slides to prepare for grabbing, then park
         robot.driveSlidesTo(1, 0.7,-1);
@@ -75,6 +76,5 @@ public class NoamSimple2Auto extends LinearOpMode {
                 robot.actionBuilder(robot.pose).strafeToLinearHeading(new Vector2d(-32,80), 0.6*Math.PI).build()
         );
         robot.driveSlidesTo(1, 0.7,-1);
-
     }
 }
