@@ -55,9 +55,14 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-public abstract class FieldOrientedDrive extends LinearOpMode{
+public  class FieldOrientedDrive extends LinearOpMode{
     IntoTheDeepRobot robot;
     IMU imu;
+
+    {
+        imu = hardwareMap.get(IMU.class, "imu");
+    }
+
     @Override
     public void runOpMode() throws InterruptedException {
         waitForStart();
