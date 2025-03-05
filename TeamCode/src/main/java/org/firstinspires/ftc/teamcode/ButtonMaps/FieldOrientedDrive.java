@@ -56,12 +56,22 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 public  class FieldOrientedDrive extends LinearOpMode{
+    private double currentMotorPower;
     IntoTheDeepRobot robot;
     IMU imu;
-
     {
         imu = hardwareMap.get(IMU.class, "imu");
     }
+    public static double slowStrafeMultiplier;
+
+    static {
+        slowStrafeMultiplier = .5;
+    }
+
+    public FieldOrientedDrive(double currentMotorPower) {
+        this.currentMotorPower = currentMotorPower;
+    }
+    private MotorPowers mp;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -131,8 +141,44 @@ public  class FieldOrientedDrive extends LinearOpMode{
             robot.leftBack.setPower(backLeftPower);
             robot.rightFront.setPower(frontRightPower);
             robot.rightBack.setPower(backRightPower);
+            if (Math.abs(gamepad1.right_stick_x) > 0.1) {
+                MotorPowers joystickPivotTurnMotorPowers = robot.pivotTurn(currentMotorPower * (Math.abs(gamepad1.right_stick_x)), gamepad1.right_stick_x > 0.1, gamepad1.right_stick_x < -0.1);
+                mp = joystickPivotTurnMotorPowers;
+            }
+
+            //Pivot Turn Using bumpers
+            if (gamepad1.right_bumper || gamepad1.left_bumper) {
+                MotorPowers bumperPivotTurnMotorPowers = robot.pivotTurn(currentMotorPower, gamepad1.right_bumper, gamepad1.left_bumper);
+                telemetry.addLine("Bumper Pivot Turn Active!");
+                mp = bumperPivotTurnMotorPowers;
+            }
+            if (gamepad1.y) {
+                robot.setAllMotorPowers(0);
+                robot.leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+                robot.leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+                robot.rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+                robot.rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+                telemetry.addLine("Brake!!");
+            }
+            if (gamepad1.x) {
+                mp = new MotorPowers(mp.leftFront * slowStrafeMultiplier,
+                        mp.rightFront * slowStrafeMultiplier,
+                        mp.leftBack * slowStrafeMultiplier,
+                        mp.rightBack * slowStrafeMultiplier);
+                telemetry.addLine("Slow Multiplier Active!");
+            }
         }
 
+
+
+    }
+
+    public MotorPowers getMp() {
+        return mp;
+    }
+
+    public void setMp(MotorPowers mp) {
+        this.mp = mp;
     }
 }
 
