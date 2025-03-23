@@ -102,10 +102,10 @@ public class IntoTheDeepRobot extends MecanumDrive {
     }
 
     public MotorPowers pivotTurn(double currentMotorPower, boolean rightBumper, boolean leftBumper) {
-        double rightTopMotorPower = -currentMotorPower;
-        double rightBotMotorPower = -currentMotorPower;
-        double leftTopMotorPower = -currentMotorPower;
-        double leftBotMotorPower = -currentMotorPower;
+        double rightTopMotorPower = currentMotorPower;
+        double rightBotMotorPower = currentMotorPower;
+        double leftTopMotorPower = currentMotorPower;
+        double leftBotMotorPower = currentMotorPower;
         if (leftBumper) {
 
             rightBotMotorPower *= -1;
@@ -115,7 +115,7 @@ public class IntoTheDeepRobot extends MecanumDrive {
             leftBotMotorPower *= -1;
             leftTopMotorPower *= -1;
         }
-        return new MotorPowers(leftTopMotorPower,-rightTopMotorPower,-leftBotMotorPower,rightBotMotorPower);
+        return new MotorPowers(leftTopMotorPower,rightTopMotorPower,leftBotMotorPower,rightBotMotorPower);
     }
 
     public void setMotorTo(DcMotorEx motor, int targetPos, double power) {

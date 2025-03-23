@@ -39,7 +39,7 @@ public class SkystoneArmBM extends AbstractButtonMap {
     int bucketMotorsAvgPostiion;
 
 
-    //    @Override
+        @Override
     public void loop(IntoTheDeepRobot robot, OpMode opMode) {
         bucketMotorsAvgPostiion = (robot.bucketMotor1.getCurrentPosition() + robot.bucketMotor2.getCurrentPosition())/2;
 

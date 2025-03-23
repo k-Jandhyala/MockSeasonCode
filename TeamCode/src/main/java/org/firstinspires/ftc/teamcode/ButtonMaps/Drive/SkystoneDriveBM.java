@@ -32,13 +32,6 @@ public class SkystoneDriveBM extends AbstractButtonMap {
         mp = new MotorPowers(0);
         currentMotorPower = basePower;
 
-//        if(opMode.gamepad1.a){
-//            // extend linear slides up and down
-//            robot.bucketMotor1.setPower(0.3);
-//            robot.bucketMotor2.setPower(0.3);
-//            return;
-//        }
-
 
 
         //Dpad strafe using dpad
@@ -86,8 +79,8 @@ public class SkystoneDriveBM extends AbstractButtonMap {
         //Forward
         if (opMode.gamepad1.right_trigger > 0.1) {
             mp = new MotorPowers(opMode.gamepad1.right_trigger * triggerMultipler,
-                    -opMode.gamepad1.right_trigger * triggerMultipler,
-                    -opMode.gamepad1.right_trigger * triggerMultipler,
+                    opMode.gamepad1.right_trigger * triggerMultipler,
+                    opMode.gamepad1.right_trigger * triggerMultipler,
                     opMode.gamepad1.right_trigger * triggerMultipler);
             opMode.telemetry.addLine("Trigger Right (forward) active!");
             opMode.telemetry.addData("Trigger Right: ", opMode.gamepad1.right_trigger);
@@ -95,10 +88,10 @@ public class SkystoneDriveBM extends AbstractButtonMap {
         //Backward
         else if (opMode.gamepad1.left_trigger > 0.1) {
             //Backward
-            mp = new MotorPowers(-opMode.gamepad1.left_trigger * triggerMultipler,
+            mp = new MotorPowers(opMode.gamepad1.left_trigger * triggerMultipler,
                     opMode.gamepad1.left_trigger * triggerMultipler,
                     opMode.gamepad1.left_trigger * triggerMultipler,
-                    -opMode.gamepad1.left_trigger * triggerMultipler);
+                    opMode.gamepad1.left_trigger * triggerMultipler);
             opMode.telemetry.addLine("Trigger Left (backward) active!");
             opMode.telemetry.addData("Trigger left: ", opMode.gamepad1.left_trigger);
         }
@@ -125,10 +118,10 @@ public class SkystoneDriveBM extends AbstractButtonMap {
             opMode.telemetry.addLine("Slow Multiplier Active!");
         }
 
-        mp = new MotorPowers(-mp.leftFront,
+        mp = new MotorPowers(mp.leftFront,
                 mp.rightFront,
                 mp.leftBack,
-                -mp.rightBack);
+                mp.rightBack);
         opMode.telemetry.update();
         robot.setMotorPowers(mp);
     }
