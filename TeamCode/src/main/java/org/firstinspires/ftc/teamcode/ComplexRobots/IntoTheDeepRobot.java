@@ -14,22 +14,19 @@ import org.firstinspires.ftc.teamcode.ButtonMaps.MotorPowers;
 
 @Config
 public class IntoTheDeepRobot extends MecanumDrive {
-    enum Direction {
-        UP,DOWN
-    }
 
     public final DcMotorEx horizontalSlideMotor;
     public final DcMotorEx bucketMotor1;
     public final DcMotorEx bucketMotor2;
-    public final Servo brushServo;
+    public final CRServo brushServo;
     public final Servo elbowServo;
     public final Servo bucketServo;
     public final Servo specimenClaw;
-    public final Servo fingerServo1;
-    public final Servo fingerServo2;
+    public HardwareMap hardwareMap;
 
     public IntoTheDeepRobot(HardwareMap hardwareMap, Pose2d pose) {
         super(hardwareMap, pose);
+        hardwareMap = this.hardwareMap;
         //Linear Slide Motor
         horizontalSlideMotor = hardwareMap.get(DcMotorEx.class, "horizontalSlideMotor");
 
@@ -59,19 +56,17 @@ public class IntoTheDeepRobot extends MecanumDrive {
         bucketMotor2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         //Servos
-        brushServo = hardwareMap.get(Servo.class, "brushServo");
+        brushServo = hardwareMap.get(CRServo.class, "brushServo");
         elbowServo = hardwareMap.get(Servo.class, "elbowServo");
         specimenClaw = hardwareMap.get(Servo.class, "specimenClaw");
         bucketServo = hardwareMap.get(Servo.class, "bucketServo");
-        fingerServo1 =  hardwareMap.get(Servo.class, "fingerServo1");
-        fingerServo2 =  hardwareMap.get(Servo.class, "fingerServo2");
 
         //Initialize Output Servo
         bucketServo.scaleRange(0,0.35);
         bucketServo.setPosition(0);
         specimenClaw.scaleRange(-1,1);
         specimenClaw.setPosition(1);
-        elbowServo.setPosition(0.5);
+//        elbowServo.setPosition(0.8);
 
     }
 
@@ -84,28 +79,12 @@ public class IntoTheDeepRobot extends MecanumDrive {
     public MotorPowers setAllMotorPowers(int i) {
         return new MotorPowers(0,0,0,0);
     }
-    public void driveSlidesTo(int targetPosition, double motorPower, int direction){
-        int avgSlidesPos = (bucketMotor1.getCurrentPosition() + bucketMotor2.getCurrentPosition())/2;
-        if(direction == -1) {
-            while (((bucketMotor1.getCurrentPosition() + bucketMotor2.getCurrentPosition()) / 2) >= targetPosition){
-                bucketMotor1.setPower(-motorPower);
-                bucketMotor2.setPower(motorPower);
-            }
-        } else if(direction == 1) {
-            while (((bucketMotor1.getCurrentPosition() + bucketMotor2.getCurrentPosition()) / 2) <= targetPosition){
-                bucketMotor1.setPower(motorPower);
-                bucketMotor2.setPower(-motorPower);
-            }
-        }
-        bucketMotor1.setPower(0);
-        bucketMotor2.setPower(0);
-    }
 
     public MotorPowers pivotTurn(double currentMotorPower, boolean rightBumper, boolean leftBumper) {
-        double rightTopMotorPower = currentMotorPower;
-        double rightBotMotorPower = currentMotorPower;
-        double leftTopMotorPower = currentMotorPower;
-        double leftBotMotorPower = currentMotorPower;
+        double rightTopMotorPower = -currentMotorPower;
+        double rightBotMotorPower = -currentMotorPower;
+        double leftTopMotorPower = -currentMotorPower;
+        double leftBotMotorPower = -currentMotorPower;
         if (leftBumper) {
 
             rightBotMotorPower *= -1;
@@ -115,7 +94,7 @@ public class IntoTheDeepRobot extends MecanumDrive {
             leftBotMotorPower *= -1;
             leftTopMotorPower *= -1;
         }
-        return new MotorPowers(leftTopMotorPower,rightTopMotorPower,leftBotMotorPower,rightBotMotorPower);
+        return new MotorPowers(leftTopMotorPower,-rightTopMotorPower,-leftBotMotorPower,rightBotMotorPower);
     }
 
     public void setMotorTo(DcMotorEx motor, int targetPos, double power) {
