@@ -1,28 +1,13 @@
 package org.firstinspires.ftc.teamcode.ButtonMaps;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.IMU;
-import com.acmerobotics.roadrunner.ftc.LazyImu;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
-import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
-import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.acmerobotics.roadrunner.MecanumKinematics;
-import org.firstinspires.ftc.teamcode.ButtonMaps.MotorPowers;
 
-import com.acmerobotics.dashboard.config.Config;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import org.firstinspires.ftc.teamcode.ButtonMaps.AbstractButtonMap;
-import org.firstinspires.ftc.teamcode.ButtonMaps.DPadControl;
-import org.firstinspires.ftc.teamcode.ButtonMaps.HolonomicDrive;
-import org.firstinspires.ftc.teamcode.ButtonMaps.MotorPowers;
-import org.firstinspires.ftc.teamcode.ComplexRobots.IntoTheDeepRobot;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import org.firstinspires.ftc.teamcode.ComplexRobots.MockSeasonRobot;
 //
 ////public class FieldOrientedDrive {
 //    //thanks game manual 0!
@@ -46,18 +31,9 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 //    }
 
 
-import com.qualcomm.robotcore.hardware.Gamepad;
-import com.qualcomm.robotcore.hardware.IMU;
-
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
-import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
-import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-
 public  class FieldOrientedDrive extends LinearOpMode{
     private double currentMotorPower;
-    IntoTheDeepRobot robot;
+    MockSeasonRobot robot;
     IMU imu;
     {
         imu = hardwareMap.get(IMU.class, "imu");

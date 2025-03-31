@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.Autonmous;
 
-import org.firstinspires.ftc.teamcode.ComplexRobots.IntoTheDeepRobot;
+import org.firstinspires.ftc.teamcode.ComplexRobots.MockSeasonRobot;
 import org.firstinspires.ftc.teamcode.Enums.Direction;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
@@ -16,7 +16,7 @@ import com.qualcomm.hardware.bosch.BNO055IMU;
 */
 public class TimeBasedAutoHelper {
 
-    public void strafeMotorsFor(Direction direction, int millisDelay, long startTime, double motorPower, IntoTheDeepRobot robot) {
+    public void strafeMotorsFor(Direction direction, int millisDelay, long startTime, double motorPower, MockSeasonRobot robot) {
         if (direction == Direction.LEFT) {
             while ((System.currentTimeMillis() - startTime) < millisDelay) {
                 robot.setMotorPower(-motorPower, motorPower, motorPower, -motorPower);
@@ -28,7 +28,7 @@ public class TimeBasedAutoHelper {
         }
     }
 
-    public void driveAllMotorsFor(Direction direction, int millisDelay, long startTime, double motorPower, IntoTheDeepRobot robot) {
+    public void driveAllMotorsFor(Direction direction, int millisDelay, long startTime, double motorPower, MockSeasonRobot robot) {
         if (direction == Direction.FORWARD) {
             while ((System.currentTimeMillis() - startTime) < millisDelay) {
                 robot.setAllMotorPowers(motorPower);
@@ -40,7 +40,7 @@ public class TimeBasedAutoHelper {
         }
     }
 
-    public void pivotTurnDeg(int targetPivotAngle, double motorPower, IntoTheDeepRobot robot) {
+    public void pivotTurnDeg(int targetPivotAngle, double motorPower, MockSeasonRobot robot) {
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
         BNO055IMU imu = robot.hardwareMap.get(BNO055IMU.class, "imu");
@@ -73,7 +73,7 @@ public class TimeBasedAutoHelper {
         }
     }
 
-    public void runSlidesTo(Direction direction, int targetPosition, double motorPower, IntoTheDeepRobot robot){
+    public void runSlidesTo(Direction direction, int targetPosition, double motorPower, MockSeasonRobot robot){
         if(direction == Direction.DOWN){
             motorPower *= -1;
         }
@@ -83,7 +83,7 @@ public class TimeBasedAutoHelper {
                 () -> robot.setMotorTo(robot.bucketMotor2, targetPosition, finalMotorPower)
         );
     }
-    public void combineStrafeAndDrive(Direction strafeDirection, Direction driveDirection, int millisDelay, long startTime, double strafePower, double drivePower, IntoTheDeepRobot robot){
+    public void combineStrafeAndDrive(Direction strafeDirection, Direction driveDirection, int millisDelay, long startTime, double strafePower, double drivePower, MockSeasonRobot robot){
         if (strafeDirection == Direction.LEFT) {
             strafePower *= -1;
         }

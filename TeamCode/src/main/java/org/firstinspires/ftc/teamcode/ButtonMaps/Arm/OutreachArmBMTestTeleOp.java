@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.ButtonMaps.AbstractButtonMap;
-import org.firstinspires.ftc.teamcode.ComplexRobots.IntoTheDeepRobot;
+import org.firstinspires.ftc.teamcode.ComplexRobots.MockSeasonRobot;
 
 public class OutreachArmBMTestTeleOp extends AbstractButtonMap {
     public static double intakePower = 0.5;
@@ -25,7 +25,7 @@ public class OutreachArmBMTestTeleOp extends AbstractButtonMap {
     boolean xIsPressed = false;
 
     //    @Override
-    public void loop(IntoTheDeepRobot robot, OpMode opMode) {
+    public void loop(MockSeasonRobot robot, OpMode opMode) {
         //Bucket Motors (on triggers)      
         if (opMode.gamepad1.left_trigger > 0.1) {
             opMode.telemetry.addLine("Down: Code updated");

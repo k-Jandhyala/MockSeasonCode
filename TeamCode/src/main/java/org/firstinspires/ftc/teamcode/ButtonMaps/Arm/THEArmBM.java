@@ -5,7 +5,7 @@
 //import com.qualcomm.robotcore.util.ElapsedTime;
 //
 //import org.firstinspires.ftc.teamcode.ButtonMaps.AbstractButtonMap;
-//import org.firstinspires.ftc.teamcode.ComplexRobots.IntoTheDeepRobot;
+//import org.firstinspires.ftc.teamcode.ComplexRobots.MockSeasonRobot;
 //
 //@Config
 //public class THEArmBM extends AbstractButtonMap {
@@ -25,7 +25,7 @@
 //
 //
 //    @Override
-//    public void loop(IntoTheDeepRobot robot, OpMode opMode) {
+//    public void loop(MockSeasonRobot robot, OpMode opMode) {
 //        /* BUTTON MAP
 //         * A - Elbow/Wrist Intake
 //         * B - Elbow/Wrist Lift
@@ -80,16 +80,16 @@
 //        if(!clawOpen) {
 //            if (opMode.gamepad2.y) {
 //                //Y - Elbow and Wrist to Backboard
-//                robot.elbowServo.setPosition(IntoTheDeepRobot.elbowBackboardPosition);
-//                robot.sampleClaw.setPosition(IntoTheDeepRobot.wristBackboardPosition);
+//                robot.elbowServo.setPosition(MockSeasonRobot.elbowBackboardPosition);
+//                robot.sampleClaw.setPosition(MockSeasonRobot.wristBackboardPosition);
 //            } else if (opMode.gamepad2.b) {
 //                //B - Elbow to slightly lifted position
-//                robot.elbowServo.setPosition(IntoTheDeepRobot.elbowRaisePosition);
-//                robot.sampleClaw.setPosition(IntoTheDeepRobot.wristCollapsePosition);
+//                robot.elbowServo.setPosition(MockSeasonRobot.elbowRaisePosition);
+//                robot.sampleClaw.setPosition(MockSeasonRobot.wristCollapsePosition);
 //            } else if (opMode.gamepad2.a) {
 //                //A - Elbow and wrist to Load position
-//                robot.elbowServo.setPosition(IntoTheDeepRobot.elbowLoadPosition);
-//                robot.sampleClaw.setPosition(IntoTheDeepRobot.wristLoadPosition);
+//                robot.elbowServo.setPosition(MockSeasonRobot.elbowLoadPosition);
+//                robot.sampleClaw.setPosition(MockSeasonRobot.wristLoadPosition);
 //            }
 //        }
 //

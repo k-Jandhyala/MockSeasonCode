@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.ButtonMaps.AbstractButtonMap;
-import org.firstinspires.ftc.teamcode.ComplexRobots.IntoTheDeepRobot;
+import org.firstinspires.ftc.teamcode.ComplexRobots.MockSeasonRobot;
 
 public class SkystoneArmBM extends AbstractButtonMap {
     public static double intakePower = 0.5;
@@ -40,7 +40,7 @@ public class SkystoneArmBM extends AbstractButtonMap {
 
 
         @Override
-    public void loop(IntoTheDeepRobot robot, OpMode opMode) {
+    public void loop(MockSeasonRobot robot, OpMode opMode) {
         bucketMotorsAvgPostiion = (robot.bucketMotor1.getCurrentPosition() + robot.bucketMotor2.getCurrentPosition())/2;
 
         // Wrist Servo (elbow)

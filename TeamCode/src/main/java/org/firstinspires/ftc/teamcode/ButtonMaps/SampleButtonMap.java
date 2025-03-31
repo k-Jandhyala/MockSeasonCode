@@ -2,7 +2,7 @@ package org.firstinspires.ftc.teamcode.ButtonMaps;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-import org.firstinspires.ftc.teamcode.ComplexRobots.IntoTheDeepRobot;
+import org.firstinspires.ftc.teamcode.ComplexRobots.MockSeasonRobot;
 
 public class SampleButtonMap extends AbstractButtonMap{
     //Instance Variables
@@ -15,7 +15,7 @@ public class SampleButtonMap extends AbstractButtonMap{
     }
 
     @Override
-    public void loop(IntoTheDeepRobot robot, OpMode opMode) {
+    public void loop(MockSeasonRobot robot, OpMode opMode) {
         if(opMode.gamepad1.a) {
 //            robot.armMotor.setPower(0);
         }

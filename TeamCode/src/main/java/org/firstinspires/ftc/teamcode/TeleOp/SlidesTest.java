@@ -7,12 +7,12 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.ButtonMaps.AbstractButtonMap;
 import org.firstinspires.ftc.teamcode.ButtonMaps.Arm.ArianaArmBm;
 import org.firstinspires.ftc.teamcode.ButtonMaps.Drive.CommonDriveBM;
-import org.firstinspires.ftc.teamcode.ComplexRobots.IntoTheDeepRobot;
+import org.firstinspires.ftc.teamcode.ComplexRobots.MockSeasonRobot;
 
 @TeleOp(name="Test TeleOp")
 public class SlidesTest extends OpMode {
     //Global Variables
-    IntoTheDeepRobot robot;
+    MockSeasonRobot robot;
 
     //Button Maps
     AbstractButtonMap driveButtonMap;
@@ -22,7 +22,7 @@ public class SlidesTest extends OpMode {
     public void init() {
         telemetry.addLine("Initializing, please wait...");
         telemetry.update();
-        robot = new IntoTheDeepRobot(hardwareMap, new Pose2d(0,0,0));
+        robot = new MockSeasonRobot(hardwareMap, new Pose2d(0,0,0));
         driveButtonMap = new CommonDriveBM();
         slidesButtonMap = new ArianaArmBm();
         telemetry.addLine("Ready.");

@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.ButtonMaps.AbstractButtonMap;
-import org.firstinspires.ftc.teamcode.ComplexRobots.IntoTheDeepRobot;
+import org.firstinspires.ftc.teamcode.ComplexRobots.MockSeasonRobot;
 
 public class SlidesTestBM extends AbstractButtonMap {
     public static double intakePower = 0.5;
@@ -15,7 +15,7 @@ public class SlidesTestBM extends AbstractButtonMap {
     private double intakeOutTime = 0;
 
     @Override
-    public void loop(IntoTheDeepRobot robot, OpMode opMode) {
+    public void loop(MockSeasonRobot robot, OpMode opMode) {
        if(opMode.gamepad1.left_trigger > 0.1){
            robot.horizontalSlideMotor.setPower(-linearSlidesDownMultiplier * opMode.gamepad1.left_trigger);
        } else if(opMode.gamepad1.right_trigger > 0.1){

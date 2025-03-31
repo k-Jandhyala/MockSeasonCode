@@ -13,7 +13,7 @@ import org.firstinspires.ftc.teamcode.ButtonMaps.MotorPowers;
 
 
 @Config
-public class IntoTheDeepRobot extends MecanumDrive {
+public class MockSeasonRobot extends MecanumDrive {
 
     public final DcMotorEx horizontalSlideMotor;
     public final DcMotorEx bucketMotor1;
@@ -24,7 +24,7 @@ public class IntoTheDeepRobot extends MecanumDrive {
     public final Servo specimenClaw;
     public HardwareMap hardwareMap;
 
-    public IntoTheDeepRobot(HardwareMap hardwareMap, Pose2d pose) {
+    public MockSeasonRobot(HardwareMap hardwareMap, Pose2d pose) {
         super(hardwareMap, pose);
         hardwareMap = this.hardwareMap;
         //Linear Slide Motor

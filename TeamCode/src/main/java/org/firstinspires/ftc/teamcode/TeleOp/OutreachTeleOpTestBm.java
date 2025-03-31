@@ -5,16 +5,14 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.ButtonMaps.AbstractButtonMap;
-import org.firstinspires.ftc.teamcode.ButtonMaps.Arm.ArianaArmBm;
 import org.firstinspires.ftc.teamcode.ButtonMaps.Arm.OutreachArmBMTestTeleOp;
-import org.firstinspires.ftc.teamcode.ButtonMaps.Drive.CommonDriveBM;
 import org.firstinspires.ftc.teamcode.ButtonMaps.Drive.OutReachBM;
-import org.firstinspires.ftc.teamcode.ComplexRobots.IntoTheDeepRobot;
+import org.firstinspires.ftc.teamcode.ComplexRobots.MockSeasonRobot;
 
 @TeleOp(name="OutReach TeleOp")
 public class OutreachTeleOpTestBm extends OpMode {
     //Global Variables
-    IntoTheDeepRobot robot;
+    MockSeasonRobot robot;
 
     //Button Maps
     AbstractButtonMap driveButtonMap;
@@ -24,7 +22,7 @@ public class OutreachTeleOpTestBm extends OpMode {
     public void init() {
         telemetry.addLine("Initializing, please wait...");
         telemetry.update();
-        robot = new IntoTheDeepRobot(hardwareMap, new Pose2d(0,0,0));
+        robot = new MockSeasonRobot(hardwareMap, new Pose2d(0,0,0));
         driveButtonMap = new OutReachBM();
         slidesButtonMap = new OutreachArmBMTestTeleOp();
         telemetry.addLine("Ready.");
